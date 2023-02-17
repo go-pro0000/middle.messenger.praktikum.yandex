@@ -34,7 +34,7 @@
             font-style: normal;
             font-weight: 600;
             font-size: 13px;
-            color: #1E1E1E;
+            color: var(--black);
 
             overflow: hidden;
             white-space: nowrap;
@@ -48,7 +48,7 @@
             font-style: normal;
             font-weight: 500;
             font-size: 12px;
-            color: #999999;
+            color: var(--gray);
 
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -59,7 +59,7 @@
             word-wrap: break-word;
 
             &__own {
-                color: #1E1E1E;
+                color: var(--black);
             }
         }
     }
@@ -75,7 +75,7 @@
             font-weight: 500;
             font-size: 9px;
             line-height: 13px;
-            color: #999999;
+            color: var(--gray);
 
             display: inline-block;
         }
@@ -85,13 +85,13 @@
             height: 20px;
 
             border-radius: 50%;
-            background: #3369F3;
+            background: var(--blue);
 
             font-family: 'Inter';
             font-style: normal;
             font-weight: 500;
             font-size: 11px;
-            color: #FFFFFF;
+            color: var(--white);
 
             display: flex;
             justify-content: center;

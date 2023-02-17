@@ -11,12 +11,12 @@
             <div class="dialog__header__actions__dropDownList">
                 <div class="dialog__header__actions__dropDownList__addUser">
                     <img src="/static/img/dialogsPage/addUserButton.svg">
-                    <span>Добавить пользователя</span>
+                    <p>Добавить пользователя</p>
                 </div>
 
                 <div class="dialog__header__actions__dropDownList__removeUser">
                     <img src="/static/img/dialogsPage/removeUserButton.svg">
-                    <span>Удалить пользователя</span>
+                    <p>Удалить пользователя</p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 {{#if this.you}}
                     <div class="dialog__content__ownMessage">
                         {{#if this.type}}
-                            <span class="dialog__content__ownMessage__text">{{this.text}}
+                            <p class="dialog__content__ownMessage__text">{{this.text}}
                                 <span class="dialog__content__ownMessage__empty"></span>
                                 <span class="dialog__content__ownMessage__time">
                                     {{#if this.checked}}
@@ -38,7 +38,7 @@
                                         <img src="/static/img/dialogsPage/uncheckedMessage.svg">
                                     {{/if}}
                                     {{this.time}}</span>
-                                </span>
+                            </p>
                         {{else}}
                             <div class="dialog__content__ownMessage__imgContainer">
                                 <img src='{{this.text}}'>
@@ -56,9 +56,9 @@
                 {{else}}
                     <div class="dialog__content__otherMessage">
                         {{#if this.type}}
-                            <span class="dialog__content__otherMessage__text">{{this.text}}
+                            <p class="dialog__content__otherMessage__text">{{this.text}}
                             <span class="dialog__content__otherMessage__time">{{this.time}}</span>
-                            </span>
+                            </sp>
                             {{else}}
                             <div class="dialog__content__otherMessage__imgContainer">
                                 <img src='{{this.text}}'>
@@ -78,17 +78,17 @@
             <div class="dialog__messageSend__dropDownListContainer__dropDownList">
                 <div class="dialog__messageSend__dropDownListContainer__dropDownList__photoVideo">
                     <img src="/static/img/dialogsPage/photoVideo.svg">
-                    <span>Фото или Видео</span>
+                    <p>Фото или Видео</p>
                 </div>
 
                 <div class="dialog__messageSend__dropDownListContainer__dropDownList__file">
                     <img src="/static/img/dialogsPage/file.svg">
-                    <span>Файл</span>
+                    <p>Файл</p>
                 </div>
 
                 <div class="dialog__messageSend__dropDownListContainer__dropDownList__location">
                     <img src="/static/img/dialogsPage/location.svg">
-                    <span>Локация</span>
+                    <p>Локация</p>
                 </div>
             </div>
         </div>

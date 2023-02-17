@@ -3,11 +3,11 @@ button {
     height: 37px;
     margin-bottom: 14px;
 
-    background: #3369F3;
+    background: var(--blue);
     border-radius: 8px;
     border: none;
 
-    color: #FFFFFF;
+    color: var(--white);
 
     cursor: pointer;
 }
