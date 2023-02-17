@@ -1,0 +1,43 @@
+---
+form: [
+{
+type: "text",
+name: "login",
+placeholder: "Логин",
+validationError: true,
+},
+{
+type: "password",
+name: "password",
+placeholder: "Пароль",
+validationError: false,
+},
+]
+---
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="/src/pages/auth/auth.scss">
+    <link rel="stylesheet" href="./signin.scss">
+    <link rel="stylesheet" href="/src/styles/button.scss">
+</head>
+
+<body>
+    <div class="container">
+        <form class="container__form">
+            <p class="container__form__title">Вход</p>
+
+            {{#each form}}
+                <input type={{this.type}} name={{this.name}} placeholder={{this.placeholder}}>
+                {{#if this.validationError}}
+                    <span class="container__form__inputError">Неверный {{this.placeholder}}</span>
+                {{/if}}
+            {{/each}}
+            {{> button text="Авторизоваться"}}
+            <a href="/src/pages/auth/signup/signup.hbs">Нет аккаунта?</a>
+        </form>
+    </div>
+</body>
+
+</html>

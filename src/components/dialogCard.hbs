@@ -1,0 +1,20 @@
+<div class="dialogCard">
+    <div class="dialogCard__image"></div>
+
+    <div class="dialogCard__content">
+        <span class="dialogCard__content__name">{{data.name}}</span>
+        <p class="dialogCard__content__text">
+            {{#if data.own}}
+            <span class="dialogCard__content__text__own">Вы: </span>
+            {{/if}}
+            {{data.text}}
+        </p>
+    </div>
+
+    <div class="dialogCard__info">
+        <span class="dialogCard__info__time">{{data.time}}</span>
+        {{#if data.quantity}}
+        <span class="dialogCard__info__quantity">{{data.quantity}}</span>
+        {{/if}}
+    </div>
+</div>
