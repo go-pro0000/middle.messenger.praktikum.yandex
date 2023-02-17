@@ -9,7 +9,7 @@
     padding: 0 30px;
     box-sizing: border-box;
 
-    background: #FFFFFF;
+    background: var(--white);
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
     border-radius: 12px;
 
@@ -25,11 +25,11 @@
         font-style: normal;
         font-weight: 500;
         font-size: 15px;
-        color: #1E1E1E;
+        color: var(--black);
     }
 
     &__actionError {
-        color: #FF2F2F;
+        color: var(--red);
     }
 
     &__link {
@@ -41,7 +41,7 @@
         font-size: 12px;
         text-decoration-line: underline;
 
-        color: #3369F3;
+        color: var(--blue);
     }
 
     &__span {
@@ -56,11 +56,13 @@
     }
 
     &__needToChooseFile {
+        margin-top: 0;
+
         font-family: 'Inter';
         font-style: normal;
         font-weight: 500;
         font-size: 11px;
 
-        color: #FF2F2F;
+        color: var(--red);
     }
 }

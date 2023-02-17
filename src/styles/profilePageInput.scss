@@ -14,7 +14,7 @@
         font-style: normal;
         font-weight: 500;
         font-size: 13px;
-        color: #1E1E1E;
+        color: var(--black);
     }
 
     input {
@@ -22,7 +22,7 @@
         font-style: normal;
         font-weight: 500;
         font-size: 13px;
-        color: #999999;
+        color: var(--gray);
         text-align: right;
 
         border: none;

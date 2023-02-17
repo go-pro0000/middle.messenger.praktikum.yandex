@@ -8,11 +8,11 @@
     {{#if content.link}}
         <a class="profilePagePopup__link" href="">{{content.text}}</a>
     {{else}}
-        <span class="profilePagePopup__span">{{content.text}}</span>
+        <p class="profilePagePopup__span">{{content.text}}</p>
     {{/if}}
-    {{> button text="Поменять" }}
+    {{> button text="Поменять" type="submit" }}
 
     {{#if needToChooseFile.need}}
-        <span class="profilePagePopup__needToChooseFile">{{needToChooseFile.text}}</span>
+        <p class="profilePagePopup__needToChooseFile">{{needToChooseFile.text}}</p>
     {{/if}}
 </div>
