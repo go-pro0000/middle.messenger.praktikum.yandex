@@ -5,6 +5,7 @@ type: "text",
 name: "login",
 placeholder: "Логин",
 validationError: true,
+validationErrorMessage: 'Неверный логин',
 },
 {
 type: "password",
@@ -34,7 +35,7 @@ validationError: false,
                 {{#each form}}
                 <input type={{this.type}} name={{this.name}} placeholder={{this.placeholder}}>
                 {{#if this.validationError}}
-                <span class="container__form__inputError">Неверный {{this.placeholder}}</span>
+                <span class="container__form__inputError">{{this.validationErrorMessage}}</span>
                 {{/if}}
                 {{/each}}
                 {{> button text="Авторизоваться" type="submit"}}

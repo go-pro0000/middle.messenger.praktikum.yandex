@@ -12,5 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     root.appendChild(button.element!);
 
+    button.dispatchComponentDidMount();
+
 })
    
