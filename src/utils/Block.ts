@@ -26,7 +26,6 @@ class Block<P extends Record<string, any> = any> {
     const eventBus = new EventBus();
 
     const {props, children} = this._getChildrenAndProps(propsWithChildren);
-
     this.children = children;
     this.props = this._makePropsProxy(props);
 
@@ -40,8 +39,9 @@ class Block<P extends Record<string, any> = any> {
   _getChildrenAndProps(childrenAndProps: P): { props: P, children: Record<string, Block | Block[]> } {
     const props: Record<string, unknown> = {};
     const children: Record<string, Block | Block[]> = {};
+    
 
-    Object.entries(childrenAndProps).forEach(([key, value]) => {
+    Object.entries(childrenAndProps).forEach(([key, value]) => {      
       if (Array.isArray(value) && value.length > 0 && value.every(v => v instanceof Block)) {
         children[key as string] = value;
       } else if (value instanceof Block) {
@@ -50,8 +50,9 @@ class Block<P extends Record<string, any> = any> {
         props[key] = value;
       }
     });
-
+    
     return {props: props as P, children};
+    
   }
 
   _addEvents() {
@@ -139,10 +140,10 @@ class Block<P extends Record<string, any> = any> {
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
         contextAndStubs[name] = component.map(child => `<div data-id="${child.id}"></div>`)
-      } else {
+      } else {        
         contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
       }
-    });
+    });        
 
     const html = template(contextAndStubs);
 
@@ -156,7 +157,6 @@ class Block<P extends Record<string, any> = any> {
       if (!stub) {
         return;
       }
-
       component.getContent()?.append(...Array.from(stub.childNodes));
 
       stub.replaceWith(component.getContent()!);

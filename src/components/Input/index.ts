@@ -6,11 +6,11 @@ interface InputProps {
     type: string,
     name: string,
     placeholder: string,
-    validationError: boolean,
-    validationErrorMessage: string,
+    validationError?: boolean,
+    validationErrorMessage?: string,
 }
 
-export class Input extends Block {
+export class Input extends Block<InputProps> {
     constructor(props: InputProps) {
         super(props);
     }

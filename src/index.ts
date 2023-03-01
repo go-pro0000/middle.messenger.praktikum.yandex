@@ -1,18 +1,13 @@
-import {Button} from './components/Button'
+import { SignUpPage } from "./pages/auth/signup";
 
 window.addEventListener('DOMContentLoaded', () => {
     const root = document.querySelector('#app')!;
 
-    const button = new Button({
-        label: "Click me",
-        events: {
-            click: () => { console.log('Clicked')},
-        },
-    })
+    const signup = new SignUpPage();
 
-    root.appendChild(button.element!);
+    root.appendChild(signup.element!);
 
-    button.dispatchComponentDidMount();
+    signup.dispatchComponentDidMount();
 
 })
    
