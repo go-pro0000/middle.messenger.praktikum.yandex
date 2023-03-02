@@ -1,12 +1,11 @@
 import Block from '../../utils/Block';
 import template from './button.hbs';
-import styles from './styles.module.pcss';
 
 interface ButtonProps {
-  type?: string;
-  label: string;
+  type: string;
+  text: string;
   events: {
-    click: () => void;
+    click: (e: SubmitEvent) => void;
   };
 }
 

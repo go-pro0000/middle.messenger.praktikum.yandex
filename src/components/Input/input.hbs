@@ -1,4 +1,6 @@
-<input type={{type}} name={{name}} placeholder='{{placeholder}}'>
-{{#if validationError}}
-<span class="container__form__inputError">{{validationErrorMessage}}</span>
-{{/if}}
+<div>
+    <input type={{type}} name={{name}} placeholder='{{placeholder}}'>
+    {{#if validationError}}
+    <span class="{{styles.container__form__inputError}}">{{validationErrorMessage}}</span>
+    {{/if}}
+</div>

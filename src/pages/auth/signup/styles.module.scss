@@ -1,3 +1,39 @@
+.container__form {
+    height: 615px;
+
+    input:not(:first-of-type) {
+        margin-top: 16px;
+    }
+
+    &__errorInput {
+        width: 100%;
+        margin-top: 4px;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 9px;
+        color: var(--red);
+
+        display: inline-block;
+    }
+
+    button {
+        margin-top: 60px;
+    }
+}
+
+input {
+    width: 100%;
+    height: 36px;
+
+    border: none;
+    border-bottom: 1px solid var(--blue);
+    outline: none;
+}
+
+
+
 .container {
     height: 100vh;
 
@@ -20,7 +56,7 @@
         flex-direction: column;
         align-items: center;
 
-        h1 {
+        &__title {
             height: 20px;
             margin-top: 50px;
             margin-bottom: 41px;
@@ -30,22 +66,11 @@
             font-weight: 500;
             font-size: 20px;
             line-height: 20px;
-
             text-align: center;
-
             color: var(--black);
         }
 
-        input {
-            width: 100%;
-            height: 36px;
-
-            border: none;
-            border-bottom: 1px solid var(--blue);
-            outline: none;
-        }
-
-        a {
+        &__link {
             height: 11px;
 
             font-family: 'Inter';
@@ -53,7 +78,6 @@
             font-weight: 500;
             font-size: 11px;
             line-height: 11px;
-
             color: var(--blue);
         }
     }

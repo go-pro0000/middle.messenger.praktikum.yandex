@@ -1,13 +1,13 @@
 import Block from "../../utils/Block"
 import template from "./input.hbs"
-// import styles from "./styles.scss"
+import styles from "./styles.scss"
 
 interface InputProps {
     type: string,
     name: string,
     placeholder: string,
-    validationError?: boolean,
-    validationErrorMessage?: string,
+    validationError: boolean,
+    validationErrorMessage: string,
 }
 
 export class Input extends Block<InputProps> {
@@ -15,7 +15,15 @@ export class Input extends Block<InputProps> {
         super(props);
     }
 
+    public getValue() {
+        return ((this.element as HTMLInputElement).getElementsByTagName('input')[0]).value;
+    }
+
+    public setValue(value: string) {
+        return ((this.element as HTMLInputElement).getElementsByTagName('input')[0]).value = value;
+    }
+
     render() {
-        return this.compile(template, { ...this.props });
+        return this.compile(template, { ...this.props, styles });
     }
 }

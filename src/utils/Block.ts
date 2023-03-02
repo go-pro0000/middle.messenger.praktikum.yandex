@@ -192,7 +192,6 @@ class Block<P extends Record<string, any> = any> {
       },
       set(target, prop: string, value) {
         const oldTarget = {...target}
-
         target[prop as keyof P] = value;
 
         // Запускаем обновление компоненты

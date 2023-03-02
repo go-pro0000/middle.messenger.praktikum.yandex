@@ -70,10 +70,10 @@ validationErrorMessage: 'Пароли не совпадают',
 </body>
 
 </html> --}}
-<div class="container">
-    <form class="container__form">
-        <h1 class="container__form__title">Регистрация</h1>
 
+<div class="{{styles.container}}">
+    <form class="{{styles.container__form}}">
+        <h1 class={{styles.container__form__title}}>Регистрация</h1>
         {{{emailInput}}}
         {{{loginInput}}}
         {{{firstNameInput}}}
@@ -81,8 +81,8 @@ validationErrorMessage: 'Пароли не совпадают',
         {{{phoneInput}}}
         {{{passwordInput}}}
         {{{passworRepeatdInput}}}
-
+        {{{registrationButton}}}
         {{!-- {{> button text="Зарегистрироваться" type="submit"}} --}}
-        <a href="/src/pages/auth/signin/signin.hbs">Войти</a>
+        <a class="{{styles.container__form__link}}" href="/src/pages/auth/signin/signin.hbs">Войти</a>
     </form>
 </div>
