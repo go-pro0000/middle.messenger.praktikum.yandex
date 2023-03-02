@@ -1,4 +1,4 @@
----
+{{!-- ---
 form: [
 {
 type: "text",
@@ -45,4 +45,15 @@ validationError: false,
     </main>
 </body>
 
-</html>
+</html> --}}
+
+<div class="{{authStyles.container}}">
+    <form class="{{authStyles.container__form}} {{styles.container__form}}">
+        <h1 class="{{authStyles.container__form__title}}">Вход</h1>
+        {{{loginInput}}}
+        {{{passwordInput}}}
+
+        {{{registrationButton}}}
+        <a onclick="{{test}}">Нет аккаунта?</a>
+    </form>
+</div>

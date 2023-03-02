@@ -1,6 +1,6 @@
 import Block from "../../utils/Block"
 import template from "./input.hbs"
-import styles from "./styles.scss"
+import styles from "./styles.module.scss"
 
 interface InputProps {
     type: string,
@@ -8,6 +8,9 @@ interface InputProps {
     placeholder: string,
     validationError: boolean,
     validationErrorMessage: string,
+    events?: {
+        click: (name: string) => void;
+      };
 }
 
 export class Input extends Block<InputProps> {

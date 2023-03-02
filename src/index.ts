@@ -1,13 +1,6 @@
-import { SignUpPage } from "./pages/auth/signup";
+import { renderDOM } from "./utils/renderDOM"
 
 window.addEventListener('DOMContentLoaded', () => {
-    const root = document.querySelector('#app')!;
-
-    const signup = new SignUpPage();
-
-    root.appendChild(signup.element!);
-
-    signup.dispatchComponentDidMount();
-
+    renderDOM('signIn');
 })
    
