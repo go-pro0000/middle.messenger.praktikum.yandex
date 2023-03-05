@@ -1,0 +1,18 @@
+{
+  "name": "parcel-handlebars",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.hbs --no-cache",
+    "build": "parcel build src/index.hbs --no-cache",
+    "start": "npm run build && node app.js"
+  },
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@parcel/transformer-sass": "2.8.3",
+    "parcel": "2.8.3"
+  },
+  "dependencies": {
+    "express": "4.18.2"
+  }
+}

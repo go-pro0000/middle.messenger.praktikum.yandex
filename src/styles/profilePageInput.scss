@@ -1,0 +1,31 @@
+.profilePageInput {
+    border-bottom: 1px solid#EAEAEA;
+    padding-bottom: 10px;
+
+    display: flex;
+    justify-content: space-between;
+
+    &:not(:last-of-type) {
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        color: var(--black);
+    }
+
+    input {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        color: var(--gray);
+        text-align: right;
+
+        border: none;
+        outline: none;
+    }
+}

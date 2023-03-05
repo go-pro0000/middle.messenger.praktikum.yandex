@@ -1,0 +1,18 @@
+<div class="profilePagePopup">
+    {{#if action.error}}
+        <p class="profilePagePopup__action profilePagePopup__actionError">{{action.text}}</p>
+    {{else}}
+        <p class="profilePagePopup__action">{{action.text}}</p>
+    {{/if}}
+
+    {{#if content.link}}
+        <a class="profilePagePopup__link" href="">{{content.text}}</a>
+    {{else}}
+        <p class="profilePagePopup__span">{{content.text}}</p>
+    {{/if}}
+    {{> button text="Поменять" type="submit" }}
+
+    {{#if needToChooseFile.need}}
+        <p class="profilePagePopup__needToChooseFile">{{needToChooseFile.text}}</p>
+    {{/if}}
+</div>

@@ -1,0 +1,31 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --red: #FF2F2F;
+  --blue: #3369F3;
+  --white: #FFFFFF;
+  --gray: #999999;
+  --black: #1E1E1E;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  // height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--darkGray);
+}
