@@ -1,14 +1,16 @@
 import Block from '../../utils/Block'
-import template from './button.hbs'
+import template from './link.hbs'
 import styles from './styles.module.scss'
 
-interface ButtonProps {
-  type: string;
+interface LinkProps {
   text: string;
+  events: {
+    click: (route: string) => void,
+  }
 }
 
-export default class Button extends Block<ButtonProps> {
-  constructor(props: ButtonProps) {
+export default class Link extends Block<LinkProps> {
+  constructor(props: LinkProps) {
     super(props);
   }
 

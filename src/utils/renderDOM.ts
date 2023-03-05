@@ -1,9 +1,11 @@
 import { SignUpPage } from "../pages/auth/signup"
 import { SignInPage } from "../pages/auth/signin"
+import { NavPage } from "../pages/navPage";
 
 const ROUTES = {
     signUp: SignUpPage,
-    signIn: SignInPage, 
+    signIn: SignInPage,
+    navPage: NavPage,
 }
 
 export function renderDOM(route: keyof typeof ROUTES) {
@@ -12,9 +14,9 @@ export function renderDOM(route: keyof typeof ROUTES) {
     root!.innerHTML = '';
 
     const PageComponent = ROUTES[route];
-    const page = new PageComponent({});
+    const page = new PageComponent();
 
-    root!.appendChild(page.element);
+    root!.appendChild(page.element as HTMLElement);
 
     page.dispatchComponentDidMount();
 }
