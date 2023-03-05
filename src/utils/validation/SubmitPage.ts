@@ -10,7 +10,7 @@ interface SubmitPageProps {
 }
 
 export abstract class SubmitPage extends Block {
-    protected constructor(func: (formData: FormData) => void, className: string) {
+    protected constructor(func: (formData: FormData) => void, className: string = '') {
         const props: SubmitPageProps = {
             events: {
                 submit: (evt) => {
@@ -18,47 +18,50 @@ export abstract class SubmitPage extends Block {
 
                     let isValid = true;
 
-                    console.log(this);
-
                     for (let item of this.props.checkInput) {
-                        switch (item.props.name) {
-                            case "email":
-                                Validation.isEmail(item)
-                                break;
-
-                            case "login":
-                                Validation.isEmptyInput(item)
-                                break;
-
-                            case "first_name":
-                                Validation.isEmptyInput(item)
-                                break;
-
-                            case "second_name":
-                                Validation.isEmptyInput(item)
-                                break;
-
-                            case "phone":
-                                Validation.isPhone(item)
-                                break;
-
-                            case "password":
-                                if (className === 'SignUpPage') {
-                                    Validation.checkFirstPassword(item, this.props.checkInput[6])
-                                } else {
+                        if (!item.props.hide) {
+                            switch (item.props.name) {
+                                case "email":
+                                    Validation.isEmail(item)
+                                    break;
+    
+                                case "login":
                                     Validation.isEmptyInput(item)
-                                }
-                                break;
-
-                            case "password_repeat":
-                                Validation.checkTwoPassword(item, this.props.checkInput[6])
-                                break;
-
-                            default:
-                                break;
+                                    break;
+    
+                                case "first_name":
+                                    Validation.isEmptyInput(item)
+                                    break;
+    
+                                case "second_name":
+                                    Validation.isEmptyInput(item)
+                                    break;
+    
+                                case "phone":
+                                    Validation.isPhone(item)
+                                    break;
+    
+                                case "password":
+                                    if (className === 'SignUpPage') {
+                                        Validation.checkFirstPassword(item, this.props.checkInput[6])
+                                    } else {
+                                        Validation.isEmptyInput(item)
+                                    }
+                                    break;
+    
+                                case "password_repeat":
+                                    Validation.checkTwoPassword(item, this.props.checkInput[6])
+                                    break;
+    
+                                case "display_name":
+                                    Validation.isEmptyInput(item)
+    
+                                default:
+                                    break;
+                            }
+    
+                            isValid = isValid && item!.isValid();
                         }
-
-                        isValid = isValid && item!.isValid();
                     }
                     if (isValid) {
                         func.call(this, new FormData(this.getContent()!.querySelector('form')!));

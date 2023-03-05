@@ -11,25 +11,61 @@ export class NavPage extends Block {
 
   init() {
     this.children.signInLink = new Link({
-        text: 'Вход',
-        events: {
-            click: () => {
-                renderDOM('signIn');
-            },
-        }
+      text: 'Вход',
+      events: {
+        click: () => {
+          renderDOM('signIn');
+        },
+      }
     })
 
     this.children.signUpLink = new Link({
-        text: 'Регистрация',
-        events: {
-            click: () => {
-                renderDOM('signUp');
-            },
-        }
+      text: 'Регистрация',
+      events: {
+        click: () => {
+          renderDOM('signUp');
+        },
+      }
+    })
+
+    this.children.dialogsLink = new Link({
+      text: 'Диалоги',
+      events: {
+        click: () => {
+          renderDOM('dialogsPage');
+        },
+      }
+    })
+
+    this.children.profileLink = new Link({
+      text: 'Профиль',
+      events: {
+        click: () => {
+          renderDOM('profile');
+        },
+      }
+    })
+
+    this.children.pageNotFound = new Link({
+      text: '404',
+      events: {
+        click: () => {
+          renderDOM('pageNotFound');
+        },
+      }
+    })
+
+    this.children.serverError = new Link({
+      text: '500',
+      events: {
+        click: () => {
+          renderDOM('serverError');
+        },
+      }
     })
   }
 
   render() {
-    return this.compile(template, {style});
+    return this.compile(template, { style });
   }
 }

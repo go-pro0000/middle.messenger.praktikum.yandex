@@ -9,6 +9,8 @@ interface InputProps {
     placeholder: string,
     validationError: boolean,
     validationErrorMessage: string,
+    hide?: boolean,
+
     events: {
         focus: () => void,
         blur: () => void,

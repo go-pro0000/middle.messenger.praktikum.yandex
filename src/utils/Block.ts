@@ -149,7 +149,7 @@ class Block<P extends Record<string, any> = any> {
 
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
-    
+
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
         contextAndStubs[name] = component.map(child => `<div data-id="${child.id}"></div>`)
