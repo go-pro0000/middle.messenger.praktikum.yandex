@@ -1,0 +1,39 @@
+.errorPage {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__status {
+        margin-bottom: 20px;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 40px;
+
+        color: var(--black);
+
+    }
+
+    &__text {
+        margin-bottom: 69px;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+
+        color: var(--black);
+    }
+
+    &__backLink {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 11px;
+
+        color: var(--blue);
+    }
+}

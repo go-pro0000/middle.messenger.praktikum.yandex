@@ -1,0 +1,65 @@
+.dialogMessages__otherMessage,
+.dialogMessages__ownMessage {
+    margin-bottom: 10px;
+
+    display: flex;
+
+    &__text {
+        position: relative;
+
+        max-width: 40%;
+        padding: 11px;
+        box-sizing: border-box;
+
+        border-radius: 5px;
+
+        display: inline-block;
+    }
+
+    &__empty {
+        width: 33px;
+
+        display: inline-block;
+    }
+
+    &__time {
+        position: absolute;
+        bottom: 11px;
+        right: 11px;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 9px;
+    }
+
+    &__imgContainer {
+        position: relative;
+    }
+}
+
+.dialogMessages__otherMessage {
+    justify-content: flex-start;
+
+    &__text {
+        background: #F8F8F8;
+    }
+
+    &__time {
+        color: var(--gray);
+    }
+}
+
+.dialogMessages__ownMessage {
+    text-align: end;
+
+    justify-content: flex-end;
+
+    &__text {
+        background: #E4EDFD;
+    }
+
+    &__time {
+        color: var(--blue);
+    }
+}
