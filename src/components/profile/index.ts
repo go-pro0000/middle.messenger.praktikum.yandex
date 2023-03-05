@@ -3,7 +3,7 @@ import SubmitPage from '../../utils/validation/SubmitPage'
 import ChangeInfoData from '../../classes/ChangeInfoData'
 import Input from '../Input'
 import Validation from '../../utils/validation/Validation'
-import style from './style.module.scss'
+import * as style from './style.module.scss'
 import Button from '../Button'
 import Field from '../field'
 

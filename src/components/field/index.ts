@@ -1,6 +1,6 @@
 import Block from "../../utils/Block"
 import template from "./field.hbs"
-import style from './style.module.scss'
+import * as style from './style.module.scss'
 
 interface FieldProps {
     text: string,

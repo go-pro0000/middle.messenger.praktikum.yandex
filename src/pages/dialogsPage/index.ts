@@ -1,6 +1,6 @@
 import Block from '../../utils/Block'
 import template from './dialogsPage.hbs'
-import style from './styles.module.scss'
+import * as style from './styles.module.scss'
 import DialogCard from '../../components/dialogCard'
 import DialogDay from '../../components/dialogDay'
 import cameraImage from "../../../static/img/dialogsPage/camera.svg"
