@@ -1,10 +1,10 @@
-import { SignUpPage } from "../pages/auth/signup"
-import { SignInPage } from "../pages/auth/signin"
-import { NavPage } from "../pages/navPage"
-import { DialogsPage } from "../pages/dialogsPage"
-import ProfilePage from "../pages/profilePage"
-import PageNotFound from "../pages/pageNotFound"
-import ServerError from "../pages/serverError"
+import { SignUpPage } from '../pages/auth/signup';
+import { SignInPage } from '../pages/auth/signin';
+import { NavPage } from '../pages/navPage';
+import { DialogsPage } from '../pages/dialogsPage';
+import ProfilePage from '../pages/profilePage';
+import PageNotFound from '../pages/pageNotFound';
+import ServerError from '../pages/serverError';
 
 const ROUTES = {
     signUp: SignUpPage,
@@ -13,8 +13,8 @@ const ROUTES = {
     dialogsPage: DialogsPage,
     profile: ProfilePage,
     pageNotFound: PageNotFound,
-    serverError: ServerError
-}
+    serverError: ServerError,
+};
 
 export function renderDOM(route: keyof typeof ROUTES) {
     const root = document.querySelector('#app');

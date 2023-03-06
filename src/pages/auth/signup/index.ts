@@ -1,19 +1,19 @@
-import Input from "../../../components/Input"
-import Button from "../../../components/Button"
-import Link from "../../../components/Link"
-import template from "./signup.hbs"
-import SubmitPage from "../../../utils/validation/SubmitPage"
-import Validation from "../../../utils/validation/Validation"
-import * as rootStyles from "../../../styles/root.module.scss"
-import * as authStyles from "../styles.module.scss"
-import * as styles from "./styles.module.scss"
-import SignUpData from "../../../classes/SignUpData"
-import { renderDOM } from "../../../utils/renderDOM"
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
+import Link from '../../../components/Link';
+import template from './signup.hbs';
+import SubmitPage from '../../../utils/validation/SubmitPage';
+import Validation from '../../../utils/validation/Validation';
+import * as rootStyles from '../../../styles/root.module.scss';
+import * as authStyles from '../styles.module.scss';
+import * as styles from './styles.module.scss';
+import SignUpData from '../../../classes/SignUpData';
+import { renderDOM } from '../../../utils/renderDOM';
 
 export class SignUpPage extends SubmitPage {
     constructor() {
-        super(formData => {
-            let data: SignUpData = new SignUpData(formData);
+        super((formData) => {
+            const data: SignUpData = new SignUpData(formData);
             console.log(data);
         }, 'SignUp');
     }
@@ -21,18 +21,18 @@ export class SignUpPage extends SubmitPage {
     init() {
         this.children.emailInput = new Input({
             value: '',
-            type: "text",
-            name: "email",
-            placeholder: "Почта",
+            type: 'text',
+            name: 'email',
+            placeholder: 'Почта',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.emailInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmail(this.children.emailInput as Input);
                 },
             },
@@ -40,18 +40,18 @@ export class SignUpPage extends SubmitPage {
 
         this.children.loginInput = new Input({
             value: '',
-            type: "text",
-            name: "login",
-            placeholder: "Логин",
+            type: 'text',
+            name: 'login',
+            placeholder: 'Логин',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.loginInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmptyInput(this.children.loginInput as Input);
                 },
             },
@@ -59,18 +59,18 @@ export class SignUpPage extends SubmitPage {
 
         this.children.firstNameInput = new Input({
             value: '',
-            type: "text",
-            name: "first_name",
-            placeholder: "Имя",
+            type: 'text',
+            name: 'first_name',
+            placeholder: 'Имя',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.firstNameInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmptyInput(this.children.firstNameInput as Input);
                 },
             },
@@ -78,18 +78,18 @@ export class SignUpPage extends SubmitPage {
 
         this.children.secondNameInput = new Input({
             value: '',
-            type: "text",
-            name: "second_name",
-            placeholder: "Фамилия",
+            type: 'text',
+            name: 'second_name',
+            placeholder: 'Фамилия',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.secondNameInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmptyInput(this.children.secondNameInput as Input);
                 },
             },
@@ -97,18 +97,18 @@ export class SignUpPage extends SubmitPage {
 
         this.children.phoneInput = new Input({
             value: '',
-            type: "text",
-            name: "phone",
-            placeholder: "Телефон",
+            type: 'text',
+            name: 'phone',
+            placeholder: 'Телефон',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.phoneInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isPhone(this.children.phoneInput as Input);
                 },
             },
@@ -116,18 +116,18 @@ export class SignUpPage extends SubmitPage {
 
         this.children.passwordInput = new Input({
             value: '',
-            type: "password",
-            name: "password",
-            placeholder: "Пароль",
+            type: 'password',
+            name: 'password',
+            placeholder: 'Пароль',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.passwordInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.checkFirstPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },
@@ -135,26 +135,26 @@ export class SignUpPage extends SubmitPage {
 
         this.children.passwordRepeatInput = new Input({
             value: '',
-            type: "password",
-            name: "password_repeat",
-            placeholder: "Пароль (еще раз)",
+            type: 'password',
+            name: 'password_repeat',
+            placeholder: 'Пароль (еще раз)',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.passwordRepeatInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.checkTwoPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },
         });
 
         this.children.registrationButton = new Button({
-            text: "Зарегистрироваться",
-            type: "submit",
+            text: 'Зарегистрироваться',
+            type: 'submit',
         });
 
         this.children.registrationLink = new Link({
@@ -162,9 +162,9 @@ export class SignUpPage extends SubmitPage {
             events: {
                 click: () => {
                     renderDOM('signIn');
-                }
-            }
-        })
+                },
+            },
+        });
 
         this.props.checkInput = [
             this.children.emailInput,
@@ -178,6 +178,8 @@ export class SignUpPage extends SubmitPage {
     }
 
     render() {
-        return this.compile(template, { ...this.props, rootStyles, styles, authStyles });
+        return this.compile(template, {
+ ...this.props, rootStyles, styles, authStyles,
+});
     }
 }

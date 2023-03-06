@@ -2,12 +2,12 @@ import Input from '../../components/Input';
 
 export class Validation {
     public static isEmail(_input: Input): void {
-        const sampleRegEx: RegExp = /.+@.+\.\w+/;
+        const sampleRegEx = /.+@.+\.\w+/;
         const res: boolean = sampleRegEx.test(_input.getValue());
         if (res) {
             _input.removeError();
         } else {
-            _input.setError("Неправильный формат почты");
+            _input.setError('Неправильный формат почты');
         }
     }
 
@@ -26,12 +26,12 @@ export class Validation {
     }
 
     public static isPhone(_input: Input): void {
-        const sampleRegEx: RegExp = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+        const sampleRegEx = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
         const res: boolean = sampleRegEx.test(_input.getValue());
         if (res) {
             _input.removeError();
         } else {
-            _input.setError("Неправильный формат телефона");
+            _input.setError('Неправильный формат телефона');
         }
     }
 

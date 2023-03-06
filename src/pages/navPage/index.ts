@@ -1,8 +1,8 @@
-import Block from '../../utils/Block'
-import Link from '../../components/Link';
+import Block from '../../utils/Block';
+import Li from '../../components/li';
 import { renderDOM } from '../../utils/renderDOM';
-import template from './navPage.hbs'
-import * as style from './styles.module.scss'
+import template from './navPage.hbs';
+import * as style from './styles.module.scss';
 
 export class NavPage extends Block {
   constructor() {
@@ -10,59 +10,59 @@ export class NavPage extends Block {
   }
 
   init() {
-    this.children.signInLink = new Link({
+    this.children.signInLink = new Li({
       text: 'Вход',
       events: {
         click: () => {
           renderDOM('signIn');
         },
-      }
-    })
+      },
+    });
 
-    this.children.signUpLink = new Link({
+    this.children.signUpLink = new Li({
       text: 'Регистрация',
       events: {
         click: () => {
           renderDOM('signUp');
         },
-      }
-    })
+      },
+    });
 
-    this.children.dialogsLink = new Link({
+    this.children.dialogsLink = new Li({
       text: 'Диалоги',
       events: {
         click: () => {
           renderDOM('dialogsPage');
         },
-      }
-    })
+      },
+    });
 
-    this.children.profileLink = new Link({
+    this.children.profileLink = new Li({
       text: 'Профиль',
       events: {
         click: () => {
           renderDOM('profile');
         },
-      }
-    })
+      },
+    });
 
-    this.children.pageNotFound = new Link({
+    this.children.pageNotFound = new Li({
       text: '404',
       events: {
         click: () => {
           renderDOM('pageNotFound');
         },
-      }
-    })
+      },
+    });
 
-    this.children.serverError = new Link({
+    this.children.serverError = new Li({
       text: '500',
       events: {
         click: () => {
           renderDOM('serverError');
         },
-      }
-    })
+      },
+    });
   }
 
   render() {

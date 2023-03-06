@@ -1,14 +1,11 @@
 .container__profile__settings__changeData {
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-
     border-bottom: 1px solid#EAEAEA;
-
-    font-family: 'Inter';
+    color: var(--blue);
+    cursor: pointer;
+    font-family: Inter;
+    font-size: 13px;
     font-style: normal;
     font-weight: 500;
-    font-size: 13px;
-    color: var(--blue);
-
-    cursor: pointer;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }

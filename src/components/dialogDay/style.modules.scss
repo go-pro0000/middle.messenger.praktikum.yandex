@@ -1,11 +1,10 @@
 .dialog__content__date {
-    margin-top: 0;
-    margin-bottom: 30px;
-
-    font-family: 'Inter';
+    color: var(--gray);
+    font-family: Inter;
+    font-size: 12px;
     font-style: normal;
     font-weight: 500;
-    font-size: 12px;
+    margin-bottom: 30px;
+    margin-top: 0;
     text-align: center;
-    color: var(--gray);
 }

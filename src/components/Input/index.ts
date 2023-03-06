@@ -1,6 +1,6 @@
-import Block from "../../utils/Block"
-import template from "./input.hbs"
-import * as styles from "./styles.module.scss"
+import Block from '../../utils/Block';
+import template from './input.hbs';
+import * as styles from './styles.module.scss';
 
 interface InputProps {
     value: string,
@@ -24,7 +24,7 @@ export default class Input extends Block<InputProps> {
 
     public getValue() {
         this.props.value = ((this.element as HTMLInputElement).getElementsByTagName('input')[0]).value;
-        
+
         return this.props.value;
     }
 
@@ -52,7 +52,7 @@ export default class Input extends Block<InputProps> {
     public _addEvents() {
         const { events = {} } = this.props;
 
-        Object.keys(events).forEach(eventName => {
+        Object.keys(events).forEach((eventName) => {
             ((this.element as HTMLInputElement).getElementsByTagName('input')[0]).addEventListener(eventName, events[eventName as keyof typeof events]);
         });
     }
@@ -61,13 +61,13 @@ export default class Input extends Block<InputProps> {
         const { events = {} } = this.props;
 
         if (events !== null && events !== undefined) {
-            Object.keys(events).forEach(eventName => {
+            Object.keys(events).forEach((eventName) => {
                 ((this.element as HTMLInputElement)?.getElementsByTagName('input')[0]).removeEventListener(eventName, events[eventName as keyof typeof events]);
             });
-        };
+        }
     }
 
-    render() {                
+    render() {
         return this.compile(template, { ...this.props, styles });
     }
 }

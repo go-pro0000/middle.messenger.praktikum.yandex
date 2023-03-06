@@ -1,11 +1,11 @@
-import template from './profile.hbs'
-import SubmitPage from '../../utils/validation/SubmitPage'
-import ChangeInfoData from '../../classes/ChangeInfoData'
-import Input from '../Input'
-import Validation from '../../utils/validation/Validation'
-import * as style from './style.module.scss'
-import Button from '../Button'
-import Field from '../field'
+import template from './profile.hbs';
+import SubmitPage from '../../utils/validation/SubmitPage';
+import ChangeInfoData from '../../classes/ChangeInfoData';
+import Input from '../Input';
+import Validation from '../../utils/validation/Validation';
+import * as style from './style.module.scss';
+import Button from '../Button';
+import Field from '../field';
 
 interface ProfileProps {
     changeData: boolean,
@@ -13,28 +13,28 @@ interface ProfileProps {
 
 export default class Profile extends SubmitPage {
     constructor(props: ProfileProps) {
-        super(formData => {
-            let data: ChangeInfoData = new ChangeInfoData(formData);
-            console.log(data); props
-        })
+        super((formData) => {
+            const data: ChangeInfoData = new ChangeInfoData(formData);
+            console.log(data); props;
+        });
     }
 
     init() {
         this.children.emailInput = new Input({
             value: '',
-            type: "text",
-            name: "email",
-            placeholder: "Почта",
+            type: 'text',
+            name: 'email',
+            placeholder: 'Почта',
             validationError: false,
             validationErrorMessage: '',
             // active: true,
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.emailInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmail(this.children.emailInput as Input);
                 },
             },
@@ -42,18 +42,18 @@ export default class Profile extends SubmitPage {
 
         this.children.loginInput = new Input({
             value: '',
-            type: "text",
-            name: "login",
-            placeholder: "Логин",
+            type: 'text',
+            name: 'login',
+            placeholder: 'Логин',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.loginInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmptyInput(this.children.loginInput as Input);
                 },
             },
@@ -61,18 +61,18 @@ export default class Profile extends SubmitPage {
 
         this.children.firstNameInput = new Input({
             value: '',
-            type: "text",
-            name: "first_name",
-            placeholder: "Имя",
+            type: 'text',
+            name: 'first_name',
+            placeholder: 'Имя',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.firstNameInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmptyInput(this.children.firstNameInput as Input);
                 },
             },
@@ -80,18 +80,18 @@ export default class Profile extends SubmitPage {
 
         this.children.secondNameInput = new Input({
             value: '',
-            type: "text",
-            name: "second_name",
-            placeholder: "Фамилия",
+            type: 'text',
+            name: 'second_name',
+            placeholder: 'Фамилия',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.secondNameInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmptyInput(this.children.secondNameInput as Input);
                 },
             },
@@ -99,18 +99,18 @@ export default class Profile extends SubmitPage {
 
         this.children.displayNameInput = new Input({
             value: '',
-            type: "text",
-            name: "display_name",
-            placeholder: "Имя в чате",
+            type: 'text',
+            name: 'display_name',
+            placeholder: 'Имя в чате',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.displayNameInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmptyInput(this.children.displayNameInput as Input);
                 },
             },
@@ -118,18 +118,18 @@ export default class Profile extends SubmitPage {
 
         this.children.phoneInput = new Input({
             value: '',
-            type: "text",
-            name: "phone",
-            placeholder: "Телефон",
+            type: 'text',
+            name: 'phone',
+            placeholder: 'Телефон',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.phoneInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isPhone(this.children.phoneInput as Input);
                 },
             },
@@ -137,19 +137,19 @@ export default class Profile extends SubmitPage {
 
         this.children.oldPasswordInput = new Input({
             value: '',
-            type: "password",
-            name: "old_password",
-            placeholder: "Старый пароль",
+            type: 'password',
+            name: 'old_password',
+            placeholder: 'Старый пароль',
             validationError: false,
             validationErrorMessage: '',
             hide: true,
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.oldPasswordInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.isEmptyInput(this.children.oldPasswordInput as Input);
                 },
             },
@@ -157,19 +157,19 @@ export default class Profile extends SubmitPage {
 
         this.children.passwordInput = new Input({
             value: '',
-            type: "password",
-            name: "password",
-            placeholder: "Новый пароль",
+            type: 'password',
+            name: 'password',
+            placeholder: 'Новый пароль',
             validationError: false,
             validationErrorMessage: '',
             hide: true,
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.passwordInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.checkFirstPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },
@@ -177,26 +177,26 @@ export default class Profile extends SubmitPage {
 
         this.children.passwordRepeatInput = new Input({
             value: '',
-            type: "password",
-            name: "password_repeat",
-            placeholder: "Новый пароль (еще раз)",
+            type: 'password',
+            name: 'password_repeat',
+            placeholder: 'Новый пароль (еще раз)',
             validationError: false,
             validationErrorMessage: '',
             hide: true,
             events: {
                 focus: () => {
-                    console.log("focus");
+                    console.log('focus');
                     (this.children.passwordRepeatInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
+                    console.log('blur');
                     Validation.checkTwoPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },
         });
 
         this.children.changeInfo = new Field({
-            text: "Изменить данные",
+            text: 'Изменить данные',
             events: {
                 click: () => {
                     this.props.checkInput[0].props.hide = false;
@@ -208,13 +208,13 @@ export default class Profile extends SubmitPage {
 
                     this.props.checkInput[6].props.hide = true;
                     this.props.checkInput[7].props.hide = true;
-                    this.props.checkInput[8].props.hide = true; 
-                }
-            }
-        })
+                    this.props.checkInput[8].props.hide = true;
+                },
+            },
+        });
 
         this.children.changePassword = new Field({
-            text: "Изменить пароль",
+            text: 'Изменить пароль',
             events: {
                 click: () => {
                     this.props.checkInput[0].props.hide = true;
@@ -227,14 +227,14 @@ export default class Profile extends SubmitPage {
                     this.props.checkInput[6].props.hide = false;
                     this.props.checkInput[7].props.hide = false;
                     this.props.checkInput[8].props.hide = false;
-                }
-            }
-        })
+                },
+            },
+        });
 
         this.children.saveButton = new Button({
             type: 'submit',
             text: 'Сохранить',
-        })
+        });
 
         this.props.checkInput = [
             this.children.emailInput,
@@ -251,6 +251,6 @@ export default class Profile extends SubmitPage {
     }
 
     render() {
-        return this.compile(template, { ...this.props, style })
+        return this.compile(template, { ...this.props, style });
     }
 }

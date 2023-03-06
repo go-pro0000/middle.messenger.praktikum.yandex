@@ -1,6 +1,6 @@
-import Block from '../../utils/Block'
-import template from './link.hbs'
-import * as styles from './styles.module.scss'
+import Block from '../../utils/Block';
+import template from './link.hbs';
+import * as styles from './styles.module.scss';
 
 interface LinkProps {
   text: string;

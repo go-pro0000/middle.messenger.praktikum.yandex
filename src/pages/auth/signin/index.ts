@@ -1,19 +1,19 @@
-import Input from "../../../components/Input"
-import Button from "../../../components/Button"
-import template from "./signin.hbs"
-import SubmitPage from "../../../utils/validation/SubmitPage"
-import Validation from "../../../utils/validation/Validation"
-import * as rootStyles from "../../../styles/root.module.scss"
-import * as authStyles from "../styles.module.scss"
-import *as styles from "./styles.module.scss"
-import SignInData from "../../../classes/SignInData"
-import Link from "../../../components/Link"
-import { renderDOM } from "../../../utils/renderDOM"
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
+import template from './signin.hbs';
+import SubmitPage from '../../../utils/validation/SubmitPage';
+import Validation from '../../../utils/validation/Validation';
+import * as rootStyles from '../../../styles/root.module.scss';
+import * as authStyles from '../styles.module.scss';
+import * as styles from './styles.module.scss';
+import SignInData from '../../../classes/SignInData';
+import Link from '../../../components/Link';
+import { renderDOM } from '../../../utils/renderDOM';
 
 export class SignInPage extends SubmitPage {
     constructor() {
-        super(formData => {
-            let data: SignInData = new SignInData(formData);
+        super((formData) => {
+            const data: SignInData = new SignInData(formData);
             console.log(data);
         }, 'SignInPage');
     }
@@ -21,18 +21,16 @@ export class SignInPage extends SubmitPage {
     init() {
         this.children.loginInput = new Input({
             value: '',
-            type: "text",
-            name: "login",
-            placeholder: "Логин",
+            type: 'text',
+            name: 'login',
+            placeholder: 'Логин',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
                     (this.children.loginInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
                     Validation.isEmptyInput(this.children.loginInput as Input);
                 },
             },
@@ -40,26 +38,24 @@ export class SignInPage extends SubmitPage {
 
         this.children.passwordInput = new Input({
             value: '',
-            type: "password",
-            name: "password",
-            placeholder: "Пароль",
+            type: 'password',
+            name: 'password',
+            placeholder: 'Пароль',
             validationError: false,
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log("focus");
                     (this.children.passwordInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log("blur");
                     Validation.isEmptyInput(this.children.passwordInput as Input);
                 },
             },
         });
 
         this.children.registrationButton = new Button({
-            text: "Авторизироваться",
-            type: "submit",
+            text: 'Авторизироваться',
+            type: 'submit',
         });
 
         this.children.registrationLink = new Link({
@@ -67,9 +63,9 @@ export class SignInPage extends SubmitPage {
             events: {
                 click: () => {
                     renderDOM('signUp');
-                }
-            }
-        })
+                },
+            },
+        });
 
         this.props.checkInput = [
             this.children.loginInput,
@@ -78,6 +74,8 @@ export class SignInPage extends SubmitPage {
     }
 
     render() {
-        return this.compile(template, { ...this.props, rootStyles, styles, authStyles });
+        return this.compile(template, {
+ ...this.props, rootStyles, styles, authStyles,
+});
     }
 }
