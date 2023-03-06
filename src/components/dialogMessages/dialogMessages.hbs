@@ -5,20 +5,20 @@
         <span class="{{style.dialogMessages__ownMessage__empty}}"></span>
         <span class="{{style.dialogMessages__ownMessage__time}}">
             {{#if checked}}
-            <img src="{{checkedMessage}}">
+            <img src="{{checkedMessage}}" alt="Прочитанное сообщение">
             {{else}}
-            <img src="{{uncheckedMessage}}">
+            <img src="{{uncheckedMessage}}" alt="Непрочитанное сообщение">
             {{/if}}
             {{time}}</span>
     </p>
     {{else}}
     <div class="{{style.dialogMessages__ownMessage__imgContainer}}">
-        <img src="{{text}}">
+        <img src="{{text}}" alt="Картинка чата">
         <span class="{{style.dialogMessages__ownMessage__time}}">
             {{#if checked}}
-            <img src="{{checkedMessage}}">
+            <img src="{{checkedMessage}}" alt="Прочитанное сообщение">
             {{else}}
-            <img src="{{uncheckedMessage}}">
+            <img src="{{uncheckedMessage}}" alt="Непрочитанное сообщение">
             {{/if}}
             {{time}}
         </span>
@@ -33,7 +33,7 @@
         </sp>
         {{else}}
     <div class="{{style.dialogMessages__otherMessage__imgContainer}}">
-        <img src='{{text}}'>
+        <img src='{{text}}' alt="Картинка чата">
         <span class="{{style.dialogMessages__otherMessage__time}}">{{time}}</span>
     </div>
     {{/if}}

@@ -1,19 +1,19 @@
-import Block from '../../utils/Block'
-import template from './profilePage.hbs'
-import Profile from '../../components/profile'
+import Block from '../../utils/Block';
+import template from './profilePage.hbs';
+import Profile from '../../components/profile';
 
 export default class ProfilePage extends Block {
     constructor() {
-        super({})
+        super({});
     }
 
     init() {
         this.children.profile = new Profile({
-            changeData: true
-        })
+            changeData: true,
+        });
     }
 
     render() {
-        return this.compile(template, {})
+        return this.compile(template, {});
     }
 }

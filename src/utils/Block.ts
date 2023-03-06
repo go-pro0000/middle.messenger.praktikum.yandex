@@ -1,5 +1,5 @@
-import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
+import { EventBus } from './EventBus';
 
 // Нельзя создавать экземпляр данного класса
 class Block<P extends Record<string, any> = any> {
@@ -12,9 +12,13 @@ class Block<P extends Record<string, any> = any> {
   } as const;
 
   public id = nanoid(6);
+
   protected props: P;
+
   public children: Record<string, Block | Block[]>;
+
   private eventBus: () => EventBus;
+
   private _element: HTMLElement | null = null;
 
   /** JSDoc
@@ -42,7 +46,7 @@ class Block<P extends Record<string, any> = any> {
     const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (Array.isArray(value) && value.length > 0 && value.every(v => v instanceof Block)) {
+      if (Array.isArray(value) && value.length > 0 && value.every((v) => v instanceof Block)) {
         children[key as string] = value;
       } else if (value instanceof Block) {
         children[key as string] = value;
@@ -64,17 +68,17 @@ class Block<P extends Record<string, any> = any> {
   _addEvents() {
     const { events = {} } = this.props as P & { events: Record<string, () => void> };
 
-    Object.keys(events).forEach(eventName => {
+    Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
     });
   }
 
   _removeEvents() {
     if (this.props.events !== null && this.props.events !== undefined) {
-      Object.keys(this.props.events).forEach(eventName => {
+      Object.keys(this.props.events).forEach((eventName) => {
         this._element?.removeEventListener(eventName, this.props.events[eventName]);
       });
-    };
+    }
   }
 
   private _init() {
@@ -96,9 +100,9 @@ class Block<P extends Record<string, any> = any> {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach(child => {
+    Object.values(this.children).forEach((child) => {
       if (Array.isArray(child)) {
-        child.forEach(ch => ch.dispatchComponentDidMount());
+        child.forEach((ch) => ch.dispatchComponentDidMount());
       } else {
         child.dispatchComponentDidMount();
       }
@@ -152,7 +156,7 @@ class Block<P extends Record<string, any> = any> {
 
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
-        contextAndStubs[name] = component.map(child => `<div data-id="${child.id}"></div>`)
+        contextAndStubs[name] = component.map((child) => `<div data-id="${child.id}"></div>`);
       } else {
         contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
       }
@@ -173,7 +177,7 @@ class Block<P extends Record<string, any> = any> {
       component.getContent()?.append(...Array.from(stub.childNodes));
 
       stub.replaceWith(component.getContent()!);
-    }
+    };
 
     Object.entries(this.children).forEach(([_, component]) => {
       if (Array.isArray(component)) {
@@ -195,31 +199,27 @@ class Block<P extends Record<string, any> = any> {
   }
 
   _makePropsProxy(props: P) {
-    // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
-    const self = this;
-
     return new Proxy(props, {
       get(target, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop: string, value) {
-        const oldTarget = { ...target }
+      set: (target, prop: string, value) => {
+        const oldTarget = { ...target };
         target[prop as keyof P] = value;
 
         // Запускаем обновление компоненты
         // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
-      deleteProperty(target, prop) {
+      deleteProperty:(target, prop) => {
         if (prop === 'events') {
-          self.eventBus().emit(Block.EVENTS.DELETE_EVENT, Object.getOwnPropertyNames(target[prop])[0], target[prop]);
+          this.eventBus().emit(Block.EVENTS.DELETE_EVENT, Object.getOwnPropertyNames(target[prop])[0], target[prop]);
           return true;
-        } else {
-          throw new Error('Нет доступа');
         }
-      }
+          throw new Error('Нет доступа');
+      },
     });
   }
 }

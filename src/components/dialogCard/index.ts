@@ -1,6 +1,6 @@
-import Block from '../../utils/Block'
-import template from './dialogCard.hbs'
-import * as style from './style.module.scss'
+import Block from '../../utils/Block';
+import template from './dialogCard.hbs';
+import * as style from './style.module.scss';
 
 interface DialogCardProps {
     img: string,
@@ -11,12 +11,12 @@ interface DialogCardProps {
     quantity: number,
 }
 
-export default class DialogCard extends Block{
+export default class DialogCard extends Block {
     constructor(props: DialogCardProps) {
-        super(props)
+        super(props);
     }
 
     render() {
-        return this.compile(template, {...this.props, style})
+        return this.compile(template, { ...this.props, style });
     }
 }

@@ -1,8 +1,8 @@
-import Block from '../../utils/Block'
-import template from './dialogMessages.hbs'
-import * as style from './style.module.scss'
-import checkedMessage from '../../../static/img/dialogsPage/checkedMessage.svg'
-import uncheckedMessage from '../../../static/img/dialogsPage/uncheckedMessage.svg'
+import Block from '../../utils/Block';
+import template from './dialogMessages.hbs';
+import * as style from './style.module.scss';
+import checkedMessage from '../../../static/img/dialogsPage/checkedMessage.svg';
+import uncheckedMessage from '../../../static/img/dialogsPage/uncheckedMessage.svg';
 
 export interface dialogMessagesProps {
     you: boolean,
@@ -20,10 +20,10 @@ export default class dialogMessages extends Block {
         props.uncheckedMessage = uncheckedMessage;
         console.log(checkedMessage);
 
-        super(props)
+        super(props);
     }
 
     render() {
-        return this.compile(template, { ...this.props, style})
+        return this.compile(template, { ...this.props, style });
     }
 }
