@@ -14,7 +14,8 @@ export class NavPage extends Block {
       text: 'Вход',
       events: {
         click: () => {
-          renderDOM('signIn');
+          // renderDOM('signIn');
+          
         },
       },
     });

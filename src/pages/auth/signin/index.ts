@@ -10,7 +10,7 @@ import SignInData from '../../../classes/SignInData';
 import Link from '../../../components/Link';
 import { renderDOM } from '../../../utils/renderDOM';
 
-export class SignInPage extends SubmitPage {
+export default class SignInPage extends SubmitPage {
     constructor() {
         super((formData) => {
             const data: SignInData = new SignInData(formData);
@@ -75,7 +75,7 @@ export class SignInPage extends SubmitPage {
 
     render() {
         return this.compile(template, {
- ...this.props, rootStyles, styles, authStyles,
-});
+            ...this.props, rootStyles, styles, authStyles,
+        });
     }
 }

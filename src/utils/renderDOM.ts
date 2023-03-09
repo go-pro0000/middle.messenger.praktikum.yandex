@@ -1,5 +1,5 @@
 import { SignUpPage } from '../pages/auth/signup';
-import { SignInPage } from '../pages/auth/signin';
+import SignInPage from '../pages/auth/signin';
 import { NavPage } from '../pages/navPage';
 import { DialogsPage } from '../pages/dialogsPage';
 import ProfilePage from '../pages/profilePage';
