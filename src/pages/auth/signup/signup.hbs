@@ -1,75 +1,17 @@
----
-form: [
-{
-type: "text",
-name: "email",
-placeholder: "Почта",
-},
-{
-type: "text",
-name: "login",
-placeholder: "Логин",
-},
-{
-type: "text",
-name: "first_name",
-placeholder: "Имя",
-},
-{
-type: "text",
-name: "second_name",
-placeholder: "Фамилия",
-},
-{
-type: "text",
-name: "phone",
-placeholder: "Телефон",
-},
-{
-type: "password",
-name: "password",
-placeholder: "Пароль",
-color: "red",
-},
-{
-type: "password",
-name: "password",
-placeholder: "Пароль (еще раз)",
-validationError: true,
-validationErrorMessage: 'Пароли не совпадают',
-color: "red",
-},
-]
----
+<main>
+    <div class="{{authStyles.container}}">
+        <form class="{{authStyles.container__form}} {{styles.container__form}}">
+            <h1 class="{{authStyles.container__form__title}}">Регистрация</h1>
+            {{{emailInput}}}
+            {{{loginInput}}}
+            {{{firstNameInput}}}
+            {{{secondNameInput}}}
+            {{{phoneInput}}}
+            {{{passwordInput}}}
+            {{{passwordRepeatInput}}}
 
-<html>
-
-<head>
-    <link rel="stylesheet" href="/src/styles/root.scss">
-    <link rel="stylesheet" href="/src/pages/auth/auth.scss">
-    <link rel="stylesheet" href="./signup.scss">
-    <link rel="stylesheet" href="/src/styles/button.scss">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">.
-</head>
-
-<body>
-    <main>
-        <div class="container">
-            <form class="container__form">
-                <h1 class="container__form__title">Регистрация</h1>
-
-                {{#each form}}
-                <input type={{this.type}} name={{this.name}} placeholder='{{this.placeholder}}'
-                    style="color: {{this.color}}">
-                {{#if validationError}}
-                <span class="container__form__errorInput">{{this.validationErrorMessage}}</span>
-                {{/if}}
-                {{/each}}
-                {{> button text="Зарегистрироваться" type="submit"}}
-                <a href="/src/pages/auth/signin/signin.hbs">Войти</a>
-            </form>
-        </div>
-    </main>
-</body>
-
-</html>
+            {{{registrationButton}}}
+            {{{registrationLink}}}
+        </form>
+    </div>
+</main>

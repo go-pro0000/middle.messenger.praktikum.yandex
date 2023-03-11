@@ -1,13 +1,10 @@
 button {
-    width: 100%;
+    background: var(--blue);
+    border: none;
+    border-radius: 8px;
+    color: var(--white);
+    cursor: pointer;
     height: 37px;
     margin-bottom: 14px;
-
-    background: var(--blue);
-    border-radius: 8px;
-    border: none;
-
-    color: var(--white);
-
-    cursor: pointer;
+    width: 100%;
 }

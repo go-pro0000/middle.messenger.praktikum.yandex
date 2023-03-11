@@ -6,16 +6,16 @@
         </div>
 
         <div class="dialog__header__actions">
-            <img src="/static/img/dialogsPage/move-vertical.svg">
+            <img src="/static/img/dialogsPage/move-vertical.svg" alt="Действия">
 
             <div class="dialog__header__actions__dropDownList">
                 <div class="dialog__header__actions__dropDownList__addUser">
-                    <img src="/static/img/dialogsPage/addUserButton.svg">
+                    <img src="/static/img/dialogsPage/addUserButton.svg" alt="Добавить пользователя">
                     <p>Добавить пользователя</p>
                 </div>
 
                 <div class="dialog__header__actions__dropDownList__removeUser">
-                    <img src="/static/img/dialogsPage/removeUserButton.svg">
+                    <img src="/static/img/dialogsPage/removeUserButton.svg" alt="Удалить пользователя">
                     <p>Удалить пользователя</p>
                 </div>
             </div>
@@ -33,9 +33,9 @@
                                 <span class="dialog__content__ownMessage__empty"></span>
                                 <span class="dialog__content__ownMessage__time">
                                     {{#if this.checked}}
-                                        <img src="/static/img/dialogsPage/checkedMessage.svg">
+                                        <img src="/static/img/dialogsPage/checkedMessage.svg" alt="Прочитанное сообщение">
                                         {{else}}
-                                        <img src="/static/img/dialogsPage/uncheckedMessage.svg">
+                                        <img src="/static/img/dialogsPage/uncheckedMessage.svg" alt="Непрочитанное сообщение">
                                     {{/if}}
                                     {{this.time}}</span>
                             </p>
@@ -44,9 +44,9 @@
                                 <img src='{{this.text}}'>
                                 <span class="dialog__content__ownMessage__time">
                                     {{#if this.checked}}
-                                        <img src="/static/img/dialogsPage/checkedMessage.svg">
+                                        <img src="/static/img/dialogsPage/checkedMessage.svg" alt="Прочитанное сообщение">
                                         {{else}}
-                                        <img src="/static/img/dialogsPage/uncheckedMessage.svg">
+                                        <img src="/static/img/dialogsPage/uncheckedMessage.svg" alt="Непрочитанное сообщение">
                                     {{/if}}
                                     {{this.time}}
                                 </span>
@@ -61,7 +61,7 @@
                             </sp>
                             {{else}}
                             <div class="dialog__content__otherMessage__imgContainer">
-                                <img src='{{this.text}}'>
+                                <img src='{{this.text}}' alt="Картинка чата">
                                 <span class="dialog__content__otherMessage__time">{{this.time}}</span>
                             </div>
                         {{/if}}
@@ -74,26 +74,26 @@
 
     <div class="dialog__messageSend">
         <div class="dialog__messageSend__dropDownListContainer">
-            <img class="dialog__messageSend__dropDownListContainer__files" src="/static/img/dialogsPage/clip.svg">
+            <img class="dialog__messageSend__dropDownListContainer__files" src="/static/img/dialogsPage/clip.svg" alt="Прикрепить файл">
             <div class="dialog__messageSend__dropDownListContainer__dropDownList">
                 <div class="dialog__messageSend__dropDownListContainer__dropDownList__photoVideo">
-                    <img src="/static/img/dialogsPage/photoVideo.svg">
+                    <img src="/static/img/dialogsPage/photoVideo.svg" alt="Прикрепить фото/видео">
                     <p>Фото или Видео</p>
                 </div>
 
                 <div class="dialog__messageSend__dropDownListContainer__dropDownList__file">
-                    <img src="/static/img/dialogsPage/file.svg">
+                    <img src="/static/img/dialogsPage/file.svg" alt="Прикрепить файйл">
                     <p>Файл</p>
                 </div>
 
                 <div class="dialog__messageSend__dropDownListContainer__dropDownList__location">
-                    <img src="/static/img/dialogsPage/location.svg">
+                    <img src="/static/img/dialogsPage/location.svg" alt="Прикрепить локацию">
                     <p>Локация</p>
                 </div>
             </div>
         </div>
         <input type="text" placeholder="Сообщение" name="message">
-        <img class="dialog__messageSend__buttonSend" src="/static/img/dialogsPage/buttonSend.svg">
+        <img class="dialog__messageSend__buttonSend" src="/static/img/dialogsPage/buttonSend.svg" alt="Кнопка отправки">
     </div>
 
     {{> dialogPagePopup data = addDeleteUser.add}}
