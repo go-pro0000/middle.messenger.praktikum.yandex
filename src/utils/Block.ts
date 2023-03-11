@@ -222,6 +222,13 @@ class Block<P extends Record<string, any> = any> {
       },
     });
   }
+
+  show() {
+  }
+  
+  hide() {
+    this._element!.innerHTML = '';
+  }
 }
 
 export default Block;

@@ -18,7 +18,6 @@ export default class dialogMessages extends Block {
     constructor(props: dialogMessagesProps) {
         props.checkedMessage = checkedMessage;
         props.uncheckedMessage = uncheckedMessage;
-        console.log(checkedMessage);
 
         super(props);
     }

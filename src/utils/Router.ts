@@ -19,8 +19,8 @@ class Route {
     _blockClass: classInterface;
     _block: classInterface | null;
     _props: { rootQuery: string; };
-    
-    constructor( pathname: string, view: classInterface, props: {rootQuery: string} ) {
+
+    constructor(pathname: string, view: classInterface, props: { rootQuery: string }) {
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;
@@ -45,15 +45,9 @@ class Route {
     }
 
     render() {
-        if (!this._block) {
-            this._block = new this._blockClass();
-            render(this._props.rootQuery, this._block!);
-
-            // this._block.dispatchComponentDidMount();
-            return;
-        }
-
-        this._block.show();
+        this._block = new this._blockClass();
+        render(this._props.rootQuery, this._block!);
+        this._block.dispatchComponentDidMount();
     }
 }
 
