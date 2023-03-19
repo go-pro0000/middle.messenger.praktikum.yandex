@@ -8,14 +8,18 @@ import * as rootStyles from '../../../styles/root.module.scss';
 import * as authStyles from '../styles.module.scss';
 import * as styles from './styles.module.scss';
 import SignUpData from '../../../classes/SignUpData';
-import { renderDOM } from '../../../utils/renderDOM';
+import Router from '../../../utils/Router';
 
-export class SignUpPage extends SubmitPage {
+export default class SignUpPage extends SubmitPage {
+    router: Router;
+
     constructor() {
+        console.log('sign up page');
         super((formData) => {
             const data: SignUpData = new SignUpData(formData);
             console.log(data);
         }, 'SignUp');
+        this.router = new Router('#app');
     }
 
     init() {
@@ -161,7 +165,7 @@ export class SignUpPage extends SubmitPage {
             text: 'Войти',
             events: {
                 click: () => {
-                    renderDOM('signIn');
+                    this.router.go('/signin')
                 },
             },
         });

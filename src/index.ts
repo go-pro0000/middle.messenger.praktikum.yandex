@@ -1,8 +1,8 @@
 import Router from './utils/Router';
-import { NavPage } from './pages/navPage';
+import NavPage from './pages/navPage';
 import SignInPage from './pages/auth/signin';
-import { SignUpPage } from './pages/auth/signup';
-import { DialogsPage } from './pages/dialogsPage';
+import SignUpPage from './pages/auth/signup';
+import DialogsPage from './pages/dialogsPage';
 import ProfilePage from './pages/profilePage';
 import PageNotFound from './pages/pageNotFound';
 import ServerError from './pages/serverError';

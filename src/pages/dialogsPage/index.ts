@@ -8,7 +8,7 @@ import cameraImage from '../../../static/img/dialogsPage/camera.svg';
 interface DialogsPageProps {
 }
 
-export class DialogsPage extends Block {
+export default class DialogsPage extends Block {
     constructor(props: DialogsPageProps) {
         super({ props });
     }

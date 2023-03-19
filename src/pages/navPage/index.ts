@@ -1,11 +1,10 @@
 import Block from '../../utils/Block';
 import Li from '../../components/li';
-import { renderDOM } from '../../utils/renderDOM';
 import template from './navPage.hbs';
 import * as style from './styles.module.scss';
 import Router from '../../utils/Router';
 
-export class NavPage extends Block {
+export default class NavPage extends Block {
   router: Router;
 
   constructor() {

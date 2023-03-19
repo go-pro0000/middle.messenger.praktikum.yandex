@@ -8,14 +8,17 @@ import * as authStyles from '../styles.module.scss';
 import * as styles from './styles.module.scss';
 import SignInData from '../../../classes/SignInData';
 import Link from '../../../components/Link';
-import { renderDOM } from '../../../utils/renderDOM';
+import Router from '../../../utils/Router';
 
 export default class SignInPage extends SubmitPage {
+    router: Router;
+
     constructor() {
         super((formData) => {
             const data: SignInData = new SignInData(formData);
             console.log(data);
         }, 'SignInPage');
+        this.router = new Router('#app');
     }
 
     init() {
@@ -62,7 +65,7 @@ export default class SignInPage extends SubmitPage {
             text: 'Нет аккаунта?',
             events: {
                 click: () => {
-                    renderDOM('signUp');
+                    this.router.go('/signup')
                 },
             },
         });
