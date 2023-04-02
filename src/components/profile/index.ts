@@ -6,6 +6,9 @@ import Validation from '../../utils/validation/Validation';
 import * as style from './style.module.scss';
 import Button from '../Button';
 import Field from '../field';
+import backToImage from '../../../static/img/profilePage/backTo.svg';
+import profileImage from '../../../static/img/profilePage/icon.svg';
+
 
 interface ProfileProps {
     changeData: boolean,
@@ -27,7 +30,6 @@ export default class Profile extends SubmitPage {
             placeholder: 'Почта',
             validationError: false,
             validationErrorMessage: '',
-            // active: true,
             events: {
                 focus: () => {
                     (this.children.emailInput as Input).removeError();
@@ -233,6 +235,6 @@ export default class Profile extends SubmitPage {
     }
 
     render() {
-        return this.compile(template, { ...this.props, style });
+        return this.compile(template, { ...this.props, style, backToImage, profileImage });
     }
 }
