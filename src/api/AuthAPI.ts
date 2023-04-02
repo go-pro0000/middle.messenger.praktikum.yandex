@@ -1,7 +1,6 @@
-import SignInData from "../classes/SignInData";
 import BaseAPI from "./BaseAPI";
 
-export interface SigninData {
+export interface SignInData {
     login: string,
     password: string,
 }
@@ -36,7 +35,7 @@ export class AuthAPI extends BaseAPI {
     }
 
     signup(data: SignUpData) {
-        return this.http.post('signup', data);
+        return this.http.post('/signup', data);
     }
 
     read(): Promise<User> {

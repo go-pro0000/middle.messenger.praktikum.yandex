@@ -30,11 +30,9 @@ export default class Profile extends SubmitPage {
             // active: true,
             events: {
                 focus: () => {
-                    console.log('focus');
                     (this.children.emailInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log('blur');
                     Validation.isEmail(this.children.emailInput as Input);
                 },
             },
@@ -49,11 +47,9 @@ export default class Profile extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log('focus');
                     (this.children.loginInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log('blur');
                     Validation.isEmptyInput(this.children.loginInput as Input);
                 },
             },
@@ -68,11 +64,9 @@ export default class Profile extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log('focus');
                     (this.children.firstNameInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log('blur');
                     Validation.isEmptyInput(this.children.firstNameInput as Input);
                 },
             },
@@ -87,11 +81,9 @@ export default class Profile extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log('focus');
                     (this.children.secondNameInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log('blur');
                     Validation.isEmptyInput(this.children.secondNameInput as Input);
                 },
             },
@@ -106,11 +98,9 @@ export default class Profile extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log('focus');
                     (this.children.displayNameInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log('blur');
                     Validation.isEmptyInput(this.children.displayNameInput as Input);
                 },
             },
@@ -125,11 +115,9 @@ export default class Profile extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    console.log('focus');
                     (this.children.phoneInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log('blur');
                     Validation.isPhone(this.children.phoneInput as Input);
                 },
             },
@@ -145,11 +133,9 @@ export default class Profile extends SubmitPage {
             hide: true,
             events: {
                 focus: () => {
-                    console.log('focus');
                     (this.children.oldPasswordInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log('blur');
                     Validation.isEmptyInput(this.children.oldPasswordInput as Input);
                 },
             },
@@ -165,11 +151,9 @@ export default class Profile extends SubmitPage {
             hide: true,
             events: {
                 focus: () => {
-                    console.log('focus');
                     (this.children.passwordInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log('blur');
                     Validation.checkFirstPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },
@@ -185,11 +169,9 @@ export default class Profile extends SubmitPage {
             hide: true,
             events: {
                 focus: () => {
-                    console.log('focus');
                     (this.children.passwordRepeatInput as Input).removeError();
                 },
                 blur: () => {
-                    console.log('blur');
                     Validation.checkTwoPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },

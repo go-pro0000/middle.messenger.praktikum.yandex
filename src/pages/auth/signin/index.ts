@@ -6,17 +6,21 @@ import Validation from '../../../utils/validation/Validation';
 import * as rootStyles from '../../../styles/root.module.scss';
 import * as authStyles from '../styles.module.scss';
 import * as styles from './styles.module.scss';
-import SignInData from '../../../classes/SignInData';
 import Link from '../../../components/Link';
 import Router from '../../../utils/Router';
+import { SignInData } from '../../../api/AuthAPI';
+import AuthController from '../../../controllers/AuthController';
 
 export default class SignInPage extends SubmitPage {
     router: Router;
 
     constructor() {
         super((formData) => {
-            const data: SignInData = new SignInData(formData);
-            console.log(data);
+            const data = {
+                login: formData.get('login') as string,
+                password: formData.get('password') as string,
+            };
+            AuthController.signin(data as SignInData);
         }, 'SignInPage');
         this.router = new Router('#app');
     }

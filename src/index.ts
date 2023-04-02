@@ -7,10 +7,6 @@ import ProfilePage from './pages/profilePage';
 import PageNotFound from './pages/pageNotFound';
 import ServerError from './pages/serverError';
 
-// window.addEventListener('DOMContentLoaded', () => {
-//     renderDOM('navPage');
-// });
-
 const router = new Router("#app");
 router
     .use('/', NavPage)
