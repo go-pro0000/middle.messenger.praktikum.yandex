@@ -83,44 +83,49 @@
 
             &__profilePageForm {
                 width: 100%;
-            }
-        }
 
-        &__settings {
-            width: 100%;
-
-            &__changeData,
-            &__changePassword,
-            &__exit {
-                font-family: Inter;
-                font-size: 13px;
-                font-style: normal;
-                font-weight: 500;
-            }
-
-            &__changeData,
-            &__changePassword {
-                border-bottom: 1px solid#EAEAEA;
-                color: var(--blue);
-                margin-bottom: 10px;
-                padding-bottom: 10px;
-            }
-
-            &__exit {
-                color: #F00;
-            }
-
-            &__buttonExitWrapper {
-                div {
-                    border: none;
-
-                    color: #F00;
+                &__buttonsBlock {
+                    padding-top: 50px;
+                    width: 50%;
+                    margin: 0 auto;
+        
+                    &__settings {
+                        width: 100%;
+        
+                        &__changeData,
+                        &__changePassword,
+                        &__exit {
+                            font-family: Inter;
+                            font-size: 13px;
+                            font-style: normal;
+                            font-weight: 500;
+                        }
+        
+                        &__changeData,
+                        &__changePassword {
+                            border-bottom: 1px solid#EAEAEA;
+                            color: var(--blue);
+                            margin-bottom: 10px;
+                            padding-bottom: 10px;
+                        }
+        
+                        &__exit {
+                            color: #F00;
+                        }
+        
+                        &__buttonExitWrapper {
+                            div {
+                                border: none;
+        
+                                color: #F00;
+                            }
+                        }
+                    }
+        
+                    &__buttonContainer {
+                    }
                 }
             }
-        }
-
-        &__buttonContainer {
-            width: 30%;
         }
     }
 }

@@ -28,21 +28,22 @@
                 {{{oldPasswordInput}}}
                 {{{passwordInput}}}
                 {{{passwordRepeatInput}}}
+
+                <div class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock}}">
+                    <div class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__settings}}">
+                        {{{changeInfo}}}
+                        {{{changePassword}}}
+                        <div class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__settings__buttonExitWrapper}}">
+                            {{{buttonExit}}}
+                        </div>
+                    </div>
+
+                    <div class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__buttonContainer}}">
+                        {{{saveButton}}}
+                    </div>
+                </div>
             </form>
         </div>
-
-        <div class="{{style.container__profile__settings}}">
-            {{{changeInfo}}}
-            {{{changePassword}}}
-            <div class="{{style.container__profile__settings__buttonExitWrapper}}">
-                {{{buttonExit}}}
-            </div>
-
-        </div>
-        <div class="{{style.container__profile__buttonContainer}}">
-            {{{saveButton}}}
-        </div>
-
     </div>
 
     {{!-- {{> profilePagePopup action=popup.action content=popup.content

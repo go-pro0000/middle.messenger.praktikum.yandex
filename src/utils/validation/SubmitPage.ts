@@ -19,7 +19,6 @@ export abstract class SubmitPage extends Block {
                     let isValid = true;
 
                     for (const item of this.props.checkInput) {
-                        if (!item.props.hide) {
                             switch (item.props.name) {
                                 case 'email':
                                     Validation.isEmail(item);
@@ -61,8 +60,8 @@ export abstract class SubmitPage extends Block {
                             }
 
                             isValid = isValid && item!.isValid();
-                        }
                     }
+                    console.log("valid", isValid);
                     if (isValid) {
                         func.call(this, new FormData(this.getContent()!.querySelector('form')!));
                     }

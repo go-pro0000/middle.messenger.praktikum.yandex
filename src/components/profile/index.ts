@@ -1,16 +1,17 @@
 import template from './profile.hbs';
-import SubmitPage from '../../utils/validation/SubmitPage';
-import Input from '../Input';
-import Validation from '../../utils/validation/Validation';
 import * as style from './style.module.scss';
 import Button from '../Button';
-import Field from '../Field';
+import Input from '../Input';
+import Field from '../field';
+import ButtonWithImage from '../../components/ButtonWithImage';
 import store, { withStore } from '../../utils/Store';
 import AuthController from '../../controllers/AuthController';
-import ButtonWithImage from '../../components/ButtonWithImage';
+import Validation from '../../utils/validation/Validation';
+import Router from '../../utils/Router';
 import backToImage from '../../../static/img/profilePage/backTo.svg';
 import profileImage from '../../../static/img/profilePage/icon.svg';
-import Router from '../../utils/Router';
+import SubmitPage from '../../utils/validation/SubmitPage';
+import UsersController from '../../controllers/UsersController';
 
 // interface ProfileProps {
 //     changeData: boolean,
@@ -26,16 +27,16 @@ class ProfileBase extends SubmitPage {
                 login : formData.get('login') as string,
                 first_name : formData.get('first_name') as string,
                 second_name : formData.get('second_name') as string,
-                chatName : formData.get('display_name') as string,
+                display_name : formData.get('display_name') as string,
                 phone : formData.get('phone') as string,
             };
-        });
+            UsersController.changeInfo(data); 
+        }, 'ProfilePage');
         this.router = new Router("#app");
     }
 
     async init() {
         await AuthController.fetchUser();
-        console.log(store.getState())
 
         this.children.buttonWithImage = new ButtonWithImage({
             src: `${backToImage}`,
@@ -53,6 +54,7 @@ class ProfileBase extends SubmitPage {
             placeholder: 'Почта',
             validationError: false,
             validationErrorMessage: '',
+            disabled: true,
             events: {
                 focus: () => {
                     (this.children.emailInput as Input).removeError();
@@ -70,6 +72,7 @@ class ProfileBase extends SubmitPage {
             placeholder: 'Логин',
             validationError: false,
             validationErrorMessage: '',
+            disabled: true,
             events: {
                 focus: () => {
                     (this.children.loginInput as Input).removeError();
@@ -87,6 +90,7 @@ class ProfileBase extends SubmitPage {
             placeholder: 'Имя',
             validationError: false,
             validationErrorMessage: '',
+            disabled: true,
             events: {
                 focus: () => {
                     (this.children.firstNameInput as Input).removeError();
@@ -104,6 +108,7 @@ class ProfileBase extends SubmitPage {
             placeholder: 'Фамилия',
             validationError: false,
             validationErrorMessage: '',
+            disabled: true,
             events: {
                 focus: () => {
                     (this.children.secondNameInput as Input).removeError();
@@ -121,6 +126,7 @@ class ProfileBase extends SubmitPage {
             placeholder: 'Имя в чате',
             validationError: false,
             validationErrorMessage: '',
+            disabled: true,
             events: {
                 focus: () => {
                     (this.children.displayNameInput as Input).removeError();
@@ -138,6 +144,7 @@ class ProfileBase extends SubmitPage {
             placeholder: 'Телефон',
             validationError: false,
             validationErrorMessage: '',
+            disabled: true,
             events: {
                 focus: () => {
                     (this.children.phoneInput as Input).removeError();
@@ -213,9 +220,25 @@ class ProfileBase extends SubmitPage {
                     this.props.checkInput[4].props.hide = false;
                     this.props.checkInput[5].props.hide = false;
 
+                    this.props.checkInput[0].props.disabled = false;
+                    this.props.checkInput[1].props.disabled = false;
+                    this.props.checkInput[2].props.disabled = false;
+                    this.props.checkInput[3].props.disabled = false;
+                    this.props.checkInput[4].props.disabled = false;
+                    this.props.checkInput[5].props.disabled = false;
+
                     this.props.checkInput[6].props.hide = true;
                     this.props.checkInput[7].props.hide = true;
                     this.props.checkInput[8].props.hide = true;
+
+                    this.props.checkInput = [
+                        this.children.emailInput,
+                        this.children.loginInput,
+                        this.children.firstNameInput,
+                        this.children.secondNameInput,
+                        this.children.displayNameInput,
+                        this.children.phoneInput,
+                    ]
                 },
             },
         });
@@ -234,6 +257,12 @@ class ProfileBase extends SubmitPage {
                     this.props.checkInput[6].props.hide = false;
                     this.props.checkInput[7].props.hide = false;
                     this.props.checkInput[8].props.hide = false;
+
+                    this.props.checkInput = [            
+                        this.children.oldPasswordInput,
+                        this.children.passwordInput,
+                        this.children.passwordRepeatInput,
+                    ]
                 },
             },
         });
@@ -248,22 +277,13 @@ class ProfileBase extends SubmitPage {
         });
 
         this.children.saveButton = new Button({
-            type: 'submit',
             text: 'Сохранить',
+            type: 'submit',
         });
 
-        this.props.checkInput = [
-            this.children.emailInput,
-            this.children.loginInput,
-            this.children.firstNameInput,
-            this.children.secondNameInput,
-            this.children.displayNameInput,
-            this.children.phoneInput,
 
-            this.children.oldPasswordInput,
-            this.children.passwordInput,
-            this.children.passwordRepeatInput,
-        ];
+        this.props.checkInput = [
+        ]
     }
 
     render() {
