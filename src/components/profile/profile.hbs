@@ -1,64 +1,50 @@
-<body>
-    <div class="{{style.container}}">
-        <div class="{{style.container__backTo}}">
-            <a href="">
-                <img src="{{this.backToImage}}" alt="Кнопка назад">
-            </a>
-        </div>
-
-        <div class="{{style.container__profile}}">
-            <div class="{{style.container__profile__imgContainer}}">
-                <img src='{{this.profileImage}}' alt="Кнопка профиля">
-                <div class="{{style.container__profile__imgContainer__hover}}">
-                    <span name="avatar">Поменять аватар</span>
-                </div>
-            </div>
-
-            {{!-- {{#if settings.noActions}} --}}
-            <span class="{{style.container__profile__name}}">Иван</span>
-            {{!-- {{/if}} --}}
-            {{!-- Я задумывал так, что по умолчанию в компоненту profilePageForm передается параметр form.info,
-            отображаются данные пользователя как заблоченные input, при клике на кнопку Изменить данные input
-            разблокируются, а при клике на Изменить пароль параметр form.info меняется на form.password с уже
-            разблокированными input --}}
-            <div class="{{style.container__profile__formContainer}}">
-                <form action="" class="{{style.container__profile__formContainer__profilePageForm}}">
-                    {{{emailInput}}}
-                    {{{loginInput}}}
-                    {{{firstNameInput}}}
-                    {{{secondNameInput}}}
-                    {{{displayNameInput}}}
-                    {{{phoneInput}}}
-                    {{{oldPasswordInput}}}
-                    {{{passwordInput}}}
-                    {{{passwordRepeatInput}}}
-                </form>
-            </div>
-
-            {{!-- {{#if settings.noActions}} --}}
-            <div class="{{style.container__profile__settings}}">
-                {{!-- <div class="{{style.container__profile__settings__changeData}}">
-                    <p>Изменить данные</p>
-                </div> --}}
-                {{{changeInfo}}}
-                {{{changePassword}}}
-                {{!-- <div class="{{style.container__profile__settings__changePassword}}">
-                    <p>Изменить пароль</p>
-                </div> --}}
-                <div class="{{style.container__profile__settings__exit}}">
-                    <p>Выйти</p>
-                </div>
-
-            </div>
-            {{!-- {{/if}} --}}
-            <div class="{{style.container__profile__buttonContainer}}">
-                {{{saveButton}}}
-                {{!-- {{> button text = "Сохранить" type="submit"}} --}}
-            </div>
-
-        </div>
-
-        {{!-- {{> profilePagePopup action=popup.action content=popup.content
-        needToChooseFile=popup.needToChooseFile}} --}}
+<div class="{{style.container}}">
+    {{!-- <div class="{{style.container__backTo}}">
+        <img src="{{this.backToImage}}" alt="Кнопка назад">
+    </div> --}}
+    <div class="{{style.container__buttonWithImageContainer}}">
+        {{{buttonWithImage}}}
     </div>
-</body>
+
+
+    <div class="{{style.container__profile}}">
+        <div class="{{style.container__profile__imgContainer}}">
+            <img src='{{this.profileImage}}' alt="Кнопка профиля">
+            <div class="{{style.container__profile__imgContainer__hover}}">
+                <span name="avatar">Поменять аватар</span>
+            </div>
+        </div>
+
+        <span class="{{style.container__profile__name}}">Иван</span>
+
+        <div class="{{style.container__profile__formContainer}}">
+            <form action="" class="{{style.container__profile__formContainer__profilePageForm}}">
+                {{{emailInput}}}
+                {{{loginInput}}}
+                {{{firstNameInput}}}
+                {{{secondNameInput}}}
+                {{{displayNameInput}}}
+                {{{phoneInput}}}
+                {{{oldPasswordInput}}}
+                {{{passwordInput}}}
+                {{{passwordRepeatInput}}}
+            </form>
+        </div>
+
+        <div class="{{style.container__profile__settings}}">
+            {{{changeInfo}}}
+            {{{changePassword}}}
+            <div class="{{style.container__profile__settings__buttonExitWrapper}}">
+                {{{buttonExit}}}
+            </div>
+
+        </div>
+        <div class="{{style.container__profile__buttonContainer}}">
+            {{{saveButton}}}
+        </div>
+
+    </div>
+
+    {{!-- {{> profilePagePopup action=popup.action content=popup.content
+    needToChooseFile=popup.needToChooseFile}} --}}
+</div>

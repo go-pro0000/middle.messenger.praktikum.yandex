@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import Li from '../../components/li';
+import Li from '../../components/Li';
 import template from './navPage.hbs';
 import * as style from './styles.module.scss';
 import Router from '../../utils/Router';

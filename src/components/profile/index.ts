@@ -1,30 +1,53 @@
 import template from './profile.hbs';
 import SubmitPage from '../../utils/validation/SubmitPage';
-import ChangeInfoData from '../../classes/ChangeInfoData';
 import Input from '../Input';
 import Validation from '../../utils/validation/Validation';
 import * as style from './style.module.scss';
 import Button from '../Button';
-import Field from '../field';
+import Field from '../Field';
+import store, { withStore } from '../../utils/Store';
+import AuthController from '../../controllers/AuthController';
+import ButtonWithImage from '../../components/ButtonWithImage';
 import backToImage from '../../../static/img/profilePage/backTo.svg';
 import profileImage from '../../../static/img/profilePage/icon.svg';
+import Router from '../../utils/Router';
 
+// interface ProfileProps {
+//     changeData: boolean,
+// }
 
-interface ProfileProps {
-    changeData: boolean,
-}
+class ProfileBase extends SubmitPage {
+    router: Router;
 
-export default class Profile extends SubmitPage {
-    constructor(props: ProfileProps) {
+    constructor(props: any) {
         super((formData) => {
-            const data: ChangeInfoData = new ChangeInfoData(formData);
-            console.log(data); props;
+            const data = {
+                email : formData.get('email') as string,
+                login : formData.get('login') as string,
+                first_name : formData.get('first_name') as string,
+                second_name : formData.get('second_name') as string,
+                chatName : formData.get('display_name') as string,
+                phone : formData.get('phone') as string,
+            };
         });
+        this.router = new Router("#app");
     }
 
-    init() {
+    async init() {
+        await AuthController.fetchUser();
+        console.log(store.getState())
+
+        this.children.buttonWithImage = new ButtonWithImage({
+            src: `${backToImage}`,
+            events: {
+                click: () => {
+                    this.router.go('/')
+                },
+            },
+        });
+
         this.children.emailInput = new Input({
-            value: '',
+            value: store.getState().user.email,
             type: 'text',
             name: 'email',
             placeholder: 'Почта',
@@ -41,7 +64,7 @@ export default class Profile extends SubmitPage {
         });
 
         this.children.loginInput = new Input({
-            value: '',
+            value: store.getState().user.login,
             type: 'text',
             name: 'login',
             placeholder: 'Логин',
@@ -58,7 +81,7 @@ export default class Profile extends SubmitPage {
         });
 
         this.children.firstNameInput = new Input({
-            value: '',
+            value: store.getState().user.first_name,
             type: 'text',
             name: 'first_name',
             placeholder: 'Имя',
@@ -75,7 +98,7 @@ export default class Profile extends SubmitPage {
         });
 
         this.children.secondNameInput = new Input({
-            value: '',
+            value: store.getState().user.second_name,
             type: 'text',
             name: 'second_name',
             placeholder: 'Фамилия',
@@ -92,7 +115,7 @@ export default class Profile extends SubmitPage {
         });
 
         this.children.displayNameInput = new Input({
-            value: '',
+            value: store.getState().user.display_name,
             type: 'text',
             name: 'display_name',
             placeholder: 'Имя в чате',
@@ -109,7 +132,7 @@ export default class Profile extends SubmitPage {
         });
 
         this.children.phoneInput = new Input({
-            value: '',
+            value: store.getState().user.phone,
             type: 'text',
             name: 'phone',
             placeholder: 'Телефон',
@@ -215,6 +238,15 @@ export default class Profile extends SubmitPage {
             },
         });
 
+        this.children.buttonExit = new Field({
+            text: 'Выйти',
+            events: {
+                click: () => {
+                    AuthController.logout();
+                },
+            },
+        });
+
         this.children.saveButton = new Button({
             type: 'submit',
             text: 'Сохранить',
@@ -238,3 +270,7 @@ export default class Profile extends SubmitPage {
         return this.compile(template, { ...this.props, style, backToImage, profileImage });
     }
 }
+
+const withUser = withStore((state) => ({...state.user}));
+
+export default withUser(ProfileBase);

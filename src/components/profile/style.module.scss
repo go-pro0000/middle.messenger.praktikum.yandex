@@ -2,18 +2,22 @@
     display: flex;
     height: 100vh;
 
-    &__backTo {
-        align-items: center;
-        background: #FBFBFB;
-        border-right: 1px solid #EAEAEA;
-        display: flex;
-        height: 100%;
-        justify-content: center;
-        width: 64px;
+    &__buttonWithImageContainer {
+        div {
+            align-items: center;
+            background: #FBFBFB;
+            border-right: 1px solid #EAEAEA;
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            width: 64px;
 
-        img {
-            height: 28px;
-            width: 28px;
+            img {
+                height: 28px;
+                width: 28px;
+
+                cursor: pointer;
+            }
         }
     }
 
@@ -104,6 +108,14 @@
 
             &__exit {
                 color: #F00;
+            }
+
+            &__buttonExitWrapper {
+                div {
+                    border: none;
+
+                    color: #F00;
+                }
             }
         }
 
