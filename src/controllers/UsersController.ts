@@ -1,4 +1,4 @@
-import API, { UsersAPI, UsersProfileData } from "../api/UsersAPI"
+import API, { UsersAPI, UsersProfileData, UsersProfilePassword } from "../api/UsersAPI"
 import Router from "../utils/Router"
 import store from '../utils/Store'
 
@@ -15,6 +15,14 @@ export class UsersController {
     async changeInfo(data: UsersProfileData) {
         try {
             await this.api.changeInfo(data);
+        } catch (e: any) {
+            console.error(e);
+        }
+    }
+
+    async changePassword(data: UsersProfilePassword) {
+        try {
+            await this.api.changePassword(data);
         } catch (e: any) {
             console.error(e);
         }

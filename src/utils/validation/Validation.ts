@@ -35,21 +35,10 @@ export class Validation {
         }
     }
 
-    public static checkFirstPassword(_input: Input, _inputRepeat: Input): void {
-        const isEmptyFirst = this.isEmptyInput(_input);
-        const isEmptyRepeat = this.isEmptyInputWithoutRender(_inputRepeat);
-        if (!isEmptyFirst && !isEmptyRepeat) {
-            if (_input.getValue() === _inputRepeat.getValue()) {
-                _input.removeError();
-                _inputRepeat.removeError();
-            } else {
-                _inputRepeat.setError('Пароли не совпадат');
-            }
-        }
-    }
-
     public static checkTwoPassword(_input: Input, _inputRepeat: Input): void {
-        const isEmpty = this.isEmptyInput(_input) || this.isEmptyInput(_inputRepeat);
+        const isEmptyFirst = this.isEmptyInput(_input);
+        const isEmptyRepeat = this.isEmptyInput(_inputRepeat);
+        const isEmpty = isEmptyFirst || isEmptyRepeat;
         if (!isEmpty) {
             if (_input.getValue() === _inputRepeat.getValue()) {
                 _input.removeError();

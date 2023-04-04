@@ -22,15 +22,22 @@ class ProfileBase extends SubmitPage {
 
     constructor(props: any) {
         super((formData) => {
-            const data = {
-                email : formData.get('email') as string,
-                login : formData.get('login') as string,
-                first_name : formData.get('first_name') as string,
-                second_name : formData.get('second_name') as string,
-                display_name : formData.get('display_name') as string,
-                phone : formData.get('phone') as string,
-            };
-            UsersController.changeInfo(data); 
+            const data = {};
+            if (!this.children.emailInput.props.hide) {
+                data.email = formData.get('email') as string;
+                data.login = formData.get('login') as string;
+                data.first_name = formData.get('first_name') as string;
+                data.second_name = formData.get('second_name') as string;
+                data.display_name = formData.get('display_name') as string;
+                data.phone = formData.get('phone') as string;
+
+                UsersController.changeInfo(data);
+            } else {
+                data.oldPassword = formData.get('old_password') as string;
+                data.newPassword = formData.get('password') as string;
+
+                UsersController.changePassword(data);
+            }
         }, 'ProfilePage');
         this.router = new Router("#app");
     }
@@ -186,7 +193,8 @@ class ProfileBase extends SubmitPage {
                     (this.children.passwordInput as Input).removeError();
                 },
                 blur: () => {
-                    Validation.checkFirstPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
+                    Validation.isEmptyInput(this.children.passwordInput as Input);
+                    // Validation.checkFirstPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },
         });
@@ -213,23 +221,25 @@ class ProfileBase extends SubmitPage {
             text: 'Изменить данные',
             events: {
                 click: () => {
-                    this.props.checkInput[0].props.hide = false;
-                    this.props.checkInput[1].props.hide = false;
-                    this.props.checkInput[2].props.hide = false;
-                    this.props.checkInput[3].props.hide = false;
-                    this.props.checkInput[4].props.hide = false;
-                    this.props.checkInput[5].props.hide = false;
+                    this.children.saveButton.props.disabled = false;
 
-                    this.props.checkInput[0].props.disabled = false;
-                    this.props.checkInput[1].props.disabled = false;
-                    this.props.checkInput[2].props.disabled = false;
-                    this.props.checkInput[3].props.disabled = false;
-                    this.props.checkInput[4].props.disabled = false;
-                    this.props.checkInput[5].props.disabled = false;
+                    this.children.emailInput.props.hide = false;
+                    this.children.loginInput.props.hide = false;
+                    this.children.firstNameInput.props.hide = false;
+                    this.children.secondNameInput.props.hide = false;
+                    this.children.displayNameInput.props.hide = false;
+                    this.children.phoneInput.props.hide = false;
 
-                    this.props.checkInput[6].props.hide = true;
-                    this.props.checkInput[7].props.hide = true;
-                    this.props.checkInput[8].props.hide = true;
+                    this.children.oldPasswordInput.props.hide = true;
+                    this.children.passwordInput.props.hide = true;
+                    this.children.passwordRepeatInput.props.hide = true;
+
+                    this.children.emailInput.props.disabled = false;
+                    this.children.loginInput.props.disabled = false;
+                    this.children.firstNameInput.props.disabled = false;
+                    this.children.secondNameInput.props.disabled = false;
+                    this.children.displayNameInput.props.disabled = false;
+                    this.children.phoneInput.props.disabled = false;
 
                     this.props.checkInput = [
                         this.children.emailInput,
@@ -247,18 +257,24 @@ class ProfileBase extends SubmitPage {
             text: 'Изменить пароль',
             events: {
                 click: () => {
-                    this.props.checkInput[0].props.hide = true;
-                    this.props.checkInput[1].props.hide = true;
-                    this.props.checkInput[2].props.hide = true;
-                    this.props.checkInput[3].props.hide = true;
-                    this.props.checkInput[4].props.hide = true;
-                    this.props.checkInput[5].props.hide = true;
+                    this.children.saveButton.props.disabled = false;
 
-                    this.props.checkInput[6].props.hide = false;
-                    this.props.checkInput[7].props.hide = false;
-                    this.props.checkInput[8].props.hide = false;
+                    this.children.emailInput.props.hide = true;
+                    this.children.loginInput.props.hide = true;
+                    this.children.firstNameInput.props.hide = true;
+                    this.children.secondNameInput.props.hide = true;
+                    this.children.displayNameInput.props.hide = true;
+                    this.children.phoneInput.props.hide = true;
 
-                    this.props.checkInput = [            
+                    this.children.oldPasswordInput.props.hide = false;
+                    this.children.passwordInput.props.hide = false;
+                    this.children.passwordRepeatInput.props.hide = false;
+
+                    this.children.oldPasswordInput.props.disabled = false;
+                    this.children.passwordInput.props.disabled = false;
+                    this.children.passwordRepeatInput.props.disabled = false;
+
+                    this.props.checkInput = [
                         this.children.oldPasswordInput,
                         this.children.passwordInput,
                         this.children.passwordRepeatInput,
@@ -279,6 +295,23 @@ class ProfileBase extends SubmitPage {
         this.children.saveButton = new Button({
             text: 'Сохранить',
             type: 'submit',
+            disabled: true,
+            events: {
+                submit: () => {                    
+                    this.children.saveButton.props.disabled = true;
+
+                    this.children.emailInput.props.disabled = true;
+                    this.children.loginInput.props.disabled = true;
+                    this.children.firstNameInput.props.disabled = true;
+                    this.children.secondNameInput.props.disabled = true;
+                    this.children.displayNameInput.props.disabled = true;
+                    this.children.phoneInput.props.disabled = true;
+
+                    this.children.oldPasswordInput.props.disabled = true;
+                    this.children.passwordInput.props.disabled = true;
+                    this.children.passwordRepeatInput.props.disabled = true;
+                },
+            },
         });
 
 
@@ -291,6 +324,6 @@ class ProfileBase extends SubmitPage {
     }
 }
 
-const withUser = withStore((state) => ({...state.user}));
+const withUser = withStore((state) => ({ ...state.user }));
 
 export default withUser(ProfileBase);

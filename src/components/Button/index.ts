@@ -5,6 +5,10 @@ import * as styles from './styles.module.scss';
 interface ButtonProps {
   type: string;
   text: string;
+  disabled?: boolean;
+  events?: {
+    submit: () => void
+}
 }
 
 export default class Button extends Block<ButtonProps> {

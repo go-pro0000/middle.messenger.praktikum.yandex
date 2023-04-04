@@ -11,7 +11,6 @@ import AuthController from './controllers/AuthController';
 const router = new Router("#app");
 
 window.addEventListener('DOMContentLoaded', async () => {
-    console.log("work");
 
     router
         .use('/', NavPage)
