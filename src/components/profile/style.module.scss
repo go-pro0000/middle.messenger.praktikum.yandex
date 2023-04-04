@@ -37,34 +37,88 @@
             position: relative;
             width: 130px;
 
+            &__image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            &__hover {
+                position: absolute;
+                left: 0;
+                top: 0;
+
+                width: 100%;
+                height: 100%;
+
+                background: #000;
+                border-radius: 50%;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                opacity: 0.5;
+                visibility: hidden;
+                cursor: pointer;
+            }
+
             &:hover .container__profile__imgContainer__hover {
                 visibility: visible;
             }
 
-            &__hover {
-                align-items: center;
-                background: #000;
-                border-radius: 50%;
-                display: flex;
-                height: 130px;
-                justify-content: center;
-                left: 0;
-                opacity: 0.5;
-                position: absolute;
-                top: 0;
-                visibility: hidden;
-                width: 130px;
+            &:hover .container__profile__imgContainer__input {
+                visibility: visible;
+            }
 
-                span {
+            &__input {
+                visibility: hidden;
+
+                &__btn {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+
+                    width: 80%;
+                    height: 46px;
+
+                    background: #1F81B9;
+                    border-radius: 10px;
+
                     color: var(--white);
-                    display: inline-block;
-                    font-family: Inter;
-                    font-size: 13px;
-                    font-style: normal;
-                    font-weight: 500;
+                    text-decoration: none;
+                    outline: none;
+                    font-size: 14px;
+                    vertical-align: middle;
                     text-align: center;
-                    width: 50%;
-                    z-index: 2;
+                    line-height: 22px;
+
+                    transition: background-color 0.2s;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                & input[type=file] {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+
+                    width: 80%;
+                    height: 46px;
+
+                    z-index: 5;
+                    opacity: 0;
+
+                    display: block;
+                }
+
+                & input[type=file]:focus+&__btn {
+                    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
                 }
             }
         }
@@ -88,10 +142,10 @@
                     padding-top: 50px;
                     width: 50%;
                     margin: 0 auto;
-        
+
                     &__settings {
                         width: 100%;
-        
+
                         &__changeData,
                         &__changePassword,
                         &__exit {
@@ -100,7 +154,7 @@
                             font-style: normal;
                             font-weight: 500;
                         }
-        
+
                         &__changeData,
                         &__changePassword {
                             border-bottom: 1px solid#EAEAEA;
@@ -108,22 +162,21 @@
                             margin-bottom: 10px;
                             padding-bottom: 10px;
                         }
-        
+
                         &__exit {
                             color: #F00;
                         }
-        
+
                         &__buttonExitWrapper {
                             div {
                                 border: none;
-        
+
                                 color: #F00;
                             }
                         }
                     }
-        
-                    &__buttonContainer {
-                    }
+
+                    &__buttonContainer {}
                 }
             }
         }

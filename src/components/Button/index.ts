@@ -3,11 +3,12 @@ import template from './button.hbs';
 import * as styles from './styles.module.scss';
 
 interface ButtonProps {
-  type: string;
+  type?: string;
   text: string;
   disabled?: boolean;
   events?: {
-    submit: () => void
+    click?: () => void,
+    submit?: () => void,
 }
 }
 

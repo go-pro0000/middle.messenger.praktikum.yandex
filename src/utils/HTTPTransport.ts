@@ -85,16 +85,20 @@ export default class HTTPTransport {
             xhr.onerror = () => reject({reason: 'network error'});
             xhr.ontimeout = () => reject({reason: 'timeout'});
 
-            xhr.setRequestHeader('Content-Type', 'application/json');
 
             xhr.withCredentials = true;
             xhr.responseType = 'json';
 
             if (method === Method.Get || !data) {
-                xhr.send();
-            } else {
-                xhr.send(JSON.stringify(data));
-            }
+				xhr.send();
+			} else if (method === Method.Put && data instanceof FormData) {
+				console.log(data, "formdata")
+				xhr.send(data);
+			} else if (method === Method.Put && data) {
+				console.log(data, 'json')
+                xhr.setRequestHeader('Content-Type', 'application/json');
+				xhr.send(JSON.stringify(data))
+			}
         });
     };
 

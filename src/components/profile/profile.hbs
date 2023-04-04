@@ -9,13 +9,16 @@
 
     <div class="{{style.container__profile}}">
         <div class="{{style.container__profile__imgContainer}}">
-            <img src='{{this.profileImage}}' alt="Кнопка профиля">
-            <div class="{{style.container__profile__imgContainer__hover}}">
-                <span name="avatar">Поменять аватар</span>
+            <img class="{{style.container__profile__imgContainer__image}}"
+                src='https://ya-praktikum.tech/api/v2/resources{{avatar}}' alt="Кнопка профиля">
+            <div class="{{style.container__profile__imgContainer__hover}}"></div>
+            <div class="{{style.container__profile__imgContainer__input}}">
+                {{{fileInput}}}
+                <span class="{{style.container__profile__imgContainer__input__btn}}">Выберите файл</span>
             </div>
         </div>
 
-        <span class="{{style.container__profile__name}}">Иван</span>
+        <span class="{{style.container__profile__name}}">{{name}}</span>
 
         <div class="{{style.container__profile__formContainer}}">
             <form action="" class="{{style.container__profile__formContainer__profilePageForm}}">
@@ -33,12 +36,14 @@
                     <div class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__settings}}">
                         {{{changeInfo}}}
                         {{{changePassword}}}
-                        <div class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__settings__buttonExitWrapper}}">
+                        <div
+                            class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__settings__buttonExitWrapper}}">
                             {{{buttonExit}}}
                         </div>
                     </div>
 
-                    <div class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__buttonContainer}}">
+                    <div
+                        class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__buttonContainer}}">
                         {{{saveButton}}}
                     </div>
                 </div>

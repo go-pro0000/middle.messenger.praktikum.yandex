@@ -23,6 +23,18 @@ export class UsersController {
     async changePassword(data: UsersProfilePassword) {
         try {
             await this.api.changePassword(data);
+
+            this.router.go('/profile');
+        } catch (e: any) {
+            console.error(e);
+        }
+    }
+
+    async changeAvatar(data: FormData) {
+        try {
+            await this.api.changeAvatar(data);
+
+            this.router.go('/profile');
         } catch (e: any) {
             console.error(e);
         }

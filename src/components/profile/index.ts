@@ -2,16 +2,17 @@ import template from './profile.hbs';
 import * as style from './style.module.scss';
 import Button from '../Button';
 import Input from '../Input';
-import Field from '../field';
+import Field from '../Field';
+import FileInput from '../FileInput';
 import ButtonWithImage from '../../components/ButtonWithImage';
 import store, { withStore } from '../../utils/Store';
 import AuthController from '../../controllers/AuthController';
 import Validation from '../../utils/validation/Validation';
 import Router from '../../utils/Router';
 import backToImage from '../../../static/img/profilePage/backTo.svg';
-import profileImage from '../../../static/img/profilePage/icon.svg';
 import SubmitPage from '../../utils/validation/SubmitPage';
 import UsersController from '../../controllers/UsersController';
+import profileImage from '../../../static/img/profilePage/icon.svg';
 
 // interface ProfileProps {
 //     changeData: boolean,
@@ -19,6 +20,8 @@ import UsersController from '../../controllers/UsersController';
 
 class ProfileBase extends SubmitPage {
     router: Router;
+    name: string = '';
+    avatar: string = '';
 
     constructor(props: any) {
         super((formData) => {
@@ -38,12 +41,15 @@ class ProfileBase extends SubmitPage {
 
                 UsersController.changePassword(data);
             }
-        }, 'ProfilePage');
+        }, 'profilePage');
+
         this.router = new Router("#app");
     }
 
     async init() {
         await AuthController.fetchUser();
+        this.name = store.getState().user.first_name;
+        this.avatar = store.getState().user.avatar;
 
         this.children.buttonWithImage = new ButtonWithImage({
             src: `${backToImage}`,
@@ -71,6 +77,17 @@ class ProfileBase extends SubmitPage {
                 },
             },
         });
+
+        this.children.fileInput = new FileInput({
+            events: {
+                change: (e) => {
+                    let file = e.target.files[0];
+                    let formData = new FormData();
+                    formData.append("avatar", file);
+                    UsersController.changeAvatar(formData);
+                },
+            },
+        })
 
         this.children.loginInput = new Input({
             value: store.getState().user.login,
@@ -296,27 +313,13 @@ class ProfileBase extends SubmitPage {
             text: 'Сохранить',
             type: 'submit',
             disabled: true,
-            events: {
-                submit: () => {                    
-                    this.children.saveButton.props.disabled = true;
-
-                    this.children.emailInput.props.disabled = true;
-                    this.children.loginInput.props.disabled = true;
-                    this.children.firstNameInput.props.disabled = true;
-                    this.children.secondNameInput.props.disabled = true;
-                    this.children.displayNameInput.props.disabled = true;
-                    this.children.phoneInput.props.disabled = true;
-
-                    this.children.oldPasswordInput.props.disabled = true;
-                    this.children.passwordInput.props.disabled = true;
-                    this.children.passwordRepeatInput.props.disabled = true;
-                },
-            },
         });
 
 
         this.props.checkInput = [
         ]
+        this.props.name = this.name;
+        this.props.avatar = this.avatar;
     }
 
     render() {

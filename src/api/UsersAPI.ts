@@ -26,6 +26,10 @@ export class UsersAPI extends BaseAPI {
         return this.http.put('/password', data);
     }
 
+    changeAvatar(data: FormData) {
+        return this.http.put('/profile/avatar', data);
+    }
+
     read = undefined;
     update = undefined;
     create = undefined;
