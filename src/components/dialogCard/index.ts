@@ -1,18 +1,10 @@
 import Block from '../../utils/Block';
 import template from './dialogCard.hbs';
 import * as style from './style.module.scss';
-
-interface DialogCardProps {
-    img: string,
-    name: string,
-    own: boolean,
-    text: string,
-    time: string,
-    quantity: number,
-}
+import { ChatInfo } from '../../api/ChatsAPI';
 
 export default class DialogCard extends Block {
-    constructor(props: DialogCardProps) {
+    constructor(props: ChatInfo) {
         super(props);
     }
 
