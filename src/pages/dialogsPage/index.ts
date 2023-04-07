@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './dialogsPage.hbs';
 import * as style from './styles.module.scss';
-import DialogCard from '../../components/DialogCard';
+import DialogCard from '../../components/dialogCard';
 import ChatsController from '../../controllers/ChatController';
 import store, { withStore } from '../../utils/Store';
 import { ChatInfo } from '../../api/ChatsAPI';
@@ -10,7 +10,7 @@ import Router from '../../utils/Router';
 import ButtonWithImage from '../../components/ButtonWithImage';
 import MessagesController, { Message } from '../../controllers/MessagesController';
 import backToImage from '../../../static/img/dialogsPage/buttonSend.svg';
-import DialogMessages from '../../components/DialogMessages';
+import DialogMessages from '../../components/dialogMessages';
 
 interface DialogsPageProps {
 }
