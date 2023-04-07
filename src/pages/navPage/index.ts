@@ -72,3 +72,4 @@ export default class NavPage extends Block {
     return this.compile(template, { style });
   }
 }
+
