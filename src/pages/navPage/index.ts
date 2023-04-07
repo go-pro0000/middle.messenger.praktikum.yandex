@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import Li from '../../components/Li';
+import Li from '../../components/li';
 import template from './navPage.hbs';
 import * as style from './styles.module.scss';
 import Router from '../../utils/Router';
@@ -72,3 +72,4 @@ export default class NavPage extends Block {
     return this.compile(template, { style });
   }
 }
+
