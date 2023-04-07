@@ -2,20 +2,19 @@
     <div class="{{style.container}}">
         <div class="{{style.container__leftPart}}">
             <div class="{{style.container__leftPart__bakToProfile}}">
-                <span class="{{style.container__leftPart__bakToProfile__text}}">Профиль</span>
-                <a href="/src/pages/profile/profile.hbs">
-                    <img src="{{shebronImage}}" alt="" class="{{style.container__leftPart__bakToProfile__button}}"
-                        alt="Переход в профиль">
-                </a>
+                <div class="{{style.container__leftPart__bakToProfile__text}}">
+                    {{{profileLink}}}
+                    {{userId}}
+                </div>
             </div>
 
-            <input class="{{style.container__leftPart__inputSearch}}" type="text" placeholder="🔍 Поиск">
+            {{!-- <input class="{{style.container__leftPart__inputSearch}}" type="text" placeholder="🔍 Поиск"> --}}
 
             <div class="{{style.container__leftPart__cards}}">
                 {{#if loaded}}
-                    {{#each dialogsCards}}
-                    {{{this}}}
-                    {{/each}}
+                {{#each dialogsCards}}
+                {{{this}}}
+                {{/each}}
                 {{else}}
                 Loading...
                 {{/if}}
@@ -23,12 +22,14 @@
         </div>
 
         <div class="{{style.container__rightPart}}">
-            {{#if unselectedDialog}}
+            {{!-- {{#if unselectedDialog}}
             <p class="{{style.container__rightPart__unselectedDialog}}">Выберите чат чтобы отправить сообщение</p>
-            {{else}}
+            {{else}} --}}
+
             {{!-- {{> dialog data = dialog addDeleteUser = addDeleteUser}} --}}
+
             <div class="{{style.container__rightPart__dialog}}">
-                <div class="{{style.container__rightPart__dialog__header}}">
+                {{!-- <div class="{{style.container__rightPart__dialog__header}}">
                     <div class="{{style.container__rightPart__dialog__header__profile}}">
                         <div class="{{style.container__rightPart__dialog__header__profile__img}}"></div>
                         <div class="{{style.container__rightPart__dialog__header__profile__name}}">{{name}}</div>
@@ -50,16 +51,16 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="dialog__content">
-                    {{#each dialogsDays}}
+                <div class="{{style.container__rightPart__dialog__content}}">
+                    {{#each dialogMessages}}
                     {{{this}}}
                     {{/each}}
                 </div>
 
                 <div class="{{style.container__rightPart__dialog__messageSend}}">
-                    <div class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer}}">
+                    {{!-- <div class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer}}">
                         <img class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__files}}"
                             src="/static/img/dialogsPage/clip.svg" alt="Прикрепить файл">
                         <div
@@ -82,16 +83,15 @@
                                 <p>Локация</p>
                             </div>
                         </div>
-                    </div>
-                    <input type="text" placeholder="Сообщение" name="message">
-                    <img class="{{style.container__rightPart__dialog__messageSend__buttonSend}}"
-                        src="/static/img/dialogsPage/buttonSend.svg" alt="Кнопка отправки">
+                    </div> --}}
+                    <input class="{{style.container__rightPart__dialog__messageSend__input}}" type="text" placeholder="Сообщение" name="message">
+                    {{{sendButton}}}
                 </div>
 
                 {{!-- {{> dialogPagePopup data = addDeleteUser.add}}
                 {{> dialogPagePopup data = addDeleteUser.delete}} --}}
             </div>
-            {{/if}}
+            {{!-- {{/if}} --}}
         </div>
     </div>
 </main>

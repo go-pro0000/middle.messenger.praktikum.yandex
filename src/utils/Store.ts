@@ -1,6 +1,6 @@
 import Block from "./Block";
 import { EventBus } from "./EventBus";
-import { set } from './helpers'
+import { set } from './helpers';
 
 export enum StoreEvents {
     Updated = 'updated'

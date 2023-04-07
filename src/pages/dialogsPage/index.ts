@@ -1,99 +1,72 @@
 import Block from '../../utils/Block';
 import template from './dialogsPage.hbs';
 import * as style from './styles.module.scss';
-import DialogCard from '../../components/dialogCard';
-import DialogDay from '../../components/dialogDay';
-import cameraImage from '../../../static/img/dialogsPage/camera.svg';
+import DialogCard from '../../components/DialogCard';
 import ChatsController from '../../controllers/ChatController';
-import store from '../../utils/Store';
+import store, { withStore } from '../../utils/Store';
 import { ChatInfo } from '../../api/ChatsAPI';
+import Link from '../../components/Link';
+import Router from '../../utils/Router';
+import ButtonWithImage from '../../components/ButtonWithImage';
+import MessagesController, { Message } from '../../controllers/MessagesController';
+import backToImage from '../../../static/img/dialogsPage/buttonSend.svg';
+import DialogMessages from '../../components/DialogMessages';
 
 interface DialogsPageProps {
 }
 
-export default class DialogsPage extends Block {
+
+export default class BaseDialogsPage extends Block {
+    router: Router
+
     constructor(props: DialogsPageProps) {
         super({ props });
+
+        this.router = new Router('#app');
+        this.props.userId = store.getState().user.id;
     }
 
     init() {
+        this.children.profileLink = new Link({
+            text: 'Профиль',
+            events: {
+                click: () => {
+                    this.router.go('/profile')
+                },
+            },
+        });
+
+        this.children.sendButton = new ButtonWithImage({
+            src: `${backToImage}`,
+            events: {
+                click: () => {
+                    MessagesController.sendMessage(store.getState().selectedChat, document.getElementsByTagName('input')[0].value);
+                },
+            },
+        });
+
         this.props.loaded = false;
         ChatsController.fetchChats().then(() => {
-            console.log(store.getState().chats);
             this.children.dialogsCards = store.getState().chats.map((item: ChatInfo) => new DialogCard(item));
             this.props.loaded = true;
         });
+    }
 
-        // this.children.dialogsDays = [
-        //     {
-        //         date: '19 июня',
-        //         messages: [
-        //             {
-        //                 you: false,
-        //                 type: 'text',
-        //                 time: '11:56',
-        //                 text: 'Привет!',
-        //             },
-        //             {
-        //                 you: false,
-        //                 type: '',
-        //                 time: '11:56',
-        //                 text: cameraImage,
-        //             },
-        //             {
-        //                 you: true,
-        //                 type: 'text',
-        //                 time: '12:00',
-        //                 text: 'Круто',
-        //                 checked: true,
-        //             },
-        //             {
-        //                 you: true,
-        //                 type: '',
-        //                 time: '12:00',
-        //                 text: cameraImage,
-        //                 checked: true,
-        //             },
-        //         ],
-        //     },
+    protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+        if (this.props?.messages) {
+            this.children.dialogMessages = (this.props.messages[store.getState().selectedChat] || []).map((item: Message) => new DialogMessages({...item, isMine: store.getState().user.id == item.user_id }));
+        }
 
-        //     {
-        //         date: '20 июня',
-        //         messages: [
-        //             {
-        //                 you: false,
-        //                 type: 'text',
-        //                 time: '11:56',
-        //                 text: 'Привет!',
-        //             },
-        //             {
-        //                 you: false,
-        //                 type: '',
-        //                 time: '11:56',
-        //                 text: cameraImage,
-        //             },
-        //             {
-        //                 you: true,
-        //                 type: 'text',
-        //                 time: '12:00',
-        //                 text: 'Круто',
-        //                 checked: true,
-        //             },
-        //             {
-        //                 you: true,
-        //                 type: '',
-        //                 time: '12:00',
-        //                 text: cameraImage,
-        //                 checked: false,
-        //             }],
-        //     },
-        // ].map((item) => {
-        //     const dialogDay = new DialogDay(item);
-        //     return dialogDay;
-        // });
+        return true;
     }
 
     render() {
         return this.compile(template, { ...this.props, style });
     }
 }
+
+const withSelectedChatMessages = withStore(state => {
+    return {messages: state.messages,}
+})
+
+export const DialogsPage = withSelectedChatMessages(BaseDialogsPage);
