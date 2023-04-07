@@ -11,6 +11,8 @@ import ButtonWithImage from '../../components/ButtonWithImage';
 import MessagesController, { Message } from '../../controllers/MessagesController';
 import backToImage from '../../../static/img/dialogsPage/buttonSend.svg';
 import DialogMessages from '../../components/dialogMessages';
+import Popup from '../../components/Popup';
+import createChatIcon from '../../../static/img/dialogsPage/createChat.svg'
 
 interface DialogsPageProps {
 }
@@ -21,6 +23,8 @@ export default class BaseDialogsPage extends Block {
 
     constructor(props: DialogsPageProps) {
         super({ props });
+
+        ChatsController.fetchChats();
 
         this.router = new Router('#app');
         this.props.userId = store.getState().user.id;
@@ -36,6 +40,16 @@ export default class BaseDialogsPage extends Block {
             },
         });
 
+        this.children.createChatButton = new ButtonWithImage({
+            src: `${createChatIcon}`,
+            events: {
+                click: () => {
+                    store.set('createChatPopupVisible', true);
+                    // this.props.popupVisible = true;
+                },
+            },
+        })
+
         this.children.sendButton = new ButtonWithImage({
             src: `${backToImage}`,
             events: {
@@ -44,29 +58,65 @@ export default class BaseDialogsPage extends Block {
                 },
             },
         });
-
-        this.props.loaded = false;
-        ChatsController.fetchChats().then(() => {
-            this.children.dialogsCards = store.getState().chats.map((item: ChatInfo) => new DialogCard(item));
-            this.props.loaded = true;
-        });
     }
 
     protected componentDidUpdate(oldProps: any, newProps: any): boolean {
-        if (this.props?.messages) {
-            this.children.dialogMessages = (this.props.messages[store.getState().selectedChat] || []).map((item: Message) => new DialogMessages({...item, isMine: store.getState().user.id == item.user_id }));
+        if (this.props?.createChatPopupVisible) {
+            console.log("here");
+            this.children.confirmPopup = new Popup({
+                label: 'Название чата',
+                placeholder: 'Введите название чата',
+                buttonText: 'Создать',
+                events: {
+                    click: () => {
+                        store.set('createChatPopupVisible', false);
+                        store.set('addUserInChatPopupVisible', false);
+                        // this.props.popupVisible = false;
+                    }
+                }
+            })
         }
+
+        if (this.props?.addUserInChatPopupVisible) {
+            console.log("here2");
+            this.children.confirmPopup = new Popup({
+                label: 'Id пользователя',
+                placeholder: 'Введите Id пользователя',
+                buttonText: 'Добавить пользователя',
+                events: {
+                    click: () => {
+                        store.set('createChatPopupVisible', false);
+                        store.set('addUserInChatPopupVisible', false);
+                        // this.props.popupVisible = false;
+                    }
+                }
+            })
+        } 
+
+        if (this.props?.messages) {
+            this.children.dialogMessages = (this.props.messages[store.getState().selectedChat] || []).map((item: Message) => new DialogMessages({ ...item, isMine: store.getState().user.id == item.user_id }));
+        }
+
+        if (this.props?.chats)
+            this.children.dialogsCards = this.props.chats.map((item: ChatInfo) => new DialogCard(item));
+
+        // this.props.loaded = true;
 
         return true;
     }
 
     render() {
-        return this.compile(template, { ...this.props, style });
+        return this.compile(template, { ...this.props, style, createChatIcon });
     }
 }
 
 const withSelectedChatMessages = withStore(state => {
-    return {messages: state.messages,}
+    return {
+        messages: state.messages || [],
+        chats: state.chats || [],
+        createChatPopupVisible: state.createChatPopupVisible || false,
+        addUserInChatPopupVisible: state.addUserInChatPopupVisible || false,
+    }
 })
 
 export const DialogsPage = withSelectedChatMessages(BaseDialogsPage);

@@ -1,4 +1,6 @@
 .container {
+    position: relative;
+
     height: 100vh;
 
     display: flex;
@@ -22,8 +24,6 @@
             align-items: center;
 
             &__text {
-                margin-right: 8px;
-
                 font-family: 'Inter';
                 font-style: normal;
                 font-weight: 500;
@@ -32,6 +32,17 @@
                 color: var(--gray);
 
                 cursor: pointer;
+
+                display: flex;
+                align-items: center;
+
+                img {
+                    margin-left: 20px;
+                }
+
+                &__id {
+                    margin-right: 20px;
+                }
             }
 
             &__button {

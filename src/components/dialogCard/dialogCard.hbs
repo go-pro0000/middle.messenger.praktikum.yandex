@@ -4,11 +4,12 @@
     <div class="{{style.dialogCard__content}}">
         <span class="{{style.dialogCard__content__name}}">{{title}} {{id}}</span>
         <p class="{{style.dialogCard__content__text}}">
-            {{#if own}}
+            {{!-- {{#if own}}
             <span class="{{style.dialogCard__content__text__own}}">Вы: </span>
-            {{/if}}
+            {{/if}} --}}
             {{text}}
         </p>
+        {{{createChatButton}}}
     </div>
 
     <div class="{{style.dialogCard__info}}">
