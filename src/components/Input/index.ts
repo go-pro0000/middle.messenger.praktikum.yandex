@@ -10,6 +10,7 @@ interface InputProps {
     validationError: boolean,
     validationErrorMessage: string,
     hide?: boolean,
+    disabled?: boolean,
 
     events: {
         focus: () => void,

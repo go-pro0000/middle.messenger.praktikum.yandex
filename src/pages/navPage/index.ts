@@ -1,12 +1,15 @@
 import Block from '../../utils/Block';
-import Li from '../../components/li';
-import { renderDOM } from '../../utils/renderDOM';
+import Li from '../../components/Li';
 import template from './navPage.hbs';
 import * as style from './styles.module.scss';
+import Router from '../../utils/Router';
 
-export class NavPage extends Block {
+export default class NavPage extends Block {
+  router: Router;
+
   constructor() {
     super({});
+    this.router = new Router("#app");
   }
 
   init() {
@@ -14,7 +17,7 @@ export class NavPage extends Block {
       text: 'Вход',
       events: {
         click: () => {
-          renderDOM('signIn');
+          this.router.go('/signin')
         },
       },
     });
@@ -23,7 +26,7 @@ export class NavPage extends Block {
       text: 'Регистрация',
       events: {
         click: () => {
-          renderDOM('signUp');
+          this.router.go('/signup')
         },
       },
     });
@@ -32,7 +35,7 @@ export class NavPage extends Block {
       text: 'Диалоги',
       events: {
         click: () => {
-          renderDOM('dialogsPage');
+          this.router.go('/dialogs')
         },
       },
     });
@@ -41,7 +44,7 @@ export class NavPage extends Block {
       text: 'Профиль',
       events: {
         click: () => {
-          renderDOM('profile');
+          this.router.go('/profile')
         },
       },
     });
@@ -50,7 +53,7 @@ export class NavPage extends Block {
       text: '404',
       events: {
         click: () => {
-          renderDOM('pageNotFound');
+          this.router.go('/404')
         },
       },
     });
@@ -59,7 +62,7 @@ export class NavPage extends Block {
       text: '500',
       events: {
         click: () => {
-          renderDOM('serverError');
+          this.router.go('/500')
         },
       },
     });

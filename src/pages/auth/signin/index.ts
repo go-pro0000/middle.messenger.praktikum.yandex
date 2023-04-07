@@ -6,16 +6,23 @@ import Validation from '../../../utils/validation/Validation';
 import * as rootStyles from '../../../styles/root.module.scss';
 import * as authStyles from '../styles.module.scss';
 import * as styles from './styles.module.scss';
-import SignInData from '../../../classes/SignInData';
 import Link from '../../../components/Link';
-import { renderDOM } from '../../../utils/renderDOM';
+import Router from '../../../utils/Router';
+import { SignInData } from '../../../api/AuthAPI';
+import AuthController from '../../../controllers/AuthController';
 
-export class SignInPage extends SubmitPage {
+export default class SignInPage extends SubmitPage {
+    router: Router;
+
     constructor() {
         super((formData) => {
-            const data: SignInData = new SignInData(formData);
-            console.log(data);
+            const data = {
+                login: formData.get('login') as string,
+                password: formData.get('password') as string,
+            };
+            AuthController.signin(data as SignInData);
         }, 'SignInPage');
+        this.router = new Router('#app');
     }
 
     init() {
@@ -62,7 +69,7 @@ export class SignInPage extends SubmitPage {
             text: 'Нет аккаунта?',
             events: {
                 click: () => {
-                    renderDOM('signUp');
+                    this.router.go('/signup')
                 },
             },
         });
@@ -75,7 +82,7 @@ export class SignInPage extends SubmitPage {
 
     render() {
         return this.compile(template, {
- ...this.props, rootStyles, styles, authStyles,
-});
+            ...this.props, rootStyles, styles, authStyles,
+        });
     }
 }

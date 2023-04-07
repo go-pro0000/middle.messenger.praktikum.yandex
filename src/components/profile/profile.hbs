@@ -1,69 +1,56 @@
-<body>
-    <main>
-        <div class="{{style.container}}">
-            <div class="{{style.container__backTo}}">
-                <a href="">
-                    <img src="{{backToImage}}" alt="Кнопка назад">
-                </a>
+<div class="{{style.container}}">
+    {{!-- <div class="{{style.container__backTo}}">
+        <img src="{{this.backToImage}}" alt="Кнопка назад">
+    </div> --}}
+    <div class="{{style.container__buttonWithImageContainer}}">
+        {{{buttonWithImage}}}
+    </div>
+
+
+    <div class="{{style.container__profile}}">
+        <div class="{{style.container__profile__imgContainer}}">
+            <img class="{{style.container__profile__imgContainer__image}}"
+                src='https://ya-praktikum.tech/api/v2/resources{{avatar}}' alt="Кнопка профиля">
+            <div class="{{style.container__profile__imgContainer__hover}}"></div>
+            <div class="{{style.container__profile__imgContainer__input}}">
+                {{{fileInput}}}
+                <span class="{{style.container__profile__imgContainer__input__btn}}">Выберите файл</span>
             </div>
+        </div>
 
-            <div class="{{style.container__profile}}">
-                <div class="{{style.container__profile__imgContainer}}">
-                    <img src='{{img}}' alt="Кнопка профиля">
-                    <div class="{{style.container__profile__imgContainer__hover}}">
-                        <span name="avatar">Поменять аватар</span>
-                    </div>
-                </div>
-                {{!-- {{#if settings.noActions}}
-                <span class="container__profile__name">{{name}}</span>
-                {{/if}} --}}
-                {{!-- Я задумывал так, что по умолчанию в компоненту profilePageForm передается параметр form.info,
-                отображаются данные пользователя как заблоченные input, при клике на кнопку Изменить данные input
-                разблокируются, а при клике на Изменить пароль параметр form.info меняется на form.password с уже
-                разблокированными input --}}
-                <form action="">
+        <span class="{{style.container__profile__name}}">{{name}}</span>
 
-                    <div class="container__profile__formContainer">
-                        <div class="profilePageForm">
-                            {{{emailInput}}}
-                            {{{loginInput}}}
-                            {{{firstNameInput}}}
-                            {{{secondNameInput}}}
-                            {{{displayNameInput}}}
-                            {{{phoneInput}}}
-                            {{{oldPasswordInput}}}
-                            {{{passwordInput}}}
-                            {{{passwordRepeatInput}}}
-                        </div>
-                        {{!-- {{> profilePageForm data = form.info}} --}}
-                    </div>
+        <div class="{{style.container__profile__formContainer}}">
+            <form action="" class="{{style.container__profile__formContainer__profilePageForm}}">
+                {{{emailInput}}}
+                {{{loginInput}}}
+                {{{firstNameInput}}}
+                {{{secondNameInput}}}
+                {{{displayNameInput}}}
+                {{{phoneInput}}}
+                {{{oldPasswordInput}}}
+                {{{passwordInput}}}
+                {{{passwordRepeatInput}}}
 
-                    {{!-- {{#if settings.noActions}} --}}
-                    <div class="{{style.container__profile__settings}}">
-                        {{!-- <div class="{{style.container__profile__settings__changeData}}">
-                            <p>Изменить данные</p>
-                        </div> --}}
+                <div class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock}}">
+                    <div class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__settings}}">
                         {{{changeInfo}}}
                         {{{changePassword}}}
-                        {{!-- <div class="{{style.container__profile__settings__changePassword}}">
-                            <p>Изменить пароль</p>
-                        </div> --}}
-                        <div class="{{style.container__profile__settings__exit}}">
-                            <p>Выйти</p>
+                        <div
+                            class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__settings__buttonExitWrapper}}">
+                            {{{buttonExit}}}
                         </div>
-
                     </div>
-                    {{!-- {{/if}} --}}
-                    <div class="{{style.container__profile__buttonContainer}}">
+
+                    <div
+                        class="{{style.container__profile__formContainer__profilePageForm__buttonsBlock__buttonContainer}}">
                         {{{saveButton}}}
-                        {{!-- {{> button text = "Сохранить" type="submit"}} --}}
                     </div>
-                </form>
-
-            </div>
-
-            {{!-- {{> profilePagePopup action=popup.action content=popup.content
-            needToChooseFile=popup.needToChooseFile}} --}}
+                </div>
+            </form>
         </div>
-    </main>
-</body>
+    </div>
+
+    {{!-- {{> profilePagePopup action=popup.action content=popup.content
+    needToChooseFile=popup.needToChooseFile}} --}}
+</div>

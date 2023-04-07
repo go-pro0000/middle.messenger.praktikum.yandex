@@ -13,7 +13,8 @@ class Block<P extends Record<string, any> = any> {
 
   public id = nanoid(6);
 
-  protected props: P;
+  // protected props: P;
+  props: P;
 
   public children: Record<string, Block | Block[]>;
 
@@ -221,6 +222,13 @@ class Block<P extends Record<string, any> = any> {
           throw new Error('Нет доступа');
       },
     });
+  }
+
+  show() {
+  }
+  
+  hide() {
+    this._element!.innerHTML = '';
   }
 }
 

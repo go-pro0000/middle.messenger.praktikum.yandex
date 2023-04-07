@@ -15,56 +15,79 @@ export abstract class SubmitPage extends Block {
             events: {
                 submit: (evt) => {
                     evt.preventDefault();
-
                     let isValid = true;
-
                     for (const item of this.props.checkInput) {
-                        if (!item.props.hide) {
-                            switch (item.props.name) {
-                                case 'email':
-                                    Validation.isEmail(item);
-                                    break;
+                        switch (item.props.name) {
+                            case 'email':
+                                Validation.isEmail(item);
+                                break;
 
-                                case 'login':
-                                    Validation.isEmptyInput(item);
-                                    break;
+                            case 'login':
+                                Validation.isEmptyInput(item);
+                                break;
 
-                                case 'first_name':
-                                    Validation.isEmptyInput(item);
-                                    break;
+                            case 'first_name':
+                                Validation.isEmptyInput(item);
+                                break;
 
-                                case 'second_name':
-                                    Validation.isEmptyInput(item);
-                                    break;
+                            case 'second_name':
+                                Validation.isEmptyInput(item);
+                                break;
 
-                                case 'phone':
-                                    Validation.isPhone(item);
-                                    break;
+                            case 'phone':
+                                Validation.isPhone(item);
+                                break;
 
-                                case 'password':
-                                    if (className === 'SignUpPage') {
-                                        Validation.checkFirstPassword(item, this.props.checkInput[6]);
-                                    } else {
-                                        Validation.isEmptyInput(item);
-                                    }
-                                    break;
+                            case 'old_password':
+                                Validation.isEmptyInput(item);
+                                break;
 
-                                case 'password_repeat':
-                                    Validation.checkTwoPassword(item, this.props.checkInput[6]);
-                                    break;
+                            case 'password':
+                                Validation.isEmptyInput(item);
+                                break;
 
-                                case 'display_name':
-                                    Validation.isEmptyInput(item);
+                            case 'password_repeat':
+                                Validation.checkTwoPassword(this.props.checkInput.find(item => item.props.name === 'password'), item);
+                                break;
 
-                                default:
-                                    break;
-                            }
+                            case 'display_name':
+                                Validation.isEmptyInput(item);
 
-                            isValid = isValid && item!.isValid();
+                            default:
+                                break;
                         }
+
+                        isValid = isValid && item!.isValid();
                     }
+                    console.log("valid", isValid);
                     if (isValid) {
                         func.call(this, new FormData(this.getContent()!.querySelector('form')!));
+
+                        if (className === 'profilePage') {
+                            this.children.saveButton.props.disabled = true;
+
+                            this.children.emailInput.props.disabled = true;
+                            this.children.loginInput.props.disabled = true;
+                            this.children.firstNameInput.props.disabled = true;
+                            this.children.secondNameInput.props.disabled = true;
+                            this.children.displayNameInput.props.disabled = true;
+                            this.children.phoneInput.props.disabled = true;
+
+                            this.children.oldPasswordInput.props.disabled = true;
+                            this.children.passwordInput.props.disabled = true;
+                            this.children.passwordRepeatInput.props.disabled = true;
+
+                            this.children.emailInput.props.hide = false;
+                            this.children.loginInput.props.hide = false;
+                            this.children.firstNameInput.props.hide = false;
+                            this.children.secondNameInput.props.hide = false;
+                            this.children.displayNameInput.props.hide = false;
+                            this.children.phoneInput.props.hide = false;
+
+                            this.children.oldPasswordInput.props.hide = true;
+                            this.children.passwordInput.props.hide = true;
+                            this.children.passwordRepeatInput.props.hide = true;
+                        }
                     }
                     return false;
                 },
