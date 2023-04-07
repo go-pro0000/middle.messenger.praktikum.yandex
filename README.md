@@ -3,7 +3,7 @@
 Messenger prototype using JavaScript, Parcel, Handlebars  
 
 Figma: https://www.figma.com/file/aEGXJYkATTtrQgkDag2hA0/Chat-(Copy)?node-id=0%3A1&t=bVSeQHdLk95jIDar-1  
-Netlify: https://ephemeral-yeot-c45208.netlify.app/  
+Netlify: https://deploy--ephemeral-yeot-c45208.netlify.app/  
 
 npm dev — launch developer version,  
 npm run build — build stable version,  
