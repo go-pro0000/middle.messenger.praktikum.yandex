@@ -28,7 +28,6 @@
 
         &__name {
             color: var(--black);
-            font-family: Inter;
             font-size: 13px;
             font-style: normal;
             font-weight: 600;
@@ -54,7 +53,6 @@
         &__time {
             color: var(--gray);
             display: inline-block;
-            font-family: Inter;
             font-size: 9px;
             font-style: normal;
             font-weight: 500;
@@ -68,7 +66,7 @@
             border-radius: 50%;
             color: var(--white);
             display: flex;
-            font-family: Inter;
+            ;
             font-size: 11px;
             font-style: normal;
             font-weight: 500;

@@ -68,10 +68,6 @@
                 visibility: visible;
             }
 
-            &:hover .container__profile__imgContainer__input {
-                visibility: visible;
-            }
-
             &__input {
                 visibility: hidden;
 
@@ -102,7 +98,7 @@
                     align-items: center;
                 }
 
-                & input[type=file] {
+                & input[type="file"] {
                     position: absolute;
                     top: 50%;
                     left: 50%;
@@ -117,15 +113,18 @@
                     display: block;
                 }
 
-                & input[type=file]:focus+&__btn {
+                & input[type="file"]:focus+&__btn {
                     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
                 }
+            }
+
+            &:hover .container__profile__imgContainer__input {
+                visibility: visible;
             }
         }
 
         &__name {
             color: var(--black);
-            font-family: Inter;
             font-size: 16px;
             font-style: normal;
             font-weight: 600;
@@ -149,7 +148,6 @@
                         &__changeData,
                         &__changePassword,
                         &__exit {
-                            font-family: Inter;
                             font-size: 13px;
                             font-style: normal;
                             font-weight: 500;
