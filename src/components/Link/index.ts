@@ -1,6 +1,5 @@
 import Block from '../../utils/Block';
 import template from './link.hbs';
-import * as styles from './styles.module.scss';
 
 interface LinkProps {
   text: string;
@@ -15,6 +14,6 @@ export default class Link extends Block<LinkProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, { ...this.props });
   }
 }
