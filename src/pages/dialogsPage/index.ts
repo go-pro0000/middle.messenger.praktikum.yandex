@@ -62,7 +62,6 @@ export default class BaseDialogsPage extends Block {
 
     protected componentDidUpdate(oldProps: any, newProps: any): boolean {
         if (this.props?.createChatPopupVisible) {
-            console.log("here");
             this.children.confirmPopup = new Popup({
                 label: 'Название чата',
                 placeholder: 'Введите название чата',
@@ -71,14 +70,12 @@ export default class BaseDialogsPage extends Block {
                     click: () => {
                         store.set('createChatPopupVisible', false);
                         store.set('addUserInChatPopupVisible', false);
-                        // this.props.popupVisible = false;
                     }
                 }
             })
         }
 
         if (this.props?.addUserInChatPopupVisible) {
-            console.log("here2");
             this.children.confirmPopup = new Popup({
                 label: 'Id пользователя',
                 placeholder: 'Введите Id пользователя',
@@ -87,7 +84,6 @@ export default class BaseDialogsPage extends Block {
                     click: () => {
                         store.set('createChatPopupVisible', false);
                         store.set('addUserInChatPopupVisible', false);
-                        // this.props.popupVisible = false;
                     }
                 }
             })
@@ -99,8 +95,6 @@ export default class BaseDialogsPage extends Block {
 
         if (this.props?.chats)
             this.children.dialogsCards = this.props.chats.map((item: ChatInfo) => new DialogCard(item));
-
-        // this.props.loaded = true;
 
         return true;
     }
