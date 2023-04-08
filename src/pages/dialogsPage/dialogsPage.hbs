@@ -62,7 +62,7 @@
                     {{/each}}
                 </div>
 
-                <div class="{{style.container__rightPart__dialog__messageSend}}">
+                <form class="{{style.container__rightPart__dialog__messageSend}}">
                     {{!-- <div class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer}}">
                         <img class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__files}}"
                             src="/static/img/dialogsPage/clip.svg" alt="Прикрепить файл">
@@ -87,10 +87,12 @@
                             </div>
                         </div>
                     </div> --}}
-                    <input class="{{style.container__rightPart__dialog__messageSend__input}}" type="text"
-                        placeholder="Сообщение" name="message">
+
+                    {{!-- <input class="{{style.container__rightPart__dialog__messageSend__input}}" type="text"
+                        placeholder="Сообщение" name="message"> --}}
+                    {{{sendMessageInput}}}
                     {{{sendButton}}}
-                </div>
+                </form>
 
                 {{!-- {{> dialogPagePopup data = addDeleteUser.add}}
                 {{> dialogPagePopup data = addDeleteUser.delete}} --}}
@@ -106,5 +108,12 @@
         {{{confirmPopup}}}
         {{/if}}
 
+        {{#if deleteChatPopupVisible}}
+        {{{confirmPopup}}}
+        {{/if}}
+
+        {{#if deleteUserFromChatPopupVisible}}
+        {{{confirmPopup}}}
+        {{/if}}
     </div>
 </main>

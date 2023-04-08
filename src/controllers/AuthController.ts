@@ -16,7 +16,7 @@ export class AuthController {
         try {
             await this.api.signin(data);
 
-            this.router.go('/profile');
+            this.router.go('/settings');
         } catch (e: any) {
             console.error(e);
         }
@@ -26,7 +26,7 @@ export class AuthController {
         try {
             await this.api.signup(data);
 
-            this.router.go('/profile');
+            this.router.go('/settings');
         } catch (e: any) {
             console.error(e);
         }

@@ -219,7 +219,6 @@ class ProfileBase extends SubmitPage {
                 },
                 blur: () => {
                     Validation.isEmptyInput(this.children.passwordInput as Input);
-                    // Validation.checkFirstPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },
         });

@@ -13,9 +13,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     router
         .use('/', NavPage)
         .use('/signin', SignInPage)
-        .use('/signup', SignUpPage)
-        .use('/dialogs', DialogsPage, 'protected')
-        .use('/profile', ProfilePage, 'protected')
+        .use('/sign-up', SignUpPage)
+        .use('/messenger', DialogsPage, 'protected')
+        .use('/settings', ProfilePage, 'protected')
         .use('/404', PageNotFound)
         .use('/500', ServerError)
 

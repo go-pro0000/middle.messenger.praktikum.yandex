@@ -17,7 +17,7 @@ class ChatsController {
 
     async fetchChats() {
         const chats = await this.api.read();
-
+        
         chats.map(async (chat) => {
             const token = await this.getToken(chat.id);
 
@@ -37,8 +37,16 @@ class ChatsController {
         this.fetchChats();
     }
 
+    deleteUsers(users: Array<number>, id: number) {
+        this.api.deleteUsers(users, id);
+    }
+
     getToken(id: number) {
         return this.api.getToken(id);
+    }
+
+    uploadChatAvatar(chatId: number, avatar: FormData) {
+        return this.api.uploadChatAvatar(chatId, avatar);
     }
 
     selectChat(id: number) {

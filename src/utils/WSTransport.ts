@@ -43,7 +43,7 @@ export default class WSTransport extends EventBus {
 
     private setupPing() {
         this.pingInterval = setInterval(() => {
-            this.send({type: 'ping'});
+            this.send({ type: 'ping' });
         }, 5000);
 
         this.on(WSTransportEvents.Close, () => {
@@ -67,13 +67,16 @@ export default class WSTransport extends EventBus {
         });
 
         socket.addEventListener('message', (message) => {
-            const data = JSON.parse(message.data);
+            try {
+                const data = JSON.parse(message.data);
+                if (data.type && data.type === 'pong') {
+                    return;
+                }
 
-            if (data.type && data.type === 'pong') {
-                return;
+                this.emit(WSTransportEvents.Message, data);
+            } catch (error) {
+                console.log(error);
             }
-
-            this.emit(WSTransportEvents.Message, data);
         })
     }
 }

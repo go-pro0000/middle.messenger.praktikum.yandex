@@ -5,18 +5,20 @@ import Validation from './Validation';
 interface SubmitPageProps {
     checkInput?: Array<Input>,
     events?: {
-        submit?: (event: FormDataEvent) => void;
+        submit: (event: FormDataEvent) => void;
     };
+    options?: any,
 }
 
 export abstract class SubmitPage extends Block {
-    protected constructor(func: (formData: FormData) => void, className = '') {
+    protected constructor(func: (formData: FormData) => void, options = '') {
         const props: SubmitPageProps = {
+            options: options,
             events: {
                 submit: (evt) => {
                     evt.preventDefault();
                     let isValid = true;
-                    for (const item of this.props.checkInput) {
+                    for (const item of this.props?.checkInput) {
                         switch (item.props.name) {
                             case 'email':
                                 Validation.isEmail(item);
@@ -53,17 +55,23 @@ export abstract class SubmitPage extends Block {
                             case 'display_name':
                                 Validation.isEmptyInput(item);
 
-                            default:
+                            case 'popupInput':
+                                Validation.isEmptyInput(item);
+
+                            case 'sendMessage':
+                                Validation.isEmptyInput(item);
+
+                            default:    
                                 break;
                         }
 
                         isValid = isValid && item!.isValid();
                     }
-                    console.log("valid", isValid);
+                    console.log("valid:", isValid);
                     if (isValid) {
                         func.call(this, new FormData(this.getContent()!.querySelector('form')!));
 
-                        if (className === 'profilePage') {
+                        if (options === 'profilePage') {
                             this.children.saveButton.props.disabled = true;
 
                             this.children.emailInput.props.disabled = true;

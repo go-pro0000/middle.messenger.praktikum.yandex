@@ -1,4 +1,3 @@
-import Block from '../../utils/Block';
 import template from './dialogsPage.hbs';
 import * as style from './styles.module.scss';
 import DialogCard from '../../components/dialogCard';
@@ -9,20 +8,24 @@ import Link from '../../components/Link';
 import Router from '../../utils/Router';
 import ButtonWithImage from '../../components/ButtonWithImage';
 import MessagesController, { Message } from '../../controllers/MessagesController';
-import backToImage from '../../../static/img/dialogsPage/buttonSend.svg';
 import DialogMessages from '../../components/dialogMessages';
 import Popup from '../../components/Popup';
 import createChatIcon from '../../../static/img/dialogsPage/createChat.svg'
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import Validation from '../../utils/validation/Validation';
+import SubmitPage from '../../utils/validation/SubmitPage';
 
-interface DialogsPageProps {
-}
+import FileInput from '../../components/FileInput';
 
 
-export default class BaseDialogsPage extends Block {
+export default class BaseDialogsPage extends SubmitPage {
     router: Router
 
-    constructor(props: DialogsPageProps) {
-        super({ props });
+    constructor() {
+        super(() => {
+            MessagesController.sendMessage(store.getState().selectedChat, document.getElementsByTagName('input')[0].value);
+        });
 
         ChatsController.fetchChats();
 
@@ -35,7 +38,7 @@ export default class BaseDialogsPage extends Block {
             text: 'Профиль',
             events: {
                 click: () => {
-                    this.router.go('/profile')
+                    this.router.go('/settings')
                 },
             },
         });
@@ -50,14 +53,31 @@ export default class BaseDialogsPage extends Block {
             },
         })
 
-        this.children.sendButton = new ButtonWithImage({
-            src: `${backToImage}`,
+        this.children.sendMessageInput = new Input({
+            value: '',
+            type: 'text',
+            name: 'sendMessage',
+            placeholder: 'Сообщение',
+            validationError: false,
+            validationErrorMessage: '',
             events: {
-                click: () => {
-                    MessagesController.sendMessage(store.getState().selectedChat, document.getElementsByTagName('input')[0].value);
+                focus: () => {
+                    (this.children.sendMessageInput as Input).removeError();
+                },
+                blur: () => {
+                    Validation.isEmptyInput(this.children.sendMessageInput as Input);
                 },
             },
+        })
+
+        this.children.sendButton = new Button({
+            type: 'submit',
+            text: 'Отправить',
         });
+
+        this.props.checkInput = [
+            this.children.sendMessageInput,
+        ]
     }
 
     protected componentDidUpdate(oldProps: any, newProps: any): boolean {
@@ -69,7 +89,6 @@ export default class BaseDialogsPage extends Block {
                 events: {
                     click: () => {
                         store.set('createChatPopupVisible', false);
-                        store.set('addUserInChatPopupVisible', false);
                     }
                 }
             })
@@ -82,19 +101,43 @@ export default class BaseDialogsPage extends Block {
                 buttonText: 'Добавить пользователя',
                 events: {
                     click: () => {
-                        store.set('createChatPopupVisible', false);
                         store.set('addUserInChatPopupVisible', false);
                     }
                 }
             })
-        } 
+        }
+
+        if (this.props?.deleteChatPopupVisible) {
+            this.children.confirmPopup = new Popup({
+                empty: true,
+                buttonText: 'Удалить чат',
+                events: {
+                    click: () => {
+                        store.set('deleteChatPopupVisible', false);
+                    }
+                }
+            })
+        }
+
+        if (this.props?.deleteUserFromChatPopupVisible) {
+            this.children.confirmPopup = new Popup({
+                label: 'Id пользователя',
+                placeholder: 'Введите Id пользователя',
+                buttonText: 'Удалить пользователя',
+                events: {
+                    click: () => {
+                        store.set('deleteUserFromChatPopupVisible', false);
+                    }
+                }
+            })
+        }
 
         if (this.props?.messages) {
             this.children.dialogMessages = (this.props.messages[store.getState().selectedChat] || []).map((item: Message) => new DialogMessages({ ...item, isMine: store.getState().user.id == item.user_id }));
         }
 
         if (this.props?.chats)
-            this.children.dialogsCards = this.props.chats.map((item: ChatInfo) => new DialogCard(item));
+            this.children.dialogsCards = this.props.chats.map((item: ChatInfo) => new DialogCard({ ...item, isSelected: store.getState().selectedChatId === item.id }));
 
         return true;
     }
@@ -108,8 +151,11 @@ const withSelectedChatMessages = withStore(state => {
     return {
         messages: state.messages || [],
         chats: state.chats || [],
+        selectedChatId: state.selectedChatId || '',
         createChatPopupVisible: state.createChatPopupVisible || false,
         addUserInChatPopupVisible: state.addUserInChatPopupVisible || false,
+        deleteChatPopupVisible: state.deleteChatPopupVisible || false,
+        deleteUserFromChatPopupVisible: state.deleteUserFromChatPopupVisible || false,
     }
 })
 

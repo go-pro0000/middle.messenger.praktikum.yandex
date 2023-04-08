@@ -3,7 +3,7 @@ import template from './ButtonWithImage.hbs';
 import * as styles from './styles.module.scss';
 
 interface ButtonWithImageProps {
-  src: string;
+  src: string,
 
   events: {
     click: () => void,

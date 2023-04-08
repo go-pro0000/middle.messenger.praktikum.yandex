@@ -25,7 +25,6 @@ export interface DialogMessagesProps {
 export default class DialogMessages extends Block {
     constructor(props: DialogMessagesProps) {
         super(props);
-        console.log(props);
         
         this.props.time = this.props?.time?.split('+')[0].split('T')[1].slice(0, -3);
     }
