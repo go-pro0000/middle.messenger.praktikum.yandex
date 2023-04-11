@@ -1,33 +1,30 @@
 import proxyquire from 'proxyquire';
 import sinon from 'sinon';
 import { expect } from 'chai';
-import type AuthApiType from './AuthAPI';
-import type BaseApiType from './BaseAPI';
+import type { AuthAPI as AuthAPIType } from './AuthAPI';
+import type BaseAPIType from './BaseAPI';
 
 const httpTransportMock = {
   get: sinon.stub(),
   post: sinon.stub(),
 };
 
-// const { default: BaseApi } = proxyquire('./BaseApi', {
-//   '../utils/HTTPTransport': {
-//     default: class {
-//       get = httpTransportMock.get;
-//       post = httpTransportMock.post;
-//     },
-//   },
-// }) as { default: typeof BaseApiType};
-
-const { default: AuthApi } = proxyquire('./AuthApi', {
-  './BaseApi': {
+const { default: BaseApi } = proxyquire('./BaseAPI', {
+  '../utils/HTTPTransport': {
     default: class {
-        get = httpTransportMock.get;
-        post = httpTransportMock.post;
-      },
+      get = httpTransportMock.get;
+      post = httpTransportMock.post;
+    },
   },
-}) as { default: typeof AuthApiType};
+}) as { default: typeof BaseAPIType};
 
-describe.only('AuthApi', () => {
+const { AuthAPI } = proxyquire('./AuthAPI', {
+  './BaseAPI': {
+    default: BaseApi,
+  },
+}) as { AuthAPI: typeof AuthAPIType};
+
+describe('AuthApi', () => {
   const data = {
     first_name: '',
     second_name: '',
@@ -38,7 +35,7 @@ describe.only('AuthApi', () => {
   };
 
   it('should call /signup on signup method with passed data', () => {
-    const authApi = new AuthApi();
+    const authApi = new AuthAPI();
 
     authApi.signup(data);
 
@@ -46,7 +43,7 @@ describe.only('AuthApi', () => {
   });
 
   it('should call /signin on signin method with passed data', () => {
-    const authApi = new AuthApi();
+    const authApi = new AuthAPI();
 
     authApi.signin(data);
 
@@ -54,7 +51,7 @@ describe.only('AuthApi', () => {
   });
 
   it('should call /logout on logout method', () => {
-    const authApi = new AuthApi();
+    const authApi = new AuthAPI();
 
     authApi.logout();
 
@@ -62,9 +59,9 @@ describe.only('AuthApi', () => {
   });
 
   it('should call /user on get method', () => {
-    const authApi = new AuthApi();
+    const authApi = new AuthAPI();
 
-    authApi.getUser();
+    authApi.read();
 
     expect(httpTransportMock.get.calledWith('/user')).to.eq(true);
   });
