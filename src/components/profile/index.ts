@@ -1,5 +1,5 @@
 import template from './profile.hbs';
-import * as style from './style.module.scss';
+import style from './style.module.scss';
 import Button from '../Button';
 import Input from '../Input';
 import Field from '../field';
@@ -31,7 +31,7 @@ class ProfileBase extends SubmitPage {
     name: string = '';
     avatar: string = '';
 
-    constructor(props: any) {
+    constructor() {
         super((formData) => {
             const data: ProfileData = {};
             if (!(this.children.emailInput as Input).props.hide) {

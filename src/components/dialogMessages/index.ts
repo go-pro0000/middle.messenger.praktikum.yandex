@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './dialogMessages.hbs';
-import * as style from './style.module.scss';
+import style from './style.module.scss';
 import checkedMessage from '../../../static/img/dialogsPage/checkedMessage.svg'
 import uncheckedMessage from '../../../static/img/dialogsPage/checkedMessage.svg'
 

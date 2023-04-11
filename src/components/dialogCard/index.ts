@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './dialogCard.hbs';
-import * as style from './style.module.scss';
+import style from './style.module.scss';
 import ChatsController from '../../controllers/ChatController';
 import ButtonWithImage from '../ButtonWithImage';
 import { User } from '../../api/AuthAPI';

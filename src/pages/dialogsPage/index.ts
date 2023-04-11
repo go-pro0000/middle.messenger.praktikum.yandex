@@ -1,5 +1,5 @@
 import template from './dialogsPage.hbs';
-import * as style from './styles.module.scss';
+import style from './styles.module.scss';
 import DialogCard from '../../components/dialogCard';
 import ChatsController from '../../controllers/ChatController';
 import store, { withStore } from '../../utils/Store';
@@ -15,9 +15,6 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Validation from '../../utils/validation/Validation';
 import SubmitPage from '../../utils/validation/SubmitPage';
-
-import FileInput from '../../components/FileInput';
-
 
 export default class BaseDialogsPage extends SubmitPage {
     router: Router
@@ -80,7 +77,7 @@ export default class BaseDialogsPage extends SubmitPage {
         ]
     }
 
-    protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+    protected componentDidUpdate(): boolean {
         if (this.props?.createChatPopupVisible) {
             this.children.confirmPopup = new Popup({
                 label: 'Название чата',

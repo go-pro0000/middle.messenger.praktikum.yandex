@@ -1,7 +1,5 @@
 import API, { UsersAPI, UsersProfileData, UsersProfilePassword } from "../api/UsersAPI"
 import Router from "../utils/Router"
-import store from '../utils/Store'
-
 
 export class UsersController {
     private readonly api: UsersAPI;
