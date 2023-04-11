@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { set } from './helpers';
 import { Indexed } from './helpers';
 
-describe.only('set helper', () => {
+describe('set helper', () => {
   let obj = {};
   const path = 'a.b';
   const value = 3;
