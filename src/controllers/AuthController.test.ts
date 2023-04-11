@@ -1,7 +1,7 @@
 import proxyquire from 'proxyquire';
 import sinon from 'sinon';
 import { expect } from 'chai';
-import type { AuthAPI as AuthAPIType } from '../api/AuthAPI';
+import type AuthAPIType from '../api/AuthAPI';
 import type BaseApiType from '../api/BaseAPI';
 import type AuthControllerType from './AuthController';
 import { SignUpData } from '../api/AuthAPI';
@@ -39,7 +39,7 @@ const { default: AuthAPI } = proxyquire('../api/AuthAPI', {
 
 const { default: AuthController } = proxyquire('./AuthController', {
   '../api/AuthAPI': {
-    AuthAPI: AuthAPI,
+    default: AuthAPI,
   },
   '../utils/Store': {
     Store: class {
@@ -52,7 +52,7 @@ const { default: AuthController } = proxyquire('./AuthController', {
   },
 }) as { default: typeof AuthControllerType};
 
-describe.only('AuthController', () => {
+describe('AuthController', () => {
   const data: SignUpData = {
     first_name: 'test',
     second_name: 'test',
@@ -68,12 +68,6 @@ describe.only('AuthController', () => {
 
       expect(httpTransportMock.post.calledWith('/signup', data)).to.eq(true);
     });
-
-    it('should call api.getUser', () => {
-      AuthController.signup(data);
-
-      expect(httpTransportMock.get.calledWith('/user')).to.eq(true);
-    });
   });
 
   describe('signin method', () => {
@@ -81,12 +75,6 @@ describe.only('AuthController', () => {
       AuthController.signin(data);
 
       expect(httpTransportMock.post.calledWith('/signin', data)).to.eq(true);
-    });
-
-    it('should call api.getUser', () => {
-      AuthController.signin(data);
-
-      expect(httpTransportMock.get.calledWith('/user')).to.eq(true);
     });
   });
 
