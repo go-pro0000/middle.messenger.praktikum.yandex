@@ -2,7 +2,7 @@ import template from './profile.hbs';
 import style from './style.module.scss';
 import Button from '../Button';
 import Input from '../Input';
-import Field from '../Field';
+import Field from '../field';
 import FileInput from '../FileInput';
 import ButtonWithImage from '../../components/ButtonWithImage';
 import store, { withStore } from '../../utils/Store';
