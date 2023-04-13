@@ -1,15 +1,18 @@
 .dialogCard {
+    position: relative;
+
     border-bottom: 1px solid #EAEAEA;
     border-top: 1px solid #EAEAEA;
     display: flex;
     padding: 12px 0;
+
+    cursor: pointer;
 
     &:hover {
         background: #E4EDFD;
     }
 
     &__image {
-        background-color: #EFEFEF;
         border-radius: 50%;
         height: 47px;
         width: 47px;
@@ -25,7 +28,6 @@
 
         &__name {
             color: var(--black);
-            font-family: Inter;
             font-size: 13px;
             font-style: normal;
             font-weight: 600;
@@ -35,22 +37,12 @@
             white-space: nowrap;
         }
 
-        &__text {
-            -webkit-box-orient: vertical;
-            color: var(--gray);
-            display: -webkit-box;
-            font-family: Inter;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 500;
-            -webkit-line-clamp: 2;
-            margin: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-wrap: break-word;
-
-            &__own {
-                color: var(--black);
+        &__addRemoveUser {
+            
+            display: flex;
+            
+            div:first-child {
+                margin-right: 10px;
             }
         }
     }
@@ -61,7 +53,6 @@
         &__time {
             color: var(--gray);
             display: inline-block;
-            font-family: Inter;
             font-size: 9px;
             font-style: normal;
             font-weight: 500;
@@ -75,7 +66,7 @@
             border-radius: 50%;
             color: var(--white);
             display: flex;
-            font-family: Inter;
+            ;
             font-size: 11px;
             font-style: normal;
             font-weight: 500;
@@ -83,5 +74,11 @@
             justify-content: center;
             width: 20px;
         }
+    }
+
+    &__deleteChat {
+        position: absolute;
+        top: 10px;
+        right: 10px;
     }
 }

@@ -1,4 +1,6 @@
 import Block from "./Block";
+import API, { AuthAPI } from "../api/AuthAPI"
+import store from "./Store";
 
 function isEqual(lhs: string, rhs: string) {
     return lhs === rhs;
@@ -22,12 +24,14 @@ class Route {
     _blockClass: typeof Block;
     _block: Block | null;
     _props: { rootQuery: string; };
+    root: string;
 
-    constructor(pathname: string, view: typeof Block, props: { rootQuery: string }) {
+    constructor(pathname: string, view: typeof Block, props: { rootQuery: string }, root: string) {
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;
         this._props = props;
+        this.root = root;
     }
 
     navigate(pathname: string) {
@@ -59,8 +63,11 @@ export default class Router {
     private history = window.history;
     private _currentRoute: Route | null = null;
     private static __instance: Router;
+    private readonly api: AuthAPI;
 
     constructor(private readonly _rootQuery: string) {
+        this.api = API;
+
         if (Router.__instance) {
             return Router.__instance;
         }
@@ -68,10 +75,10 @@ export default class Router {
         this.routes = [];
 
         Router.__instance = this;
-    }
 
-    use(pathname: string, block: typeof Block) {
-        const route = new Route(pathname, block, { rootQuery: this._rootQuery });
+    }
+    use(pathname: string, block: typeof Block, root: string = '') {
+        const route = new Route(pathname, block, { rootQuery: this._rootQuery }, root);
 
         this.routes.push(route);
 
@@ -86,7 +93,7 @@ export default class Router {
         this._onRoute(window.location.pathname);
     }
 
-    _onRoute(pathname: string) {
+    async _onRoute(pathname: string) {
         const route = this.getRoute(pathname);
         if (!route) {
             return;
@@ -96,6 +103,18 @@ export default class Router {
             this._currentRoute.leave();
         }
 
+        if (route.root === 'protected') {
+            try {
+                const user = await this.api.read();
+                store.set('user', user);
+            } catch (error) {
+
+            }
+            if (!store.getState()?.user?.first_name) {
+                console.log("Ошибка авторизации");
+                return;
+            }
+        }
         this._currentRoute = route;
         route.render();
     }

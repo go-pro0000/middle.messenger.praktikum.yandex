@@ -138,8 +138,8 @@ export default class SignUpPage extends SubmitPage {
                     (this.children.passwordInput as Input).removeError();
                 },
                 blur: () => {
-                    
-                    Validation.checkFirstPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
+                    Validation.isEmptyInput(this.children.passwordInput as Input);
+                    // Validation.checkFirstPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },
         });

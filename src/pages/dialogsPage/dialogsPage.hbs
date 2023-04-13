@@ -1,92 +1,119 @@
 <main>
-<div class="{{style.container}}">
-    <div class="{{style.container__leftPart}}">
-        <div class="{{style.container__leftPart__bakToProfile}}">
-            <span class="{{style.container__leftPart__bakToProfile__text}}">Профиль</span>
-            <a href="/src/pages/profile/profile.hbs">
-                <img src="{{shebronImage}}" alt=""
-                    class="{{style.container__leftPart__bakToProfile__button}}" alt="Переход в профиль">
-            </a>
-        </div>
-
-        <input class="{{style.container__leftPart__inputSearch}}" type="text" placeholder="🔍 Поиск">
-
-        <div class="{{style.container__leftPart__cards}}">
-            {{#each dialogsCards}}
-            {{{this}}}
-            {{/each}}
-        </div>
-    </div>
-
-    <div class="{{style.container__rightPart}}">
-        {{#if unselectedDialog}}
-        <p class="{{style.container__rightPart__unselectedDialog}}">Выберите чат чтобы отправить сообщение</p>
-        {{else}}
-        {{!-- {{> dialog data = dialog addDeleteUser = addDeleteUser}} --}}
-        <div class="{{style.container__rightPart__dialog}}">
-            <div class="{{style.container__rightPart__dialog__header}}">
-                <div class="{{style.container__rightPart__dialog__header__profile}}">
-                    <div class="{{style.container__rightPart__dialog__header__profile__img}}"></div>
-                    <div class="{{style.container__rightPart__dialog__header__profile__name}}">{{name}}</div>
-                </div>
-
-                <div class="{style.container__rightPart__dialog__header__actions}">
-                    <img src="/static/img/dialogsPage/move-vertical.svg" alt="Действия">
-
-                    <div class="{{style.container__rightPart__dialog__header__actions__dropDownList}}">
-                        <div class="{{style.container__rightPart__dialog__header__actions__dropDownList__addUser}}">
-                            <img src="/static/img/dialogsPage/addUserButton.svg" alt="Добавить пользователя">
-                            <p>Добавить пользователя</p>
-                        </div>
-
-                        <div class="{{style.container__rightPart__dialog__header__actions__dropDownList__removeUser}}">
-                            <img src="/static/img/dialogsPage/removeUserButton.svg" alt="Удалить пользователя">
-                            <p>Удалить пользователя</p>
-                        </div>
+    <div class="{{style.container}}">
+        <div class="{{style.container__leftPart}}">
+            <div class="{{style.container__leftPart__bakToProfile}}">
+                <div class="{{style.container__leftPart__bakToProfile__text}}">
+                    <div class="{{style.container__leftPart__bakToProfile__text__id}}">
+                        {{userId}}
                     </div>
+                    {{{profileLink}}}
+                    {{{createChatButton}}}
                 </div>
             </div>
 
-            <div class="dialog__content">
-                {{#each dialogsDays}}
+            {{!-- <input class="{{style.container__leftPart__inputSearch}}" type="text" placeholder="🔍 Поиск"> --}}
+
+            <div class="{{style.container__leftPart__cards}}">
+                {{!-- {{#if loaded}} --}}
+                {{#each dialogsCards}}
                 {{{this}}}
                 {{/each}}
+                {{!-- {{else}} --}}
+                {{!-- Loading... --}}
+                {{!-- {{/if}} --}}
             </div>
+        </div>
 
-            <div class="{{style.container__rightPart__dialog__messageSend}}">
-                <div class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer}}">
-                    <img class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__files}}"
-                        src="/static/img/dialogsPage/clip.svg" alt="Прикрепить файл">
-                    <div
-                        class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__dropDownList}}">
-                        <div
-                            class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__dropDownList__photoVideo}}">
-                            <img src="/static/img/dialogsPage/photoVideo.svg" alt="Прикрепить фото/видео">
-                            <p>Фото или Видео</p>
-                        </div>
+        <div class="{{style.container__rightPart}}">
+            {{!-- {{#if unselectedDialog}}
+            <p class="{{style.container__rightPart__unselectedDialog}}">Выберите чат чтобы отправить сообщение</p>
+            {{else}} --}}
 
-                        <div
-                            class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__dropDownList__file}}">
-                            <img src="/static/img/dialogsPage/file.svg" alt="Прикрепить файйл">
-                            <p>Файл</p>
-                        </div>
+            {{!-- {{> dialog data = dialog addDeleteUser = addDeleteUser}} --}}
 
-                        <div
-                            class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__dropDownList__location}}">
-                            <img src="/static/img/dialogsPage/location.svg" alt="Прикрепить локацию">
-                            <p>Локация</p>
+            <div class="{{style.container__rightPart__dialog}}">
+                {{!-- <div class="{{style.container__rightPart__dialog__header}}">
+                    <div class="{{style.container__rightPart__dialog__header__profile}}">
+                        <div class="{{style.container__rightPart__dialog__header__profile__img}}"></div>
+                        <div class="{{style.container__rightPart__dialog__header__profile__name}}">{{name}}</div>
+                    </div>
+
+                    <div class="{style.container__rightPart__dialog__header__actions}">
+                        <img src="/static/img/dialogsPage/move-vertical.svg" alt="Действия">
+
+                        <div class="{{style.container__rightPart__dialog__header__actions__dropDownList}}">
+                            <div class="{{style.container__rightPart__dialog__header__actions__dropDownList__addUser}}">
+                                <img src="/static/img/dialogsPage/addUserButton.svg" alt="Добавить пользователя">
+                                <p>Добавить пользователя</p>
+                            </div>
+
+                            <div
+                                class="{{style.container__rightPart__dialog__header__actions__dropDownList__removeUser}}">
+                                <img src="/static/img/dialogsPage/removeUserButton.svg" alt="Удалить пользователя">
+                                <p>Удалить пользователя</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <input type="text" placeholder="Сообщение" name="message">
-                <img class="{{style.container__rightPart__dialog__messageSend__buttonSend}}"
-                    src="/static/img/dialogsPage/buttonSend.svg" alt="Кнопка отправки">
-            </div>
+                </div> --}}
 
-            {{!-- {{> dialogPagePopup data = addDeleteUser.add}}
-            {{> dialogPagePopup data = addDeleteUser.delete}} --}}
+                <div class="{{style.container__rightPart__dialog__content}}">
+                    {{#each dialogMessages}}
+                    {{{this}}}
+                    {{/each}}
+                </div>
+
+                <form class="{{style.container__rightPart__dialog__messageSend}}">
+                    {{!-- <div class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer}}">
+                        <img class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__files}}"
+                            src="/static/img/dialogsPage/clip.svg" alt="Прикрепить файл">
+                        <div
+                            class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__dropDownList}}">
+                            <div
+                                class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__dropDownList__photoVideo}}">
+                                <img src="/static/img/dialogsPage/photoVideo.svg" alt="Прикрепить фото/видео">
+                                <p>Фото или Видео</p>
+                            </div>
+
+                            <div
+                                class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__dropDownList__file}}">
+                                <img src="/static/img/dialogsPage/file.svg" alt="Прикрепить файйл">
+                                <p>Файл</p>
+                            </div>
+
+                            <div
+                                class="{{style.container__rightPart__dialog__messageSend__dropDownListContainer__dropDownList__location}}">
+                                <img src="/static/img/dialogsPage/location.svg" alt="Прикрепить локацию">
+                                <p>Локация</p>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    {{!-- <input class="{{style.container__rightPart__dialog__messageSend__input}}" type="text"
+                        placeholder="Сообщение" name="message"> --}}
+                    {{{sendMessageInput}}}
+                    {{{sendButton}}}
+                </form>
+
+                {{!-- {{> dialogPagePopup data = addDeleteUser.add}}
+                {{> dialogPagePopup data = addDeleteUser.delete}} --}}
+            </div>
+            {{!-- {{/if}} --}}
         </div>
+
+        {{#if createChatPopupVisible}}
+        {{{confirmPopup}}}
+        {{/if}}
+
+        {{#if addUserInChatPopupVisible}}
+        {{{confirmPopup}}}
+        {{/if}}
+
+        {{#if deleteChatPopupVisible}}
+        {{{confirmPopup}}}
+        {{/if}}
+
+        {{#if deleteUserFromChatPopupVisible}}
+        {{{confirmPopup}}}
         {{/if}}
     </div>
-</div>
 </main>

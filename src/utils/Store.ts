@@ -1,6 +1,6 @@
 import Block from "./Block";
 import { EventBus } from "./EventBus";
-import { set } from './helpers'
+import { set } from './helpers';
 
 export enum StoreEvents {
     Updated = 'updated'
@@ -11,7 +11,7 @@ export class Store extends EventBus {
 
     public set(keypath: string, data: unknown) {
         set(this.state, keypath, data);
-
+        
         this.emit(StoreEvents.Updated, this.getState());
     }
 

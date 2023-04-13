@@ -1,0 +1,9 @@
+<div class="{{style.popupMessageComponent}}">
+    <form>
+        <label {{#if options.empty}} style="display: none" {{/if}}>{{options.label}}</label>
+        <div {{#if options.empty}} style="display: none" {{/if}}>
+            {{{popupInput}}}
+        </div>
+        {{{confirmButton}}}
+    </form>
+</div>

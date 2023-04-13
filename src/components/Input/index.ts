@@ -5,13 +5,14 @@ import * as styles from './styles.module.scss';
 interface InputProps {
     value: string,
     type: string,
-    name: string,
+    name?: string,
     placeholder: string,
-    validationError: boolean,
-    validationErrorMessage: string,
+    validationError?: boolean,
+    validationErrorMessage?: string,
     hide?: boolean,
+    disabled?: boolean,
 
-    events: {
+    events?: {
         focus: () => void,
         blur: () => void,
     };

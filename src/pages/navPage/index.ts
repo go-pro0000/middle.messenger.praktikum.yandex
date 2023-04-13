@@ -26,7 +26,7 @@ export default class NavPage extends Block {
       text: 'Регистрация',
       events: {
         click: () => {
-          this.router.go('/signup')
+          this.router.go('/sign-up')
         },
       },
     });
@@ -35,7 +35,7 @@ export default class NavPage extends Block {
       text: 'Диалоги',
       events: {
         click: () => {
-          this.router.go('/dialogs')
+          this.router.go('/messenger')
         },
       },
     });
@@ -44,7 +44,7 @@ export default class NavPage extends Block {
       text: 'Профиль',
       events: {
         click: () => {
-          this.router.go('/profile')
+          this.router.go('/settings')
         },
       },
     });
@@ -72,3 +72,4 @@ export default class NavPage extends Block {
     return this.compile(template, { style });
   }
 }
+
