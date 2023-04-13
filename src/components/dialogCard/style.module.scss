@@ -1,20 +1,19 @@
 .dialog-card {
     border-bottom: 1px solid #EAEAEA;
     border-top: 1px solid #EAEAEA;
-    position: relative;
-
-    display: flex;
     cursor: pointer;
+    display: flex;
     padding: 12px 0;
+    position: relative;
     
     &:hover {
         background: #E4EDFD;
     }
 
     &__image {
+        border-radius: 50%;
         height: 47px;
         width: 47px;
-        border-radius: 50%;
     }
 
     &__content {
@@ -37,7 +36,6 @@
         }
 
         &__addRemoveUser {
-            
             display: flex;
             
             div:first-child {
