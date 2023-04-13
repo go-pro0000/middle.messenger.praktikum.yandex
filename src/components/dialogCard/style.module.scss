@@ -1,11 +1,12 @@
 .dialog-card {
     border-bottom: 1px solid #EAEAEA;
+    border-top: 1px solid #EAEAEA;
     position: relative;
 
-    border-top: 1px solid #EAEAEA;
     display: flex;
     cursor: pointer;
     padding: 12px 0;
+    
     &:hover {
         background: #E4EDFD;
     }

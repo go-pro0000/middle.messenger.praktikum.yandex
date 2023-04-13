@@ -1,12 +1,13 @@
-.popup-messageComponent {
+.popup-message-component {
     height: 20%;
-    width: 20%;
     background-color: white;
+    width: 20%;
     padding: 40px;
+
     form {
         display: flex;
-        height: 100%;
         flex-direction: column;
+        height: 100%;
         justify-content: space-evenly;
     }
 }

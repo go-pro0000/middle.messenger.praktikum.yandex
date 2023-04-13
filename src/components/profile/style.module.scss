@@ -30,7 +30,7 @@
         height: 100%;
         padding: 0 320px;
 
-        &__imgContainer {
+        &__img-container {
             height: 130px;
             margin-bottom: 21px;
             margin-top: 60px;
@@ -64,7 +64,7 @@
                 visibility: hidden;
             }
 
-            &:hover .container__profile__imgContainer__hover {
+            &:hover .container__profile__img-container__hover {
                 visibility: visible;
             }
 
@@ -117,7 +117,7 @@
                 }
             }
 
-            &:hover .container__profile__imgContainer__input {
+            &:hover .container__profile__img-container__input {
                 visibility: visible;
             }
         }
