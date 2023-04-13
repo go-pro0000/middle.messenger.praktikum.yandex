@@ -1,0 +1,6 @@
+<div class="{{styles.inputComponent}}" {{#if hide}} style="display: none;"{{/if}}>
+    <input type={{type}} name={{name}} placeholder='{{placeholder}}' value="{{ value }}">
+    {{#if validationError}}
+    <span>{{validationErrorMessage}}</span>
+    {{/if}}
+</div>

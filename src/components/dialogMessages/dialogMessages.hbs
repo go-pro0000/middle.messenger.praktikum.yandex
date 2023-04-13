@@ -1,0 +1,42 @@
+{{#if you}}
+<div class="{{style.dialogMessages__ownMessage}}">
+    {{#if type}}
+    <p class="{{style.dialogMessages__ownMessage__text}}">{{date}}
+        <span class="{{style.dialogMessages__ownMessage__empty}}"></span>
+        <span class="{{style.dialogMessages__ownMessage__time}}">
+            {{#if checked}}
+            <img src="{{checkedMessage}}" alt="Прочитанное сообщение">
+            {{else}}
+            <img src="{{uncheckedMessage}}" alt="Непрочитанное сообщение">
+            {{/if}}
+            {{time}}</span>
+    </p>
+    {{else}}
+    <div class="{{style.dialogMessages__ownMessage__imgContainer}}">
+        <img src="{{text}}" alt="Картинка чата">
+        <span class="{{style.dialogMessages__ownMessage__time}}">
+            {{#if checked}}
+            <img src="{{checkedMessage}}" alt="Прочитанное сообщение">
+            {{else}}
+            <img src="{{uncheckedMessage}}" alt="Непрочитанное сообщение">
+            {{/if}}
+            {{time}}
+        </span>
+    </div>
+    {{/if}}
+</div>
+{{else}}
+<div class="{{style.dialogMessages__otherMessage}}">
+    {{#if type}}
+    <p class="{{style.dialogMessages__otherMessage__text}}">{{text}}
+        <span class="{{style.dialogMessages__otherMessage__time}}">{{time}}</span>
+        </sp>
+        {{else}}
+    <div class="{{style.dialogMessages__otherMessage__imgContainer}}">
+        <img src='{{text}}' alt="Картинка чата">
+        <span class="{{style.dialogMessages__otherMessage__time}}">{{time}}</span>
+    </div>
+    {{/if}}
+    <span class="{{style.dialogMessages__other__time}}"></span>
+</div>
+{{/if}}
