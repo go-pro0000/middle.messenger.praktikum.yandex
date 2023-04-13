@@ -13,6 +13,7 @@ const { default: BaseApi } = proxyquire('./BaseAPI', {
   '../utils/HTTPTransport': {
     default: class {
       get = httpTransportMock.get;
+
       post = httpTransportMock.post;
     },
   },

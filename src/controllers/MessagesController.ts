@@ -1,5 +1,5 @@
-import WSTransport, { WSTransportEvents } from "../utils/WSTransport";
-import store from "../utils/Store";
+import WSTransport, { WSTransportEvents } from '../utils/WSTransport';
+import store from '../utils/Store';
 
 export interface Message {
     chat_id: number,
@@ -20,7 +20,7 @@ export interface Message {
 
 class MessagesController {
     private sockets: Map<number, WSTransport> = new Map();
-    
+
     async connect(id: number, token: string) {
         if (this.sockets.has(id)) {
             return;
@@ -58,11 +58,11 @@ class MessagesController {
             throw new Error(`Chat ${id} is not connected`);
         }
 
-        socket.send({type: 'get old', content: '0'});
+        socket.send({ type: 'get old', content: '0' });
     }
 
     closeAll() {
-        Array.from(this.sockets.values()).forEach(socket => socket.close());
+        Array.from(this.sockets.values()).forEach((socket) => socket.close());
     }
 
     private onMessage(id: number, messages: Message | Message[]) {
@@ -78,7 +78,7 @@ class MessagesController {
 
         messagesToAdd = [...currentMessages, ...messagesToAdd];
 
-        store.set(`messages.${id}`, messagesToAdd);''
+        store.set(`messages.${id}`, messagesToAdd); '';
     }
 
     private onClose(id: number) {
@@ -93,7 +93,7 @@ class MessagesController {
 
 const controller = new MessagesController();
 
-//@ts-ignore
+// @ts-ignore
 window.messagesController = controller;
 
 export default controller;

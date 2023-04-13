@@ -14,7 +14,7 @@ interface SubmitPageProps {
 export abstract class SubmitPage extends Block {
     protected constructor(func: (formData: FormData) => void, options:any = '') {
         const props: SubmitPageProps = {
-            options: options,
+            options,
             events: {
                 submit: (evt) => {
                     evt.preventDefault();
@@ -62,7 +62,7 @@ export abstract class SubmitPage extends Block {
                             case 'sendMessage':
                                 Validation.isEmptyInput(item);
 
-                            default:    
+                            default:
                                 break;
                         }
 

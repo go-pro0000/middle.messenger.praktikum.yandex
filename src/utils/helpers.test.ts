@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import { set } from './helpers';
-import { Indexed } from './helpers';
+import { set, Indexed } from './helpers';
 
 describe('set helper', () => {
   let obj = {};
@@ -30,7 +29,7 @@ describe('set helper', () => {
   it('should throw new Error if "path" parameter is not a string', () => {
     const notAStringPath = 3;
 
-    //@ts-ignore
+    // @ts-ignore
     const result = () => set({}, notAStringPath, value) as Indexed;
 
     expect(result).to.throw(Error);

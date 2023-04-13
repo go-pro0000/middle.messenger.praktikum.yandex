@@ -1,4 +1,4 @@
-import { EventBus } from "./EventBus";
+import { EventBus } from './EventBus';
 
 export enum WSTransportEvents {
     Connected = 'connected',
@@ -9,6 +9,7 @@ export enum WSTransportEvents {
 
 export default class WSTransport extends EventBus {
     private socket: WebSocket | null = null;
+
     private pingInterval = 0;
 
     constructor(private url: string) {
@@ -42,7 +43,7 @@ export default class WSTransport extends EventBus {
     }
 
     private setupPing() {
-        //@ts-ignore
+        // @ts-ignore
         this.pingInterval = setInterval(() => {
             this.send({ type: 'ping' });
         }, 5000);
@@ -51,7 +52,7 @@ export default class WSTransport extends EventBus {
             clearInterval(this.pingInterval);
 
             this.pingInterval = 0;
-        })
+        });
     }
 
     private subscribe(socket: WebSocket) {
@@ -78,6 +79,6 @@ export default class WSTransport extends EventBus {
             } catch (error) {
                 console.log(error);
             }
-        })
+        });
     }
 }

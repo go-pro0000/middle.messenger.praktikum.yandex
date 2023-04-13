@@ -26,6 +26,7 @@ const { default: BaseApi } = proxyquire('../api/BaseAPI', {
   '../utils/HTTPTransport': {
     default: class {
       get = httpTransportMock.get;
+
       post = httpTransportMock.post;
     },
   },
@@ -44,6 +45,7 @@ const { default: AuthController } = proxyquire('./AuthController', {
   '../utils/Store': {
     Store: class {
       set = storeMock.set;
+
       getState = storeMock.getState();
     },
   },

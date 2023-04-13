@@ -7,7 +7,7 @@ describe('Router', () => {
   const originalBack = global.window.history.back;
   const originalForward = global.window.history.forward;
 
-  //@ts-ignore
+  // @ts-ignore
   before(() => {
     global.window.history.back = () => {
       if (typeof window.onpopstate === 'function') {

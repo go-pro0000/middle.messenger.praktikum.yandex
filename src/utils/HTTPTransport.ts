@@ -22,6 +22,7 @@ function queryStringify(data: any) {
 
 export default class HTTPTransport {
     static API_URL = 'https://ya-praktikum.tech/api/v2';
+
     protected endpoint: string;
 
     constructor(endpoint: string) {
@@ -30,7 +31,7 @@ export default class HTTPTransport {
 
     public get<Response>(path: string): Promise<Response> {
         return this.request<Response>(this.endpoint + path);
-    };
+    }
 
     public post<Response = void>(path: string, data?: unknown): Promise<Response> {
         return this.request<Response>(this.endpoint + path, {
@@ -56,7 +57,7 @@ export default class HTTPTransport {
     public delete<Response>(path: string, data?: unknown): Promise<Response> {
         return this.request<Response>(this.endpoint + path, {
             method: Method.Delete,
-            data
+            data,
         });
     }
 
@@ -77,27 +78,26 @@ export default class HTTPTransport {
                         reject(xhr.response);
                     }
                 }
-            }
+            };
 
             xhr.onabort = () => reject({ reason: 'abort' });
             xhr.onerror = () => reject({ reason: 'network error' });
             xhr.ontimeout = () => reject({ reason: 'timeout' });
-
 
             xhr.withCredentials = true;
             xhr.responseType = 'json';
             if (method === Method.Get || !data) {
                 xhr.send();
             } else if (method === Method.Put && (data instanceof FormData || data.avatar instanceof FormData)) {
-                console.log(data, "formdata")
+                console.log(data, 'formdata');
                 xhr.send(data);
             } else {
-                console.log(data, 'json')
+                console.log(data, 'json');
                 xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify(data))
+                xhr.send(JSON.stringify(data));
             }
         });
-    };
+    }
 
     // fetchWithRetry(url: string, options: Option) {
     //     const { tries = 1 } = options;

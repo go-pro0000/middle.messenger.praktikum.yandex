@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI";
+import BaseAPI from './BaseAPI';
 
 export interface SignInData {
     login: string,
@@ -27,7 +27,7 @@ export interface User {
 
 export class AuthAPI extends BaseAPI {
     constructor() {
-        super('/auth')
+        super('/auth');
     }
 
     signin(data: SignInData) {
@@ -47,7 +47,9 @@ export class AuthAPI extends BaseAPI {
     }
 
     create = undefined;
+
     update = undefined;
+
     delete = undefined;
 }
 

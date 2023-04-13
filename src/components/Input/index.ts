@@ -62,10 +62,11 @@ export default class Input extends Block<InputProps> {
         const { events = {} } = this.props;
 
         if (events !== null && events !== undefined) {
-            if (this.element)
-            Object.keys(events).forEach((eventName) => {
+            if (this.element) {
+ Object.keys(events).forEach((eventName) => {
                 ((this.element as HTMLInputElement)?.getElementsByTagName('input')[0]).removeEventListener(eventName, events[eventName as keyof typeof events]);
             });
+}
         }
     }
 

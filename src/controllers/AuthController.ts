@@ -1,10 +1,10 @@
-import API, { AuthAPI, SignInData, SignUpData } from "../api/AuthAPI"
-import Router from "../utils/Router"
-import store from '../utils/Store'
-
+import API, { AuthAPI, SignInData, SignUpData } from '../api/AuthAPI';
+import Router from '../utils/Router';
+import store from '../utils/Store';
 
 export class AuthController {
     private readonly api: AuthAPI;
+
     router: Router;
 
     constructor() {
@@ -35,7 +35,7 @@ export class AuthController {
     async fetchUser() {
         const user = await this.api.read();
 
-        store.set('user', user);    
+        store.set('user', user);
     }
 
     async logout() {

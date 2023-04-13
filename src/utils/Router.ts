@@ -1,6 +1,6 @@
-import Block from "./Block";
-import API, { AuthAPI } from "../api/AuthAPI"
-import store from "./Store";
+import Block from './Block';
+import API, { AuthAPI } from '../api/AuthAPI';
+import store from './Store';
 
 function isEqual(lhs: string, rhs: string) {
     return lhs === rhs;
@@ -21,9 +21,13 @@ function render(query: string, block: Block) {
 
 class Route {
     _pathname: string;
+
     _blockClass: typeof Block;
+
     _block: Block | null;
+
     _props: { rootQuery: string; };
+
     root: string;
 
     constructor(pathname: string, view: typeof Block, props: { rootQuery: string }, root: string) {
@@ -60,9 +64,13 @@ class Route {
 
 export default class Router {
     private routes: Route[] = [];
+
     private history = window.history;
+
     private _currentRoute: Route | null = null;
+
     private static __instance: Router;
+
     private readonly api: AuthAPI;
 
     constructor(private readonly _rootQuery: string) {
@@ -75,9 +83,9 @@ export default class Router {
         this.routes = [];
 
         Router.__instance = this;
-
     }
-    use(pathname: string, block: typeof Block, root: string = '') {
+
+    use(pathname: string, block: typeof Block, root = '') {
         const route = new Route(pathname, block, { rootQuery: this._rootQuery }, root);
 
         this.routes.push(route);
@@ -111,7 +119,7 @@ export default class Router {
 
             }
             if (!store.getState()?.user?.first_name) {
-                console.log("Ошибка авторизации");
+                console.log('Ошибка авторизации');
                 return;
             }
         }
@@ -133,6 +141,6 @@ export default class Router {
     }
 
     getRoute(pathname: string) {
-        return this.routes.find(route => route.match(pathname));
+        return this.routes.find((route) => route.match(pathname));
     }
 }

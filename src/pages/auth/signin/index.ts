@@ -69,7 +69,7 @@ export default class SignInPage extends SubmitPage {
             text: 'Нет аккаунта?',
             events: {
                 click: () => {
-                    this.router.go('/sign-up')
+                    this.router.go('/sign-up');
                 },
             },
         });

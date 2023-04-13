@@ -12,6 +12,7 @@ const { default: Block } = proxyquire('./Block', {
   './EventBus': {
     EventBus: class {
       emit = eventBusMock.emit;
+
       on = eventBusMock.on;
     },
   },

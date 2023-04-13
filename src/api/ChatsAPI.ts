@@ -1,5 +1,5 @@
-import BaseAPI from "./BaseAPI";
-import { User } from "./AuthAPI";
+import BaseAPI from './BaseAPI';
+import { User } from './AuthAPI';
 
 export interface ChatInfo {
     id: number;
@@ -31,7 +31,7 @@ export class ChatsAPI extends BaseAPI {
     }
 
     read(): Promise<ChatInfo[]> {
-        return this.http.get(`/`);
+        return this.http.get('/');
     }
 
     getUsers(id: number): Promise<Array<User & { role:string }>> {
@@ -43,7 +43,7 @@ export class ChatsAPI extends BaseAPI {
     }
 
     uploadChatAvatar(chatId: number, avatar: FormData) {
-        return this.http.put('/avatar', { chatId, avatar })
+        return this.http.put('/avatar', { chatId, avatar });
     }
 
     async getToken(id: number): Promise<string> {

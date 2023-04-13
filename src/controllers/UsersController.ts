@@ -1,8 +1,9 @@
-import API, { UsersAPI, UsersProfileData, UsersProfilePassword } from "../api/UsersAPI"
-import Router from "../utils/Router"
+import API, { UsersAPI, UsersProfileData, UsersProfilePassword } from '../api/UsersAPI';
+import Router from '../utils/Router';
 
 export class UsersController {
     private readonly api: UsersAPI;
+
     router: Router;
 
     constructor() {
@@ -32,7 +33,6 @@ export class UsersController {
         try {
             await this.api.changeAvatar(data);
             console.log(data);
-            
 
             this.router.go('/profile');
         } catch (e: any) {
