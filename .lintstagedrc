@@ -1,4 +1,4 @@
 {
- "*.ts": "npm run eslint",
- "*.scss": "npm run stylelint"
+ "*.ts": "npm eslint",
+ "*.scss": "npm stylelint"
 }
