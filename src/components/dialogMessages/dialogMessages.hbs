@@ -1,9 +1,9 @@
 {{#if isMine}}
-<div class="{{style.dialogMessages__ownMessage}}">
+<div class="{{style.dialog-messages-own-message}}">
     {{!-- {{#if type}} --}}
-    <p class="{{style.dialogMessages__ownMessage__text}}">{{content}}
-        <span class="{{style.dialogMessages__ownMessage__empty}}"></span>
-        <span class="{{style.dialogMessages__ownMessage__time}}">
+    <p class="{{style.dialog-messages-own-message__text}}">{{content}}
+        <span class="{{style.dialog-messages-own-message__empty}}"></span>
+        <span class="{{style.dialog-messages-own-message__time}}">
             {{!-- {{#if checked}} --}}
             <img src="{{checkedMessage}}" alt="Прочитанное сообщение">
             {{!-- {{else}}
@@ -12,9 +12,9 @@
             {{time}}</span>
     </p>
     {{!-- {{else}}
-    <div class="{{style.dialogMessages__ownMessage__imgContainer}}">
+    <div class="{{style.dialog-messages-own-message__imgContainer}}">
         <img src="{{text}}" alt="Картинка чата">
-        <span class="{{style.dialogMessages__ownMessage__time}}">
+        <span class="{{style.dialog-messages-own-message__time}}">
             {{#if checked}}
             <img src="{{checkedMessage}}" alt="Прочитанное сообщение">
             {{else}}
@@ -26,15 +26,15 @@
     {{/if}} --}}
 </div>
 {{else}}
-<div class="{{style.dialogMessages__otherMessage}}">
+<div class="{{style.dialog-messages-other-message}}">
     {{!-- {{#if type}} --}}
-    <p class="{{style.dialogMessages__otherMessage__text}}">{{content}}
-        <span class="{{style.dialogMessages__otherMessage__time}}">{{time}}</span>
+    <p class="{{style.dialog-messages-other-message__text}}">{{content}}
+        <span class="{{style.dialog-messages-other-message__time}}">{{time}}</span>
         </sp>
         {{!-- {{else}}
-    <div class="{{style.dialogMessages__otherMessage__imgContainer}}">
+    <div class="{{style.dialog-messages-other-message__imgContainer}}">
         <img src='{{text}}' alt="Картинка чата">
-        <span class="{{style.dialogMessages__otherMessage__time}}">{{time}}</span>
+        <span class="{{style.dialog-messages-other-message__time}}">{{time}}</span>
     </div>
     {{/if}} --}}
     <span class="{{style.dialogMessages__other__time}}"></span>

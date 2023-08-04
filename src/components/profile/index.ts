@@ -1,5 +1,5 @@
 import template from './profile.hbs';
-import * as style from './style.module.scss';
+import style from './style.module.scss';
 import Button from '../Button';
 import Input from '../Input';
 import Field from '../field';
@@ -13,7 +13,7 @@ import backToImage from '../../../static/img/profilePage/backTo.svg';
 import SubmitPage from '../../utils/validation/SubmitPage';
 import UsersController from '../../controllers/UsersController';
 import profileImage from '../../../static/img/profilePage/icon.svg';
-import { UsersProfileData, UsersProfilePassword } from "../../api/UsersAPI"
+import { UsersProfileData, UsersProfilePassword } from '../../api/UsersAPI';
 
 export interface ProfileData {
     email?: string,
@@ -28,10 +28,12 @@ export interface ProfileData {
 
 class ProfileBase extends SubmitPage {
     router: Router;
-    name: string = '';
-    avatar: string = '';
 
-    constructor(props: any) {
+    name = '';
+
+    avatar = '';
+
+    constructor() {
         super((formData) => {
             const data: ProfileData = {};
             if (!(this.children.emailInput as Input).props.hide) {
@@ -51,7 +53,7 @@ class ProfileBase extends SubmitPage {
             }
         }, 'profilePage');
 
-        this.router = new Router("#app");
+        this.router = new Router('#app');
     }
 
     async init() {
@@ -63,7 +65,7 @@ class ProfileBase extends SubmitPage {
             src: `${backToImage}`,
             events: {
                 click: () => {
-                    this.router.go('/')
+                    this.router.go('/');
                 },
             },
         });
@@ -89,13 +91,13 @@ class ProfileBase extends SubmitPage {
         this.children.fileInput = new FileInput({
             events: {
                 change: (e) => {
-                    let file = e.target.files[0];
-                    let formData = new FormData();
-                    formData.append("avatar", file);
+                    const file = e.target.files[0];
+                    const formData = new FormData();
+                    formData.append('avatar', file);
                     UsersController.changeAvatar(formData);
                 },
             },
-        })
+        });
 
         this.children.loginInput = new Input({
             value: store.getState().user.login,
@@ -272,7 +274,7 @@ class ProfileBase extends SubmitPage {
                         this.children.secondNameInput,
                         this.children.displayNameInput,
                         this.children.phoneInput,
-                    ]
+                    ];
                 },
             },
         });
@@ -302,7 +304,7 @@ class ProfileBase extends SubmitPage {
                         this.children.oldPasswordInput,
                         this.children.passwordInput,
                         this.children.passwordRepeatInput,
-                    ]
+                    ];
                 },
             },
         });
@@ -322,15 +324,16 @@ class ProfileBase extends SubmitPage {
             disabled: true,
         });
 
-
         this.props.checkInput = [
-        ]
+        ];
         this.props.name = this.name;
         this.props.avatar = this.avatar;
     }
 
     render() {
-        return this.compile(template, { ...this.props, style, backToImage, profileImage });
+        return this.compile(template, {
+ ...this.props, style, backToImage, profileImage,
+});
     }
 }
 

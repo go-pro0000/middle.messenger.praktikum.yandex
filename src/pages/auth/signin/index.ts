@@ -3,9 +3,9 @@ import Button from '../../../components/Button';
 import template from './signin.hbs';
 import SubmitPage from '../../../utils/validation/SubmitPage';
 import Validation from '../../../utils/validation/Validation';
-import * as rootStyles from '../../../styles/root.module.scss';
-import * as authStyles from '../styles.module.scss';
-import * as styles from './styles.module.scss';
+import rootStyles from '../../../styles/root.module.scss';
+import authStyles from '../styles.module.scss';
+import styles from './styles.module.scss';
 import Link from '../../../components/Link';
 import Router from '../../../utils/Router';
 import { SignInData } from '../../../api/AuthAPI';
@@ -69,7 +69,7 @@ export default class SignInPage extends SubmitPage {
             text: 'Нет аккаунта?',
             events: {
                 click: () => {
-                    this.router.go('/sign-up')
+                    this.router.go('/sign-up');
                 },
             },
         });

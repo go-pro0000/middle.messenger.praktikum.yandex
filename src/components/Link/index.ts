@@ -3,7 +3,7 @@ import template from './link.hbs';
 
 interface LinkProps {
   text: string;
-  events: {
+  events?: {
     click: (route: string) => void,
   }
 }

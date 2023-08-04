@@ -4,9 +4,9 @@ import Link from '../../../components/Link';
 import template from './signup.hbs';
 import SubmitPage from '../../../utils/validation/SubmitPage';
 import Validation from '../../../utils/validation/Validation';
-import * as rootStyles from '../../../styles/root.module.scss';
-import * as authStyles from '../styles.module.scss';
-import * as styles from './styles.module.scss';
+import rootStyles from '../../../styles/root.module.scss';
+import authStyles from '../styles.module.scss';
+import styles from './styles.module.scss';
 import Router from '../../../utils/Router';
 import { SignUpData } from '../../../api/AuthAPI';
 import AuthController from '../../../controllers/AuthController';
@@ -23,7 +23,7 @@ export default class SignUpPage extends SubmitPage {
                 second_name: formData.get('second_name') as string,
                 phone: formData.get('phone') as string,
                 password: formData.get('password') as string,
-            }
+            };
             AuthController.signup(data as SignUpData);
         }, 'SignUp');
         this.router = new Router('#app');
@@ -39,11 +39,9 @@ export default class SignUpPage extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    ;
                     (this.children.emailInput as Input).removeError();
                 },
                 blur: () => {
-                    
                     Validation.isEmail(this.children.emailInput as Input);
                 },
             },
@@ -58,11 +56,9 @@ export default class SignUpPage extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    ;
                     (this.children.loginInput as Input).removeError();
                 },
                 blur: () => {
-                    
                     Validation.isEmptyInput(this.children.loginInput as Input);
                 },
             },
@@ -77,11 +73,9 @@ export default class SignUpPage extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    ;
                     (this.children.firstNameInput as Input).removeError();
                 },
                 blur: () => {
-                    
                     Validation.isEmptyInput(this.children.firstNameInput as Input);
                 },
             },
@@ -96,11 +90,9 @@ export default class SignUpPage extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    ;
                     (this.children.secondNameInput as Input).removeError();
                 },
                 blur: () => {
-                    
                     Validation.isEmptyInput(this.children.secondNameInput as Input);
                 },
             },
@@ -115,11 +107,9 @@ export default class SignUpPage extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    ;
                     (this.children.phoneInput as Input).removeError();
                 },
                 blur: () => {
-                    
                     Validation.isPhone(this.children.phoneInput as Input);
                 },
             },
@@ -134,7 +124,6 @@ export default class SignUpPage extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    ;
                     (this.children.passwordInput as Input).removeError();
                 },
                 blur: () => {
@@ -153,11 +142,9 @@ export default class SignUpPage extends SubmitPage {
             validationErrorMessage: '',
             events: {
                 focus: () => {
-                    ;
                     (this.children.passwordRepeatInput as Input).removeError();
                 },
                 blur: () => {
-                    
                     Validation.checkTwoPassword(this.children.passwordInput as Input, this.children.passwordRepeatInput as Input);
                 },
             },
@@ -172,7 +159,7 @@ export default class SignUpPage extends SubmitPage {
             text: 'Войти',
             events: {
                 click: () => {
-                    this.router.go('/signin')
+                    this.router.go('/signin');
                 },
             },
         });

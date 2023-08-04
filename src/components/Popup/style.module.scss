@@ -1,14 +1,11 @@
-.popupComponent {
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    background-color: gray;
-
-    height: 100%;
-    width: 100%;
-
-    display: flex;
+.popup-component {
     align-items: center;
+    background-color: gray;
+    display: flex;
+    height: 100%;
     justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }

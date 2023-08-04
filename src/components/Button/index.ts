@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './button.hbs';
-import * as styles from './styles.module.scss';
+import styles from './styles.module.scss';
 
 interface ButtonProps {
   type?: string;

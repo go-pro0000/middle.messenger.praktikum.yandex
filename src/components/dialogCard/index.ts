@@ -1,13 +1,13 @@
 import Block from '../../utils/Block';
 import template from './dialogCard.hbs';
-import * as style from './style.module.scss';
+import style from './style.module.scss';
 import ChatsController from '../../controllers/ChatController';
 import ButtonWithImage from '../ButtonWithImage';
 import { User } from '../../api/AuthAPI';
-import store from '../../utils/Store'
-import addUserInChatIcon from '../../../static/img/dialogsPage/addUserInChat.svg'
-import deleteUserFromChatIcon from '../../../static/img/dialogsPage/deleteUserFromChat.svg'
-import deleteChatIcon from '../../../static/img/dialogsPage/deleteChat.svg'
+import store from '../../utils/Store';
+import addUserInChatIcon from '../../../static/img/dialogsPage/addUserInChat.svg';
+import deleteUserFromChatIcon from '../../../static/img/dialogsPage/deleteUserFromChat.svg';
+import deleteChatIcon from '../../../static/img/dialogsPage/deleteChat.svg';
 
 export interface DialogCardProps {
     id: number;
@@ -30,12 +30,11 @@ export default class DialogCard extends Block {
             click: () => {
                 store.set('selectedChatId', this.props.id);
                 ChatsController.selectChat(this.props.id);
-            }
-        }
+            },
+        };
 
         if (store.getState().selectedChatId === this.props.id) {
         }
-
     }
 
     init() {

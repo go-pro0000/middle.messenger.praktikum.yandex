@@ -1,5 +1,5 @@
-.dialogMessages__otherMessage,
-.dialogMessages__ownMessage {
+.dialog-messages-other-message,
+.dialog-messages-own-message {
     display: flex;
     margin-bottom: 10px;
 
@@ -31,7 +31,7 @@
     }
 }
 
-.dialogMessages__otherMessage {
+.dialog-messages-other-message {
     justify-content: flex-start;
 
     &__text {
@@ -43,7 +43,7 @@
     }
 }
 
-.dialogMessages__ownMessage {
+.dialog-messages-own-message {
     justify-content: flex-end;
     text-align: end;
 

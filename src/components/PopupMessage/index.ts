@@ -1,8 +1,8 @@
 import Button from '../Button';
 import Input from '../Input';
 import template from './popupMessage.hbs';
-import * as style from './style.module.scss';
-import ChatsController from '../../controllers/ChatController'
+import style from './style.module.scss';
+import ChatsController from '../../controllers/ChatController';
 import store from '../../utils/Store';
 import SubmitPage from '../../utils/validation/SubmitPage';
 import Validation from '../../utils/validation/Validation';
@@ -16,7 +16,7 @@ export interface PopupMesageProps {
 
 export default class PopupMesage extends SubmitPage {
     constructor(props: PopupMesageProps) {
-        super((formData) => {
+        super(() => {
             if (store.getState().createChatPopupVisible) {
                 ChatsController.create((this.children.popupInput as Input).getValue());
                 store.set('createChatPopupVisible', false);
@@ -35,7 +35,6 @@ export default class PopupMesage extends SubmitPage {
                 ChatsController.deleteUsers([Number((this.children.popupInput as Input).getValue())], store.getState().selectedChatId);
                 store.set('deleteUserFromChatPopupVisible', false);
             }
-
         }, props);
     }
 
@@ -64,15 +63,14 @@ export default class PopupMesage extends SubmitPage {
                     Validation.isEmptyInput(this.children.popupInput as Input);
                 },
             },
-        })
-
+        });
 
         if (store.getState().deleteChatPopupVisible) {
-            this.props.checkInput = [];    
+            this.props.checkInput = [];
         } else {
             this.props.checkInput = [
                 this.children.popupInput,
-            ]
+            ];
         }
     }
 

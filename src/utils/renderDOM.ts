@@ -23,7 +23,7 @@ export function renderDOM(route: keyof typeof ROUTES) {
 
     const PageComponent = ROUTES[route];
 
-    const page = new PageComponent({});
+    const page = new PageComponent();
 
     root!.appendChild(page.element as HTMLElement);
 

@@ -1,5 +1,5 @@
 import template from './dialogsPage.hbs';
-import * as style from './styles.module.scss';
+import style from './styles.module.scss';
 import DialogCard from '../../components/dialogCard';
 import ChatsController from '../../controllers/ChatController';
 import store, { withStore } from '../../utils/Store';
@@ -10,17 +10,14 @@ import ButtonWithImage from '../../components/ButtonWithImage';
 import MessagesController, { Message } from '../../controllers/MessagesController';
 import DialogMessages from '../../components/dialogMessages';
 import Popup from '../../components/Popup';
-import createChatIcon from '../../../static/img/dialogsPage/createChat.svg'
+import createChatIcon from '../../../static/img/dialogsPage/createChat.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Validation from '../../utils/validation/Validation';
 import SubmitPage from '../../utils/validation/SubmitPage';
 
-import FileInput from '../../components/FileInput';
-
-
 export default class BaseDialogsPage extends SubmitPage {
-    router: Router
+    router: Router;
 
     constructor() {
         super(() => {
@@ -38,7 +35,7 @@ export default class BaseDialogsPage extends SubmitPage {
             text: 'Профиль',
             events: {
                 click: () => {
-                    this.router.go('/settings')
+                    this.router.go('/settings');
                 },
             },
         });
@@ -51,7 +48,7 @@ export default class BaseDialogsPage extends SubmitPage {
                     // this.props.popupVisible = true;
                 },
             },
-        })
+        });
 
         this.children.sendMessageInput = new Input({
             value: '',
@@ -68,7 +65,7 @@ export default class BaseDialogsPage extends SubmitPage {
                     Validation.isEmptyInput(this.children.sendMessageInput as Input);
                 },
             },
-        })
+        });
 
         this.children.sendButton = new Button({
             type: 'submit',
@@ -77,10 +74,10 @@ export default class BaseDialogsPage extends SubmitPage {
 
         this.props.checkInput = [
             this.children.sendMessageInput,
-        ]
+        ];
     }
 
-    protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+    protected componentDidUpdate(): boolean {
         if (this.props?.createChatPopupVisible) {
             this.children.confirmPopup = new Popup({
                 label: 'Название чата',
@@ -89,9 +86,9 @@ export default class BaseDialogsPage extends SubmitPage {
                 events: {
                     click: () => {
                         store.set('createChatPopupVisible', false);
-                    }
-                }
-            })
+                    },
+                },
+            });
         }
 
         if (this.props?.addUserInChatPopupVisible) {
@@ -102,9 +99,9 @@ export default class BaseDialogsPage extends SubmitPage {
                 events: {
                     click: () => {
                         store.set('addUserInChatPopupVisible', false);
-                    }
-                }
-            })
+                    },
+                },
+            });
         }
 
         if (this.props?.deleteChatPopupVisible) {
@@ -114,9 +111,9 @@ export default class BaseDialogsPage extends SubmitPage {
                 events: {
                     click: () => {
                         store.set('deleteChatPopupVisible', false);
-                    }
-                }
-            })
+                    },
+                },
+            });
         }
 
         if (this.props?.deleteUserFromChatPopupVisible) {
@@ -127,17 +124,16 @@ export default class BaseDialogsPage extends SubmitPage {
                 events: {
                     click: () => {
                         store.set('deleteUserFromChatPopupVisible', false);
-                    }
-                }
-            })
+                    },
+                },
+            });
         }
 
         if (this.props?.messages) {
             this.children.dialogMessages = (this.props.messages[store.getState().selectedChat] || []).map((item: Message) => new DialogMessages({ ...item, isMine: store.getState().user.id == item.user_id }));
         }
 
-        if (this.props?.chats)
-            this.children.dialogsCards = this.props.chats.map((item: ChatInfo) => new DialogCard({ ...item, isSelected: store.getState().selectedChatId === item.id }));
+        if (this.props?.chats) { this.children.dialogsCards = this.props.chats.map((item: ChatInfo) => new DialogCard({ ...item, isSelected: store.getState().selectedChatId === item.id })); }
 
         return true;
     }
@@ -147,8 +143,7 @@ export default class BaseDialogsPage extends SubmitPage {
     }
 }
 
-const withSelectedChatMessages = withStore(state => {
-    return {
+const withSelectedChatMessages = withStore((state) => ({
         messages: state.messages || [],
         chats: state.chats || [],
         selectedChatId: state.selectedChatId || '',
@@ -156,7 +151,6 @@ const withSelectedChatMessages = withStore(state => {
         addUserInChatPopupVisible: state.addUserInChatPopupVisible || false,
         deleteChatPopupVisible: state.deleteChatPopupVisible || false,
         deleteUserFromChatPopupVisible: state.deleteUserFromChatPopupVisible || false,
-    }
-})
+    }));
 
 export const DialogsPage = withSelectedChatMessages(BaseDialogsPage);

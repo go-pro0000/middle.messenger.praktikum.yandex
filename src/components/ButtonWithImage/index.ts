@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './ButtonWithImage.hbs';
-import * as styles from './styles.module.scss';
+import styles from './styles.module.scss';
 
 interface ButtonWithImageProps {
   src: string,

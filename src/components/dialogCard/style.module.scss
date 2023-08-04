@@ -1,13 +1,11 @@
-.dialogCard {
-    position: relative;
-
+.dialog-card {
     border-bottom: 1px solid #EAEAEA;
     border-top: 1px solid #EAEAEA;
+    cursor: pointer;
     display: flex;
     padding: 12px 0;
-
-    cursor: pointer;
-
+    position: relative;
+    
     &:hover {
         background: #E4EDFD;
     }
@@ -38,7 +36,6 @@
         }
 
         &__addRemoveUser {
-            
             display: flex;
             
             div:first-child {
@@ -78,7 +75,7 @@
 
     &__deleteChat {
         position: absolute;
-        top: 10px;
         right: 10px;
+        top: 10px;
     }
 }

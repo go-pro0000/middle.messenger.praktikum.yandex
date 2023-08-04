@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI";
+import BaseAPI from './BaseAPI';
 
 export interface UsersProfileData {
     first_name: string,
@@ -15,7 +15,7 @@ export interface UsersProfilePassword {
 
 export class UsersAPI extends BaseAPI {
     constructor() {
-        super('/user')
+        super('/user');
     }
 
     changeInfo(data: UsersProfileData) {
@@ -31,8 +31,11 @@ export class UsersAPI extends BaseAPI {
     }
 
     read = undefined;
+
     update = undefined;
+
     create = undefined;
+
     delete = undefined;
 }
 

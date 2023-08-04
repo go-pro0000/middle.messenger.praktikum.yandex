@@ -1,5 +1,5 @@
-import Block from "./Block";
-import { EventBus } from "./EventBus";
+import Block from './Block';
+import { EventBus } from './EventBus';
 import { set } from './helpers';
 
 export enum StoreEvents {
@@ -11,7 +11,7 @@ export class Store extends EventBus {
 
     public set(keypath: string, data: unknown) {
         set(this.state, keypath, data);
-        
+
         this.emit(StoreEvents.Updated, this.getState());
     }
 
@@ -38,10 +38,10 @@ export function withStore(mapStateToProps: (state: any) => any) {
                     previousState = stateProps;
 
                     this.setProps({ ...stateProps });
-                })
+                });
             }
-        }
-    }
+        };
+    };
 }
 
 export default store;

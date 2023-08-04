@@ -28,7 +28,7 @@ class Block<P extends Record<string, any> = any> {
    *
    * @returns {void}
    */
-  constructor(propsWithChildren: P) {    
+  constructor(propsWithChildren: P) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -76,9 +76,9 @@ class Block<P extends Record<string, any> = any> {
 
   _removeEvents() {
     if (this.props.events !== null && this.props.events !== undefined) {
-      Object.keys(this.props.events).forEach((eventName) => {
-        this._element?.removeEventListener(eventName, this.props.events[eventName]);
-      });
+        Object.keys(this.props.events).forEach((eventName) => {
+          this._element?.removeEventListener(eventName, this.props.events[eventName]);
+        });
     }
   }
 
@@ -110,13 +110,13 @@ class Block<P extends Record<string, any> = any> {
     });
   }
 
-  private _componentDidUpdate(oldProps: P, newProps: P) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+  private _componentDidUpdate() {
+    if (this.componentDidUpdate()) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: P, newProps: P) {
+  protected componentDidUpdate() {
     return true;
   }
 
@@ -214,19 +214,19 @@ class Block<P extends Record<string, any> = any> {
         this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
-      deleteProperty:(target, prop) => {
+      deleteProperty: (target, prop) => {
         if (prop === 'events') {
           this.eventBus().emit(Block.EVENTS.DELETE_EVENT, Object.getOwnPropertyNames(target[prop])[0], target[prop]);
           return true;
         }
-          throw new Error('Нет доступа');
+        throw new Error('Нет доступа');
       },
     });
   }
 
   show() {
   }
-  
+
   hide() {
     this._element!.innerHTML = '';
   }

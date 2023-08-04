@@ -1,8 +1,8 @@
 import Block from '../../utils/Block';
 import template from './dialogMessages.hbs';
-import * as style from './style.module.scss';
-import checkedMessage from '../../../static/img/dialogsPage/checkedMessage.svg'
-import uncheckedMessage from '../../../static/img/dialogsPage/checkedMessage.svg'
+import style from './style.module.scss';
+import checkedMessage from '../../../static/img/dialogsPage/checkedMessage.svg';
+import uncheckedMessage from '../../../static/img/dialogsPage/checkedMessage.svg';
 
 export interface DialogMessagesProps {
     chat_id: number,
@@ -25,11 +25,13 @@ export interface DialogMessagesProps {
 export default class DialogMessages extends Block {
     constructor(props: DialogMessagesProps) {
         super(props);
-        
+
         this.props.time = this.props?.time?.split('+')[0].split('T')[1].slice(0, -3);
     }
 
     render() {
-        return this.compile(template, { ...this.props, style, checkedMessage, uncheckedMessage });
+        return this.compile(template, {
+ ...this.props, style, checkedMessage, uncheckedMessage,
+});
     }
 }

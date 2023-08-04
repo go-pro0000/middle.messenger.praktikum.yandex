@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './popup.hbs';
-import * as style from './style.module.scss';
+import style from './style.module.scss';
 import PopupMessage from '../PopupMessage';
 
 export interface PopupProps {
